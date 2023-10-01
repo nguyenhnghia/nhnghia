@@ -5,5 +5,5 @@
   },
   "css.lint.unknownAtRules": "ignore",
   "scss.lint.unknownAtRules": "ignore",
-  "cSpell.words": ["cacheable", "SVGR"]
+  "cSpell.words": ["Buildable", "cacheable", "SVGR"]
 }

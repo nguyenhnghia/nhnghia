@@ -1,5 +1,6 @@
 {
   "name": "portfoblogio",
+  "tags": ["scope:client"],
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/portfoblogio",
   "projectType": "application",
@@ -63,6 +64,5 @@
         "lintFilePatterns": ["apps/portfoblogio/**/*.{ts,tsx,js,jsx}"]
       }
     }
-  },
-  "tags": []
+  }
 }

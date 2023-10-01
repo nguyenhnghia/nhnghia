@@ -1,9 +1,9 @@
 {
   "name": "common-functionalities",
+  "tags": ["scope:shared"],
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/common-functionalities/src",
   "projectType": "library",
-  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nx/linter:eslint",
