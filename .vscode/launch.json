@@ -26,17 +26,6 @@
       "type": "node-terminal",
       "request": "launch",
       "command": "npx nx run ${input:selectProject}:serve:${input:selectEnvironment}"
-    },
-    {
-      "name": "Next.js: debug full stack",
-      "type": "node-terminal",
-      "request": "launch",
-      "command": "npx nx run ${input:selectProject}:serve:${input:selectEnvironment}",
-      "serverReadyAction": {
-        "pattern": "started server on .+, url: (https?://.+)",
-        "uriFormat": "%s",
-        "action": "debugWithChrome"
-      }
     }
   ]
 }
