@@ -17,7 +17,8 @@
     "paths": {
       "@nhnghia/common-functionalities": [
         "libs/shared/common-functionalities/src/index.ts"
-      ]
+      ],
+      "@nhnghia/design-system": ["libs/shared/design-system/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
