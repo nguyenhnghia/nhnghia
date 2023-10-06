@@ -15,10 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nhnghia/common-functionalities": [
-        "libs/shared/common-functionalities/src/index.ts"
-      ],
-      "@nhnghia/design-system": ["libs/shared/design-system/src/index.ts"]
+      "@nhnghia/common-functionalities": ["libs/shared/common-functionalities/src/index.ts"],
+      "@nhnghia/design-system": ["libs/shared/design-system/src/index.ts"],
+      "@nhnghia/illustrations": ["libs/shared/assets/src/illustrations/index.ts"],
+      "@nhnghia/static-icons": ["libs/shared/assets/src/static-icons/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

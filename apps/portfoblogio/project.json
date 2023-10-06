@@ -1,7 +1,7 @@
 {
   "name": "portfoblogio",
-  "tags": ["scope:client"],
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "tags": ["scope:client"],
   "sourceRoot": "apps/portfoblogio",
   "projectType": "application",
   "targets": {

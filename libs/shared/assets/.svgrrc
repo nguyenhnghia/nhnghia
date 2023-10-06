@@ -1,0 +1,10 @@
+{
+  "icon": "1rem",
+  "jsxRuntime": "automatic",
+  "typescript": true,
+  "titleProp": true,
+  "svgProps": {
+    "fill": "currentColor",
+    "stroke": "currentColor"
+  }
+}

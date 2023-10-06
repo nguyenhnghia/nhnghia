@@ -1,7 +1,7 @@
 {
   "name": "common-functionalities",
-  "tags": ["scope:shared"],
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "tags": ["scope:shared"],
   "sourceRoot": "libs/shared/common-functionalities/src",
   "projectType": "library",
   "targets": {
@@ -9,9 +9,7 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/shared/common-functionalities/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/shared/common-functionalities/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "build": {

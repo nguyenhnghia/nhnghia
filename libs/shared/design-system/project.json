@@ -1,7 +1,7 @@
 {
   "name": "design-system",
-  "tags": ["scope:shared"],
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "tags": ["scope:shared"],
   "sourceRoot": "libs/shared/design-system/src",
   "projectType": "library",
   "targets": {
