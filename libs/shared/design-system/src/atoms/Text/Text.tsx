@@ -1,21 +1,26 @@
-import { FC } from 'react';
+import cn from '@/common-functionalities/cn';
+import { ElementType, FC, HTMLAttributes } from 'react';
 
-import Heading1, { Heading1Props } from './Heading1';
-import { CommonTextProps } from './types';
+type TextProps =
+  | ({ HTMLTag: 'span' } & HTMLAttributes<HTMLSpanElement>)
+  | ({ HTMLTag: 'p' } & HTMLAttributes<HTMLParagraphElement>)
+  | ({ HTMLTag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' } & HTMLAttributes<HTMLHeadElement>);
 
-type TextProps = CommonTextProps<HTMLSpanElement>;
-
-const Text: FC<TextProps> & { H1: FC<Heading1Props> } = (props) => {
+const Text: FC<TextProps> = (props) => {
   // props
-  const { children } = props;
+  const { HTMLTag, className, children, ...restProps } = props;
+
+  const Component = HTMLTag as ElementType;
 
   // render
-  return <span>{children}</span>;
+  return (
+    <Component className={cn('', className)} {...restProps}>
+      {children}
+    </Component>
+  );
 };
 
 Text.displayName = 'Text';
-Text.H1 = Heading1;
 
-export { Text };
 export type { TextProps };
 export default Text;

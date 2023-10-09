@@ -15,10 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nhnghia/common-functionalities": ["libs/shared/common-functionalities/src/index.ts"],
-      "@nhnghia/design-system": ["libs/shared/design-system/src/index.ts"],
-      "@nhnghia/illustrations": ["libs/shared/assets/src/illustrations/index.ts"],
-      "@nhnghia/static-icons": ["libs/shared/assets/src/static-icons/index.ts"]
+      "@/common-functionalities": ["libs/shared/common-functionalities/src/index.ts"],
+      "@/common-functionalities/*": ["libs/shared/common-functionalities/src/*"],
+      "@/design-system": ["libs/shared/design-system/src/index.ts"],
+      "@/design-system/*": ["libs/shared/design-system/src/atoms/Text/*"],
+      "@/illustrations": ["libs/shared/assets/src/illustrations/index.ts"],
+      "@/illustrations/*": ["libs/shared/assets/src/illustrations/*"],
+      "@/static-icons": ["libs/shared/assets/src/static-icons/index.ts"],
+      "@/static-icons/*": ["libs/shared/assets/src/static-icons/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
