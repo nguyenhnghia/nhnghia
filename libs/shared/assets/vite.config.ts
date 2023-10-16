@@ -19,7 +19,7 @@ export default defineConfig({
 
   build: {
     lib: {
-      entry: ['src/static-icons/index.ts', 'src/illustrations/index.ts'],
+      entry: 'src/index.ts',
       name: 'assets',
       fileName: 'index',
       formats: ['es', 'cjs'],

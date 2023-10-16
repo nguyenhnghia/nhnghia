@@ -11,7 +11,7 @@
   },
   "scripts": {
     "prepare": "npm run generate",
-    "generate": "npm run generate-static-icons && npm run generate-illustrations",
+    "generate": "npm run generate-static-icons && npm run generate-illustrations && sh ./_/post-generate.sh",
     "generate-static-icons": "npx @svgr/cli --out-dir src/static-icons static-icons",
     "generate-illustrations": "npx @svgr/cli --out-dir src/illustrations illustrations"
   },
