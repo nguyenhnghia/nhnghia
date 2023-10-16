@@ -1,4 +1,5 @@
-import Text from '@/design-system/Text';
+import cn from '@/common-functionalities/cn';
+import Button from '@/design-system/Button';
 import SvgHome from '@/illustrations/Home';
 import SvgArrowBottomLeft from '@/static-icons/ArrowBottomLeft';
 import SvgArrowBottomRight from '@/static-icons/ArrowBottomRight';
@@ -51,24 +52,18 @@ export default async function Index() {
         <SvgDoubleArrowLoop />
         <SvgHome />
       </div>
-      <Text HTMLTag="span" className="text-blue-300 text-3xl">
-        text
-      </Text>
-      <Text HTMLTag="p" className="text-blue-300 text-5xl">
-        paragraph
-      </Text>
-      <Text HTMLTag="h1" className="text-blue-300">
-        heading1
-      </Text>
-      <Text HTMLTag="h2" className="text-blue-300">
-        heading2
-      </Text>
-      <Text HTMLTag="h3" className="text-blue-300">
-        heading3
-      </Text>
-      <Text HTMLTag="h4" className="text-blue-300">
-        heading4
-      </Text>
+      <Button className={cn('text-left italic')}>button</Button>
+      <p className="line-clamp-3">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id, magnam? Provident animi
+        praesentium sint magni, repellat consequuntur quidem expedita, ducimus rerum ad quod
+        aspernatur dolorum, reprehenderit eveniet quae autem debitis dolor cum fugit incidunt
+        veritatis non! Ut placeat non rerum eum distinctio voluptas similique nostrum? Doloremque,
+        quaerat magni enim consectetur eum perferendis. Consectetur nam architecto deleniti magnam
+        perspiciatis magni, laboriosam necessitatibus, veniam cumque obcaecati aspernatur placeat
+        totam hic consequuntur adipisci minus unde, ea rerum quo doloremque praesentium. Commodi
+        mollitia iusto est unde consectetur labore delectus officia accusamus dolores sapiente, quod
+        fugit doloremque obcaecati eos debitis beatae, laudantium, sint dicta! Iste.
+      </p>
     </div>
   );
 }

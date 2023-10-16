@@ -18,7 +18,10 @@
       "@/common-functionalities": ["libs/shared/common-functionalities/src/index.ts"],
       "@/common-functionalities/*": ["libs/shared/common-functionalities/src/*"],
       "@/design-system": ["libs/shared/design-system/src/index.ts"],
-      "@/design-system/*": ["libs/shared/design-system/src/atoms/Text/*"],
+      "@/design-system/*": [
+        "libs/shared/design-system/src/atoms/*",
+        "libs/shared/design-system/src/molecules/*"
+      ],
       "@/illustrations": ["libs/shared/assets/src/illustrations/index.ts"],
       "@/illustrations/*": ["libs/shared/assets/src/illustrations/*"],
       "@/static-icons": ["libs/shared/assets/src/static-icons/index.ts"],

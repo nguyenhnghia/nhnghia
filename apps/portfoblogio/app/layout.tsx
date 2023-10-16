@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${mainFont.variable} ${subFont.variable}`}>
-      <body className={mainFont.className}>{children}</body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
