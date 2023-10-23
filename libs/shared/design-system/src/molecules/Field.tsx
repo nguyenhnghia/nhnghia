@@ -17,7 +17,7 @@ const Field: FC<FieldProps> = (props) => {
   );
 };
 
-Field.displayName = 'Field';
+Field.displayName = 'DS/Field';
 
 export type { FieldProps };
 export default Field;

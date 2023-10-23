@@ -52,7 +52,68 @@ export default async function Index() {
         <SvgDoubleArrowLoop />
         <SvgHome />
       </div>
-      <Button className={cn('text-left italic')}>button</Button>
+      <div className="flex-wrap flex gap-4 my-5 items-end justify-center">
+        <Button
+          mobile={{ size: 'tiny' }}
+          className={cn('bg-blue-300')}
+          startIcon={<div className="rounded-full bg-red-600" />}
+          endIcon={<SvgArrowRight />}
+        >
+          click here
+        </Button>
+        <Button
+          mobile={{ size: 'small' }}
+          className={cn('bg-blue-300')}
+          startIcon={<div className="rounded-full bg-red-600" />}
+          endIcon={<SvgArrowRight />}
+        >
+          click here
+        </Button>
+        <Button
+          mobile={{ size: 'normal' }}
+          className={cn('bg-blue-300')}
+          startIcon={<div className="rounded-full bg-red-600" />}
+          endIcon={<SvgArrowRight />}
+        >
+          click here
+        </Button>
+        <Button
+          mobile={{ size: 'medium' }}
+          className={cn('bg-blue-300')}
+          startIcon={<div className="rounded-full bg-red-600" />}
+          endIcon={<SvgArrowRight />}
+        >
+          click here
+        </Button>
+        <Button
+          mobile={{ size: 'large' }}
+          className={cn('bg-blue-300')}
+          startIcon={<div className="rounded-full bg-red-600" />}
+          endIcon={<SvgArrowRight />}
+        >
+          click here
+        </Button>
+        <Button
+          mobile={{ size: 'huge' }}
+          className={cn('bg-blue-300 w-[300px]')}
+          // startIcon={<div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />}
+          // endIcon={<SvgArrowRight />}
+        >
+          click here
+        </Button>
+      </div>
+      <div className="my-5">
+        <Button
+          mobile={{ size: 'huge' }}
+          tablet={{ size: 'large', shape: 'rectangle' }}
+          desktop={{ size: 'normal', shape: 'rounded' }}
+          className={cn('bg-blue-300 w-10/12')}
+          startIcon={<div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />}
+          endIcon={<SvgArrowRight />}
+        >
+          click here
+        </Button>
+      </div>
       <p className="line-clamp-3">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id, magnam? Provident animi
         praesentium sint magni, repellat consequuntur quidem expedita, ducimus rerum ad quod
