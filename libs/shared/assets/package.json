@@ -11,9 +11,10 @@
   },
   "scripts": {
     "prepare": "npm run generate",
-    "generate": "npm run generate-static-icons && npm run generate-illustrations && sh ./_/post-generate.sh",
-    "generate-static-icons": "npx @svgr/cli --out-dir src/static-icons static-icons",
-    "generate-illustrations": "npx @svgr/cli --out-dir src/illustrations illustrations"
+    "generate": "npm run generate-static-icons && npm run generate-illustrations && npm run generate-index-file",
+    "generate-static-icons": "npx @svgr/cli --out-dir src/static-icons static-icons --silent",
+    "generate-illustrations": "npx @svgr/cli --out-dir src/illustrations illustrations --silent",
+    "generate-index-file": "sh ./_/generate-index-file.sh"
   },
   "peerDependencies": {
     "@svgr/cli": "^8.1.0"

@@ -22,6 +22,7 @@
     "serve": {
       "executor": "@nx/next:server",
       "defaultConfiguration": "development",
+      "dependsOn": ["^generate"],
       "options": {
         "buildTarget": "portfoblogio:build",
         "dev": true
