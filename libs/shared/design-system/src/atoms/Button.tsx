@@ -3,26 +3,26 @@ import { VariantProps, cva } from 'class-variance-authority';
 import { ClassValue } from 'clsx';
 import { HTMLAttributes, ReactElement, forwardRef } from 'react';
 
-import styles from './styles/button.module.css';
+import './styles/button.css';
 
-const getMobileViewButtonClassName = cva(styles['button'], {
+const getMobileViewButtonClassName = cva('button', {
   variants: {
     size: {
-      tiny: styles['size-tiny'],
-      small: styles['size-small'],
-      normal: styles['size-normal'],
-      medium: styles['size-medium'],
-      large: styles['size-large'],
-      huge: styles['size-huge'],
+      tiny: 'size-tiny',
+      small: 'size-small',
+      normal: 'size-normal',
+      medium: 'size-medium',
+      large: 'size-large',
+      huge: 'size-huge',
     },
     shape: {
-      rectangle: styles['shape-rectangle'],
-      rounded: styles['shape-rounded'],
-      capsule: styles['shape-capsule'],
+      rectangle: 'shape-rectangle',
+      rounded: 'shape-rounded',
+      capsule: 'shape-capsule',
     },
     layout: {
-      wide: styles['layout-wide'],
-      tight: styles['layout-tight'],
+      wide: 'layout-wide',
+      tight: 'layout-tight',
     },
   },
   defaultVariants: {
@@ -35,21 +35,21 @@ const getMobileViewButtonClassName = cva(styles['button'], {
 const getTabletViewButtonClassName = cva('', {
   variants: {
     size: {
-      tiny: styles['tablet-size-tiny'],
-      small: styles['tablet-size-small'],
-      normal: styles['tablet-size-normal'],
-      medium: styles['tablet-size-medium'],
-      large: styles['tablet-size-large'],
-      huge: styles['tablet-size-huge'],
+      tiny: 'tablet-size-tiny',
+      small: 'tablet-size-small',
+      normal: 'tablet-size-normal',
+      medium: 'tablet-size-medium',
+      large: 'tablet-size-large',
+      huge: 'tablet-size-huge',
     },
     shape: {
-      rectangle: styles['tablet-shape-rectangle'],
-      rounded: styles['tablet-shape-rounded'],
-      capsule: styles['tablet-shape-capsule'],
+      rectangle: 'tablet-shape-rectangle',
+      rounded: 'tablet-shape-rounded',
+      capsule: 'tablet-shape-capsule',
     },
     layout: {
-      wide: styles['tablet-layout-wide'],
-      tight: styles['tablet-layout-tight'],
+      wide: 'tablet-layout-wide',
+      tight: 'tablet-layout-tight',
     },
   },
 });
@@ -57,32 +57,64 @@ const getTabletViewButtonClassName = cva('', {
 const getDesktopViewButtonClassName = cva('', {
   variants: {
     size: {
-      tiny: styles['desktop-size-tiny'],
-      small: styles['desktop-size-small'],
-      normal: styles['desktop-size-normal'],
-      medium: styles['desktop-size-medium'],
-      large: styles['desktop-size-large'],
-      huge: styles['desktop-size-huge'],
+      tiny: 'desktop-size-tiny',
+      small: 'desktop-size-small',
+      normal: 'desktop-size-normal',
+      medium: 'desktop-size-medium',
+      large: 'desktop-size-large',
+      huge: 'desktop-size-huge',
     },
     shape: {
-      rectangle: styles['desktop-shape-rectangle'],
-      rounded: styles['desktop-shape-rounded'],
-      capsule: styles['desktop-shape-capsule'],
+      rectangle: 'desktop-shape-rectangle',
+      rounded: 'desktop-shape-rounded',
+      capsule: 'desktop-shape-capsule',
     },
     layout: {
-      wide: styles['desktop-layout-wide'],
-      tight: styles['desktop-layout-tight'],
+      wide: 'desktop-layout-wide',
+      tight: 'desktop-layout-tight',
     },
   },
 });
 
 type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
+  /**
+   * @description
+   * mobile view (from 0px to 767px) appearance which is described by:
+   * - size: tiny | small | normal (default) | medium | large | huge
+   * - shape: rectangle | rounded | capsule (default)
+   * - layout: wide (default) | tight
+   * @default
+   * { size: 'normal', shape: 'capsule', layout: 'wide' }
+   */
   mobile?: VariantProps<typeof getMobileViewButtonClassName>;
+  /**
+   * @description
+   * - have the same config as mobile config but work on tablet view (from 767px),
+   * - will partially overwrite mobile config
+   * - will be overwrite partially if desktop view config is set
+   * @default
+   * undefined
+   */
   tablet?: VariantProps<typeof getTabletViewButtonClassName>;
+  /**
+   * @description
+   * - have the same config as mobile config but work on desktop view (from 1280px),
+   * - will partially overwrite mobile & tablet config
+   * @default
+   * undefined
+   */
   desktop?: VariantProps<typeof getDesktopViewButtonClassName>;
 } & {
   startIcon?: ReactElement;
   endIcon?: ReactElement;
+  /**
+   * @description
+   * extends component's class name
+   * @property {ClassValue} contentWrapper - extends class for content wrapper (which wrapped icons & button text)
+   * @property {ClassValue} startIcon - extends class for start icon
+   * @property {ClassValue} text - extends class for button text
+   * @property {ClassValue} endIcon - extends class for end icon
+   */
   componentClassName?: {
     contentWrapper?: ClassValue;
     startIcon?: ClassValue;
@@ -108,7 +140,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, forwardedRef) 
   // render
   return (
     <button
-      data-component="button"
+      data-component="nov19-button"
       className={cn(
         getMobileViewButtonClassName(mobile),
         getTabletViewButtonClassName(tablet),
@@ -118,22 +150,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, forwardedRef) 
       {...restProps}
       ref={forwardedRef}
     >
-      <div className={cn(styles['content-wrapper'], componentClassName?.contentWrapper)}>
-        {startIcon && (
-          <div className={cn(styles['icon'], componentClassName?.startIcon)}>{startIcon}</div>
-        )}
-        <div
-          className={cn(
-            styles['text'],
-            { 'mx-auto': !startIcon && !endIcon },
-            componentClassName?.text
-          )}
-        >
-          {children}
-        </div>
-        {endIcon && (
-          <div className={cn(styles['icon'], componentClassName?.endIcon)}>{endIcon}</div>
-        )}
+      <div className={cn('content-wrapper', componentClassName?.contentWrapper)}>
+        {startIcon && <div className={cn('icon', componentClassName?.startIcon)}>{startIcon}</div>}
+        <div className={cn('text', componentClassName?.text)}>{children}</div>
+        {endIcon && <div className={cn('icon', componentClassName?.endIcon)}>{endIcon}</div>}
       </div>
     </button>
   );

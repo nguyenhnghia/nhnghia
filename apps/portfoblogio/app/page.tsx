@@ -55,7 +55,7 @@ export default async function Index() {
       <div className="flex-wrap flex gap-4 my-5 items-end justify-center">
         <Button
           mobile={{ size: 'tiny' }}
-          className={cn('bg-blue-300')}
+          className={cn('')}
           startIcon={<div className="rounded-full bg-red-600" />}
           endIcon={<SvgArrowRight />}
         >
@@ -63,7 +63,7 @@ export default async function Index() {
         </Button>
         <Button
           mobile={{ size: 'small' }}
-          className={cn('bg-blue-300')}
+          className={cn('')}
           startIcon={<div className="rounded-full bg-red-600" />}
           endIcon={<SvgArrowRight />}
         >
@@ -71,7 +71,7 @@ export default async function Index() {
         </Button>
         <Button
           mobile={{ size: 'normal' }}
-          className={cn('bg-blue-300')}
+          className={cn('')}
           startIcon={<div className="rounded-full bg-red-600" />}
           endIcon={<SvgArrowRight />}
         >
@@ -79,7 +79,7 @@ export default async function Index() {
         </Button>
         <Button
           mobile={{ size: 'medium' }}
-          className={cn('bg-blue-300')}
+          className={cn('')}
           startIcon={<div className="rounded-full bg-red-600" />}
           endIcon={<SvgArrowRight />}
         >
@@ -87,7 +87,7 @@ export default async function Index() {
         </Button>
         <Button
           mobile={{ size: 'large' }}
-          className={cn('bg-blue-300')}
+          className={cn('')}
           startIcon={<div className="rounded-full bg-red-600" />}
           endIcon={<SvgArrowRight />}
         >
@@ -95,7 +95,7 @@ export default async function Index() {
         </Button>
         <Button
           mobile={{ size: 'huge' }}
-          className={cn('bg-blue-300 w-[300px]')}
+          className={cn(' w-[300px]')}
           // startIcon={<div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />}
           // endIcon={<SvgArrowRight />}
         >
@@ -105,9 +105,9 @@ export default async function Index() {
       <div className="my-5">
         <Button
           mobile={{ size: 'huge' }}
-          tablet={{ size: 'large', shape: 'rectangle' }}
-          desktop={{ size: 'normal', shape: 'rounded' }}
-          className={cn('bg-blue-300 w-10/12')}
+          tablet={{ size: 'tiny', shape: 'rectangle' }}
+          desktop={{ shape: 'rounded' }}
+          className={cn(' w-10/12')}
           startIcon={<div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />}
           endIcon={<SvgArrowRight />}
         >
