@@ -4,7 +4,6 @@
   "typescript": true,
   "titleProp": true,
   "svgProps": {
-    "fill": "currentColor",
-    "stroke": "currentColor"
+    "fill": "currentColor"
   }
 }
