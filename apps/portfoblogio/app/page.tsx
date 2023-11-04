@@ -54,7 +54,7 @@ export default async function Index() {
       </div>
       <div className="flex-wrap flex gap-4 my-5 items-end justify-center">
         <Button
-          mobile={{ size: 'tiny' }}
+          base={{ size: 'tiny' }}
           className={cn('')}
           startIcon={<div className="rounded-full bg-red-600" />}
           endIcon={<SvgArrowRight />}
@@ -62,7 +62,7 @@ export default async function Index() {
           click here
         </Button>
         <Button
-          mobile={{ size: 'small' }}
+          base={{ size: 'small' }}
           className={cn('')}
           startIcon={<div className="rounded-full bg-red-600" />}
           endIcon={<SvgArrowRight />}
@@ -70,7 +70,7 @@ export default async function Index() {
           click here
         </Button>
         <Button
-          mobile={{ size: 'normal' }}
+          base={{ size: 'normal' }}
           className={cn('')}
           startIcon={<div className="rounded-full bg-red-600" />}
           endIcon={<SvgArrowRight />}
@@ -78,7 +78,7 @@ export default async function Index() {
           click here
         </Button>
         <Button
-          mobile={{ size: 'medium' }}
+          base={{ size: 'medium' }}
           className={cn('')}
           startIcon={<div className="rounded-full bg-red-600" />}
           endIcon={<SvgArrowRight />}
@@ -86,7 +86,7 @@ export default async function Index() {
           click here
         </Button>
         <Button
-          mobile={{ size: 'large' }}
+          base={{ size: 'large' }}
           className={cn('')}
           startIcon={<div className="rounded-full bg-red-600" />}
           endIcon={<SvgArrowRight />}
@@ -94,7 +94,7 @@ export default async function Index() {
           click here
         </Button>
         <Button
-          mobile={{ size: 'huge' }}
+          base={{ size: 'huge' }}
           className={cn(' w-[300px]')}
           // startIcon={<div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />}
           // endIcon={<SvgArrowRight />}
@@ -104,7 +104,7 @@ export default async function Index() {
       </div>
       <div className="my-5">
         <Button
-          mobile={{ size: 'huge' }}
+          base={{ size: 'huge' }}
           tablet={{ size: 'tiny', shape: 'rectangle' }}
           desktop={{ shape: 'rounded' }}
           className={cn(' w-10/12')}

@@ -1,0 +1,139 @@
+@import './breakpoint-mixin.scss';
+
+// layout
+.layout-wide {
+  > .content-wrapper {
+    @apply justify-between;
+  }
+}
+.layout-tight {
+  > .content-wrapper {
+    @apply w-fit mx-auto;
+  }
+}
+
+// shape
+.shape-rectangle {
+  @apply rounded-sm;
+}
+.shape-rounded {
+  @apply rounded-lg;
+}
+.shape-capsule {
+  @apply rounded-full;
+}
+
+// sizes
+.size-tiny {
+  @apply h-28 px-5;
+  .text {
+    @apply mx-5 text-xs;
+  }
+  .icon {
+    @apply h-18;
+  }
+}
+.size-small {
+  @apply h-34 px-7;
+  .text {
+    @apply mx-7 text-sm;
+  }
+  .icon {
+    @apply h-20;
+  }
+}
+.size-normal {
+  @apply h-40 px-9;
+  .text {
+    @apply mx-9 text-base;
+  }
+  .icon {
+    @apply h-22;
+  }
+}
+.size-medium {
+  @apply h-48 px-11;
+  .text {
+    @apply mx-11 text-lg;
+  }
+  .icon {
+    @apply h-26;
+  }
+}
+.size-large {
+  @apply h-54 px-13;
+  .text {
+    @apply mx-13 text-2xl;
+  }
+  .icon {
+    @apply h-28;
+  }
+}
+.size-huge {
+  @apply h-60 px-15;
+  .text {
+    @apply mx-15 text-2xl;
+  }
+  .icon {
+    @apply h-30;
+  }
+}
+
+.button {
+  @apply shrink-0;
+  @apply min-w-fit;
+  @apply border border-current;
+  > .content-wrapper {
+    @apply flex items-center;
+    > .icon {
+      @apply aspect-square;
+      > * {
+        @apply w-full h-full;
+      }
+    }
+    > .text {
+      @apply line-clamp-1;
+      &:only-child {
+        @apply mx-auto;
+      }
+    }
+  }
+  @include responsive {
+    // layout
+    &layout-wide {
+      @apply layout-wide;
+    }
+    &layout-tight {
+      @apply layout-tight;
+    }
+    // shape
+    &shape-rectangle {
+      @apply shape-rectangle;
+    }
+    &shape-rounded {
+      @apply shape-rounded;
+    }
+    &shape-capsule {
+      @apply shape-capsule;
+    }
+    // size
+    &size-tiny {
+      @apply size-tiny;
+    }
+    &size-small {
+      @apply size-small;
+    }
+    &size-normal {
+      @apply size-normal;
+    }
+    &size-medium {
+      @apply size-medium;
+    }
+    &size-large {
+      @apply size-large;
+    }
+    &size-huge {
+      @apply size-huge;
+    }
+  }
+}
