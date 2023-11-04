@@ -1,7 +1,7 @@
 {
   "name": "common-functionalities",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "tags": ["scope:shared"],
+  "tags": ["type:util", "scope:shared"],
   "sourceRoot": "libs/shared/common-functionalities/src",
   "projectType": "library",
   "targets": {

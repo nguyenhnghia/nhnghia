@@ -1,0 +1,8 @@
+{
+  "name": "style-config",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "tags": ["scope:shared", "type:config"],
+  "sourceRoot": "libs/shared/style-config/src",
+  "projectType": "library",
+  "targets": {}
+}

@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/assets/src",
   "projectType": "library",
-  "tags": ["scope:shared"],
+  "tags": ["type:ui", "scope:shared"],
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
