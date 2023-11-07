@@ -25,8 +25,7 @@
       "@/illustrations": ["libs/shared/assets/src/illustrations/index.ts"],
       "@/illustrations/*": ["libs/shared/assets/src/illustrations/*"],
       "@/static-icons": ["libs/shared/assets/src/static-icons/index.ts"],
-      "@/static-icons/*": ["libs/shared/assets/src/static-icons/*"],
-      "@/style-config": ["libs/shared/style-config/src/index.js"]
+      "@/static-icons/*": ["libs/shared/assets/src/static-icons/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

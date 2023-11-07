@@ -7,5 +7,5 @@ module.exports = {
     join(__dirname, '{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
-  presets: [require('../../libs/shared/style-config/tailwind/spacing.preset')],
+  presets: [require('../../style-config/tailwind/spacing.preset')],
 };

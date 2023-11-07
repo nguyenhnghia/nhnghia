@@ -19,7 +19,7 @@
               },
               {
                 "sourceTag": "type:app",
-                "onlyDependOnLibsWithTags": ["type:ui", "type:util", "type:config"]
+                "onlyDependOnLibsWithTags": ["type:ui", "type:util"]
               }
             ]
           }
