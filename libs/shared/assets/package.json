@@ -10,13 +10,13 @@
     }
   },
   "scripts": {
-    "prepare": "npm run generate",
-    "generate": "npm run generate-static-icons && npm run generate-illustrations && npm run generate-index-file",
-    "generate-static-icons": "npx @svgr/cli --out-dir src/static-icons static-icons --silent",
-    "generate-illustrations": "npx @svgr/cli --out-dir src/illustrations illustrations --silent",
+    "prepare": "npm run generate-assets",
+    "generate-assets": "npm run generate-static-icons && npm run generate-illustrations && npm run generate-index-file",
+    "generate-static-icons": "npx -y @svgr/cli --config-file static-icons/.svgrrc --out-dir src/static-icons static-icons --silent",
+    "generate-illustrations": "npx -y @svgr/cli --config-file illustrations/.svgrrc --out-dir src/illustrations illustrations --silent",
     "generate-index-file": "sh ./_/generate-index-file.sh"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@svgr/cli": "^8.1.0"
   }
 }

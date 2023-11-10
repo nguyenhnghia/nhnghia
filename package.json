@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky install && npx nx run assets:generate",
+    "prepare": "husky install && npx nx run assets:generate-assets",
     "prettier": "nx format:write --all=true"
   },
   "private": true,

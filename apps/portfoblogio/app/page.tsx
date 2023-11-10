@@ -1,6 +1,7 @@
 import cn from '@/common-functionalities/cn';
 import Button from '@/design-system/Button';
-import SvgHome from '@/illustrations/Home';
+import SvgCat from '@/illustrations/Cat';
+import SvgProgress from '@/illustrations/Progress';
 import SvgArrowBottomLeft from '@/static-icons/ArrowBottomLeft';
 import SvgArrowBottomRight from '@/static-icons/ArrowBottomRight';
 import SvgArrowDown from '@/static-icons/ArrowDown';
@@ -27,7 +28,7 @@ import SvgMiniChevronUp from '@/static-icons/MiniChevronUp';
 export default async function Index() {
   return (
     <div>
-      <div className="flex flex-wrap gap-2 [&>*]:shrink-0 [&>*]:w-8 [&>*]:h-8 text-blue-500">
+      <div className="flex flex-wrap gap-2 [&>*]:shrink-0 text-blue-500">
         <SvgChevronDown />
         <SvgChevronLeft />
         <SvgChevronRight />
@@ -50,7 +51,10 @@ export default async function Index() {
         <SvgArrowBottomRight />
         <SvgArrowLoop />
         <SvgDoubleArrowLoop />
-        <SvgHome />
+        <SvgProgress />
+      </div>
+      <div className="w-200" style={{ display: 'grid' }}>
+        <SvgCat width="100%" height="100%" />
       </div>
       <div className="flex-wrap flex gap-4 my-5 items-end justify-center">
         <Button
@@ -96,16 +100,22 @@ export default async function Index() {
         <Button
           base={{ size: 'huge' }}
           className={cn(' w-[300px]')}
-          // startIcon={<div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />}
-          // endIcon={<SvgArrowRight />}
+          startIcon={<div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />}
+          endIcon={<SvgArrowRight />}
         >
-          click here
+          <div className="flex flex-col">
+            <span>click here</span>
+            <span className="text-sm">help text</span>
+          </div>
         </Button>
       </div>
       <div className="my-5">
         <Button
           base={{ size: 'huge' }}
-          tablet={{ size: 'tiny', shape: 'rectangle' }}
+          tablet={{
+            size: 'tiny',
+            shape: 'rectangle',
+          }}
           desktop={{ shape: 'rounded' }}
           className={cn(' w-10/12')}
           startIcon={<div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />}
