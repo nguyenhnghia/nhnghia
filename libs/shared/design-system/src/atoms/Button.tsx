@@ -123,44 +123,59 @@ type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
   };
 };
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, forwardedRef) => {
-  // props
-  const {
-    base,
-    tablet,
-    desktop,
-    children,
-    startIcon,
-    endIcon,
-    extendClasses,
-    className,
-    ...restProps
-  } = props;
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, forwardedRef) => {
+    // props
+    const {
+      base,
+      tablet,
+      desktop,
+      children,
+      startIcon,
+      endIcon,
+      extendClasses,
+      className,
+      ...restProps
+    } = props;
 
-  // render
-  return (
-    <button
-      data-ds="nov19"
-      className={cn(
-        css['button'],
-        getButtonBaseClassName(base),
-        getTabletViewButtonClassName(tablet),
-        getDesktopViewButtonClassName(desktop),
-        className
-      )}
-      {...restProps}
-      ref={forwardedRef}
-    >
-      <div className={cn(css['content-wrapper'], extendClasses?.contentWrapper)}>
-        {startIcon ? (
-          <div className={cn(css['icon'], extendClasses?.startIcon)}>{startIcon}</div>
-        ) : null}
-        {children ? <div className={cn(css['text'], extendClasses?.text)}>{children}</div> : null}
-        {endIcon ? <div className={cn(css['icon'], extendClasses?.endIcon)}>{endIcon}</div> : null}
-      </div>
-    </button>
-  );
-});
+    // render
+    return (
+      <button
+        className={cn(
+          css['button'],
+          getButtonBaseClassName(base),
+          getTabletViewButtonClassName(tablet),
+          getDesktopViewButtonClassName(desktop),
+          className
+        )}
+        {...restProps}
+        data-ds="nov19"
+        data-component="button"
+        ref={forwardedRef}
+      >
+        <div
+          className={cn(css['content-wrapper'], extendClasses?.contentWrapper)}
+        >
+          {startIcon ? (
+            <div className={cn(css['icon'], extendClasses?.startIcon)}>
+              {startIcon}
+            </div>
+          ) : null}
+          {children ? (
+            <div className={cn(css['text'], extendClasses?.text)}>
+              {children}
+            </div>
+          ) : null}
+          {endIcon ? (
+            <div className={cn(css['icon'], extendClasses?.endIcon)}>
+              {endIcon}
+            </div>
+          ) : null}
+        </div>
+      </button>
+    );
+  }
+);
 
 Button.displayName = 'DS/Button';
 

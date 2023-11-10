@@ -9,7 +9,9 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/shared/common-functionalities/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "libs/shared/common-functionalities/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "build": {

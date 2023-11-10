@@ -100,7 +100,9 @@ export default async function Index() {
         <Button
           base={{ size: 'huge' }}
           className={cn(' w-[300px]')}
-          startIcon={<div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />}
+          startIcon={
+            <div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />
+          }
           endIcon={<SvgArrowRight />}
         >
           <div className="flex flex-col">
@@ -118,22 +120,27 @@ export default async function Index() {
           }}
           desktop={{ shape: 'rounded' }}
           className={cn(' w-10/12')}
-          startIcon={<div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />}
+          startIcon={
+            <div className="rounded-full bg-red-600 w-1/2 h-1/2 m-auto" />
+          }
           endIcon={<SvgArrowRight />}
         >
           click here
         </Button>
       </div>
       <p className="line-clamp-3">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id, magnam? Provident animi
-        praesentium sint magni, repellat consequuntur quidem expedita, ducimus rerum ad quod
-        aspernatur dolorum, reprehenderit eveniet quae autem debitis dolor cum fugit incidunt
-        veritatis non! Ut placeat non rerum eum distinctio voluptas similique nostrum? Doloremque,
-        quaerat magni enim consectetur eum perferendis. Consectetur nam architecto deleniti magnam
-        perspiciatis magni, laboriosam necessitatibus, veniam cumque obcaecati aspernatur placeat
-        totam hic consequuntur adipisci minus unde, ea rerum quo doloremque praesentium. Commodi
-        mollitia iusto est unde consectetur labore delectus officia accusamus dolores sapiente, quod
-        fugit doloremque obcaecati eos debitis beatae, laudantium, sint dicta! Iste.
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id, magnam?
+        Provident animi praesentium sint magni, repellat consequuntur quidem
+        expedita, ducimus rerum ad quod aspernatur dolorum, reprehenderit
+        eveniet quae autem debitis dolor cum fugit incidunt veritatis non! Ut
+        placeat non rerum eum distinctio voluptas similique nostrum? Doloremque,
+        quaerat magni enim consectetur eum perferendis. Consectetur nam
+        architecto deleniti magnam perspiciatis magni, laboriosam
+        necessitatibus, veniam cumque obcaecati aspernatur placeat totam hic
+        consequuntur adipisci minus unde, ea rerum quo doloremque praesentium.
+        Commodi mollitia iusto est unde consectetur labore delectus officia
+        accusamus dolores sapiente, quod fugit doloremque obcaecati eos debitis
+        beatae, laudantium, sint dicta! Iste.
       </p>
     </div>
   );

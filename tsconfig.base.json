@@ -15,8 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/common-functionalities": ["libs/shared/common-functionalities/src/index.ts"],
-      "@/common-functionalities/*": ["libs/shared/common-functionalities/src/*"],
+      "@/common-functionalities": [
+        "libs/shared/common-functionalities/src/index.ts"
+      ],
+      "@/common-functionalities/*": [
+        "libs/shared/common-functionalities/src/*"
+      ],
       "@/design-system": ["libs/shared/design-system/src/index.ts"],
       "@/design-system/*": [
         "libs/shared/design-system/src/atoms/*",
