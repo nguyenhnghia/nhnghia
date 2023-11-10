@@ -5,7 +5,14 @@
   "projectType": "library",
   "tags": ["type:ui", "scope:shared"],
   "targets": {
+    "setup": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "generate-assets"
+      }
+    },
     "build": {
+      "dependsOn": ["setup"],
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
