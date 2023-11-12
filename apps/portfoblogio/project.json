@@ -19,6 +19,24 @@
         "production": {}
       }
     },
+    "quick-serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "portfoblogio:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "portfoblogio:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "portfoblogio:build:production",
+          "dev": false
+        }
+      }
+    },
     "serve": {
       "dependsOn": ["^setup"],
       "executor": "@nx/next:server",
