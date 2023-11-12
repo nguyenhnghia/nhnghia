@@ -146,7 +146,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           getButtonBaseClassName(base),
           getTabletViewButtonClassName(tablet),
           getDesktopViewButtonClassName(desktop),
-          className
+          className,
         )}
         {...restProps}
         data-ds="nov19"
@@ -174,7 +174,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         </div>
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = 'DS/Button';

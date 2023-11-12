@@ -8,7 +8,7 @@
 }
 .layout-tight {
   > .content-wrapper {
-    @apply w-fit mx-auto;
+    @apply mx-auto w-fit;
   }
 }
 
@@ -70,7 +70,7 @@
   }
 }
 .size-huge {
-  @apply h-60 px-15;
+  @apply px-15 h-60;
   .text {
     @apply mx-15 text-2xl;
   }
@@ -88,7 +88,7 @@
     > .icon {
       @apply aspect-square;
       > * {
-        @apply w-full h-full;
+        @apply h-full w-full;
       }
     }
     > .text {

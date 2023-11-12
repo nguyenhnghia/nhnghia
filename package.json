@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install && npx nx run assets:generate-assets",
-    "prettier": "nx format:write --all=true"
+    "prettier": "nx format:write --all=true",
+    "start-portfoblogio": "cd dist/apps/portfoblogio && npm start"
   },
   "private": true,
   "dependencies": {
@@ -65,7 +66,8 @@
     "nx": "16.9.1",
     "nx-cloud": "^16.0.4",
     "postcss": "^8.4.31",
-    "prettier": "^2.6.2",
+    "prettier": "3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.7",
     "sass": "^1.55.0",
     "tailwindcss": "3.3.5",
     "ts-jest": "^29.1.0",
