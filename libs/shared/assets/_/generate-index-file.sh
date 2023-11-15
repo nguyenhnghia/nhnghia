@@ -2,5 +2,5 @@
 
 file="src/index.ts"
 printf "export * from './static-icons';" > $file
-printf "\nexport * from './illustrations';" >> $file
+# printf "\nexport * from './illustrations';" >> $file
 

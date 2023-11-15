@@ -1,6 +1,7 @@
 {
   "name": "portfoblogio",
   "version": "0.0.1",
+  "license": "MIT",
   "dependencies": {
     "@nx/next": "16.9.1",
     "class-variance-authority": "0.7.1-canary.2",
