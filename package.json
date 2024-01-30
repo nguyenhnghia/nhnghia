@@ -23,7 +23,7 @@
     "typescript": "^5.3.3"
   },
   "scripts": {
-    "prepare": "husky",
+    "prepare": "mkdir -p .turbo/cookies && husky",
     "format": "prettier --write .",
     "clear-turbo-cookies": "rm -rf ./.turbo/cookies/*.cookie",
     "type-check": "turbo type-check --log-order=grouped",
