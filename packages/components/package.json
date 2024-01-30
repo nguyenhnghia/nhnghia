@@ -10,9 +10,6 @@
   },
   "peerDependencies": {
     "@vanilla-extract/css": "^1.14.1",
-    "@vanilla-extract/dynamic": "^2.1.0",
-    "@vanilla-extract/recipes": "^0.5.1",
-    "@vanilla-extract/sprinkles": "^1.6.1",
     "react": "^18.2.0"
   },
   "dependencies": {
@@ -23,9 +20,6 @@
     "@repo/typescript-config": "workspace:*",
     "@types/react": "^18.2.46",
     "@vanilla-extract/css": "^1.14.1",
-    "@vanilla-extract/dynamic": "^2.1.0",
-    "@vanilla-extract/recipes": "^0.5.1",
-    "@vanilla-extract/sprinkles": "^1.6.1",
     "react": "^18.2.0",
     "typescript": "^5.3.3"
   },
