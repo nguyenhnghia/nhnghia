@@ -2,7 +2,10 @@ import type { StyleRule } from "@vanilla-extract/css";
 import { style } from "@vanilla-extract/css";
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { responsive } from "../screens.css";
-import { body, icon, root, text } from "./partials";
+import { body } from "./partials/body";
+import { icon } from "./partials/icon";
+import { root } from "./partials/root";
+import { text } from "./partials/text";
 import staticStyles from "./styles";
 import type { LayoutVariant } from "./variants/layout.css";
 import { layoutVariants } from "./variants/layout.css";
@@ -38,7 +41,7 @@ type OptionalParts = {
 
 type RegisterButtonOptions<P extends keyof OptionalParts> =
   UIResponsibleVariants<ButtonUIVariants> & {
-    __parts?: P[];
+    __parts: P[];
     __override?: {
       root?: StyleRule;
       body?: StyleRule;
@@ -96,7 +99,7 @@ export function registerButton<P extends keyof OptionalParts>(
     const Root = root(rootClasses);
 
     addFunctionSerializer(Root, {
-      importPath: "@repo/components/button/partials",
+      importPath: "@repo/components/button",
       importName: "root",
       args: [[rootClasses]],
     });
@@ -119,7 +122,7 @@ export function registerButton<P extends keyof OptionalParts>(
     const Body = body(bodyClasses);
 
     addFunctionSerializer(Body, {
-      importPath: "@repo/components/button/partials",
+      importPath: "@repo/components/button",
       importName: "body",
       args: [[bodyClasses]],
     });
@@ -142,7 +145,7 @@ export function registerButton<P extends keyof OptionalParts>(
     const Icon = icon(iconClasses);
 
     addFunctionSerializer(Icon, {
-      importPath: "@repo/components/button/partials",
+      importPath: "@repo/components/button",
       importName: "icon",
       args: [[iconClasses]],
     });
@@ -164,7 +167,7 @@ export function registerButton<P extends keyof OptionalParts>(
     const Text = text(textClasses);
 
     addFunctionSerializer(Text, {
-      importPath: "@repo/components/button/partials",
+      importPath: "@repo/components/button",
       importName: "text",
       args: [[textClasses]],
     });

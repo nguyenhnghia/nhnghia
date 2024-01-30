@@ -1,5 +1,7 @@
 import type { StyleRule } from "@vanilla-extract/css";
-import { layoutVars, shapeVars, sizeVars } from "./variants";
+import { layoutVars } from "./variants/layout.css";
+import { shapeVars } from "./variants/shape.css";
+import { sizeVars } from "./variants/size.css";
 
 type ButtonStaticStyles = {
   root: StyleRule;

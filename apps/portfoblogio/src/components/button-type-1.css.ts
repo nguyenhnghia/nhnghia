@@ -1,7 +1,9 @@
-import { registerButton } from "@repo/components/button";
-import { sizeVars } from "@repo/components/button/variants";
+import { buttonVariables } from "@repo/components/button";
+import { registerButton } from "@repo/components/button-register";
 import { TABLET } from "@repo/components/screens";
 import { assignVars } from "@vanilla-extract/css";
+
+const { size } = buttonVariables;
 
 export const ButtonA = registerButton({
   layout: "tight",
@@ -22,7 +24,7 @@ export const ButtonA = registerButton({
     root: {
       "@media": {
         [TABLET]: {
-          vars: assignVars(sizeVars.root, {
+          vars: assignVars(size.root, {
             height: "100px",
             paddingX: "30px",
           }),
