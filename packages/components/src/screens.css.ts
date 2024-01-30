@@ -9,7 +9,7 @@ type ResponsiveStyleRule = {
 
 const TABLET = "(min-width: 768px)";
 
-const DESKTOP = "(min-width: 768px) and (min-width: 1280px)";
+const DESKTOP = "(min-width: 1280px)";
 
 function responsive({ tablet, desktop }: ResponsiveStyleRule): StyleRule {
   if (tablet === undefined && desktop === undefined) return {};
