@@ -1,12 +1,10 @@
 {
   "recommendations": [
-    "nrwl.angular-console",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
     "bradlc.vscode-tailwindcss",
-    "streetsidesoftware.code-spell-checker",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "Gruntfuggly.todo-tree",
     "streetsidesoftware.code-spell-checker-vietnamese",
-    "firsttris.vscode-jest-runner",
-    "Gruntfuggly.todo-tree"
+    "streetsidesoftware.code-spell-checker"
   ]
 }

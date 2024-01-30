@@ -1,20 +1,28 @@
-//@ts-check
+const bundleAnalyzer = require("@next/bundle-analyzer");
+const vanillaExtract = require("@vanilla-extract/next-plugin");
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { composePlugins, withNx } = require('@nx/next');
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.RUN_ANALYZE === 'true',
-});
+/*================== LOGICS WITH ENV =================*/
+const isDevMode = process.env.NODE_ENV === "development";
+const isRunAnalyze = process.env.RUN_ANALYZE === "true";
 
-/**
- * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
- **/
+/*================== BASE CONFIG =================*/
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  nx: {
-    svgr: true,
-  },
+  reactStrictMode: true,
+  transpilePackages: ["@repo/components", "@repo/icons"],
 };
 
-const plugins = [withNx, withBundleAnalyzer];
+/*================== VANILLA EXTRACT PLUGIN =================*/
+const withVanillaExtract = vanillaExtract.createVanillaExtractPlugin({
+  identifiers: isDevMode ? "debug" : "short",
+});
 
-module.exports = composePlugins(...plugins)(nextConfig);
+/*================== BUNDLE ANALYZER PLUGIN =================*/
+const withBundleAnalyze = (config) => {
+  return bundleAnalyzer({
+    enabled: isRunAnalyze,
+    openAnalyzer: false,
+  })(config);
+};
+
+module.exports = withBundleAnalyze(withVanillaExtract(nextConfig));

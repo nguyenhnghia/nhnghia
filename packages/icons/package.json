@@ -1,0 +1,28 @@
+{
+  "name": "@repo/icons",
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/static-icons/index.ts",
+    "./*": "./src/static-icons/*.tsx"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@svgr/cli": "^8.1.0",
+    "@types/react": "^18.2.46",
+    "react": "^18.2.0",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "generate-static-icons": "pnpm svgr --config-file assets/static-icons/.svgr.config.js assets/static-icons --silent",
+    "lint": "eslint --fix src/",
+    "prepare": "pnpm generate-static-icons && pnpm lint",
+    "type-check": "tsc --noEmit"
+  }
+}

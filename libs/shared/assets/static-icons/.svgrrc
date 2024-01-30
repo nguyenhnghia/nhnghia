@@ -1,9 +1,0 @@
-{
-  "icon": "1em",
-  "jsxRuntime": "automatic",
-  "typescript": true,
-  "svgo": false,
-  "svgProps": {
-    "fill": "currentColor"
-  }
-}

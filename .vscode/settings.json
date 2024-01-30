@@ -1,21 +1,27 @@
 {
-  "editor.formatOnSave": true,
+  "cSpell.words": [
+    "commitlint",
+    "currentcolor",
+    "nextjs",
+    "nhnghia",
+    "portfoblogio",
+    "stylex",
+    "stylexjs",
+    "svgr",
+    "sytlex",
+    "tailwindcss",
+    "treeshake",
+    "tsdoc",
+    "xcss"
+  ],
+  "css.customData": [".vscode/tailwind.json"],
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
   },
-  "css.lint.unknownAtRules": "ignore",
-  "scss.lint.unknownAtRules": "ignore",
-  "cSpell.words": [
-    "Buildable",
-    "cacheable",
-    "clsx",
-    "commitlint",
-    "cssmodule",
-    "nhnghia",
-    "portfoblogio",
-    "SVGR",
-    "svgrrc",
-    "svgo",
-    "tailwindcss"
+  "editor.formatOnSave": true,
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
   ]
 }

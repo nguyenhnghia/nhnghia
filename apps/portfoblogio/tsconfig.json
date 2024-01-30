@@ -1,37 +1,18 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
-    "jsx": "preserve",
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "types": ["jest", "node"]
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@components": ["./src/components/index.ts"],
+      "@components/*": ["./src/components/*"],
+    },
   },
   "include": [
+    "../../types",
+    ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx",
-    "../../apps/portfoblogio/.next/types/**/*.ts",
-    "../../dist/apps/portfoblogio/.next/types/**/*.ts",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts"
-  ]
+  "exclude": ["node_modules"],
 }
