@@ -7,7 +7,11 @@ export const ButtonA = registerButton({
   layout: "tight",
   shape: "rectangle",
   size: "tiny",
+  __parts: ["Body", "Icon", "Text"],
   __responsive: {
+    tablet: {
+      layout: "wide",
+    },
     desktop: {
       layout: "tight",
       shape: "capsule",
@@ -19,9 +23,10 @@ export const ButtonA = registerButton({
       "@media": {
         [TABLET]: {
           vars: assignVars(sizeVars.root, {
-            height: "200px",
+            height: "100px",
             paddingX: "30px",
           }),
+          width: "300px",
         },
       },
     },

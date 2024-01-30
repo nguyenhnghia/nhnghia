@@ -10,6 +10,7 @@ import { shapeVariants, type ShapeVariant } from "./variants/shape.css";
 import type { SizeVariant } from "./variants/size.css";
 import { sizeVariants } from "./variants/size.css";
 
+/*================== TYPING =================*/
 type ButtonUIVariants = {
   /**
    * @defaultValue `"wide" for mobile, undefined for tablet & desktop`
@@ -25,23 +26,40 @@ type ButtonUIVariants = {
   size?: SizeVariant;
 };
 
-type RegisterButtonOptions = UIResponsibleVariants<ButtonUIVariants> & {
-  __override?: {
-    root?: StyleRule;
-    body?: StyleRule;
-    icon?: StyleRule;
-    text?: StyleRule;
-  };
+type RequiredParts = {
+  Root: ReturnType<typeof root>;
 };
 
-type Button = {
-  Root: ReturnType<typeof root>;
+type OptionalParts = {
   Body: ReturnType<typeof body>;
   Icon: ReturnType<typeof icon>;
   Text: ReturnType<typeof text>;
 };
 
-export function registerButton(options?: RegisterButtonOptions): Button {
+type RegisterButtonOptions<P extends keyof OptionalParts> =
+  UIResponsibleVariants<ButtonUIVariants> & {
+    __parts?: P[];
+    __override?: {
+      root?: StyleRule;
+      body?: StyleRule;
+      icon?: StyleRule;
+      text?: StyleRule;
+    };
+  };
+
+type Button<P extends keyof OptionalParts> = RequiredParts &
+  Pick<OptionalParts, P>;
+
+/*================== CONSTANTS =================*/
+const requiredParts: (keyof RequiredParts)[] = ["Root"];
+
+/*================== MAIN LOGIC =================*/
+export function registerButton<P extends keyof OptionalParts>(
+  options?: RegisterButtonOptions<P>,
+): Button<P> {
+  /*================== get parts =================*/
+  const parts = [...requiredParts, ...(options?.__parts ?? [])];
+
   /*================== get variants =================*/
   const layout = options?.layout ?? "wide";
   const tlLayout = options?.__responsive?.tablet?.layout;
@@ -55,87 +73,104 @@ export function registerButton(options?: RegisterButtonOptions): Button {
   const tlSize = options?.__responsive?.tablet?.size;
   const dtSize = options?.__responsive?.desktop?.size;
 
-  /*================== build Root =================*/
-  const rootClasses = style([
-    staticStyles.root,
-    shapeVariants[shape].root,
-    sizeVariants[size].root,
-    responsive({
-      tablet: tlShape && shapeVariants[tlShape].root,
-      desktop: dtShape && shapeVariants[dtShape].root,
-    }),
-    responsive({
-      tablet: tlSize && sizeVariants[tlSize].root,
-      desktop: dtSize && sizeVariants[dtSize].root,
-    }),
-    options?.__override?.root ?? {},
-  ]);
+  /*================== collect parts =================*/
+  const Button: Partial<RequiredParts & OptionalParts> = {};
 
-  const Root = root(rootClasses);
+  if (parts.includes("Root")) {
+    /*================== build Root =================*/
+    const rootClasses = style([
+      staticStyles.root,
+      shapeVariants[shape].root,
+      sizeVariants[size].root,
+      responsive({
+        tablet: tlShape && shapeVariants[tlShape].root,
+        desktop: dtShape && shapeVariants[dtShape].root,
+      }),
+      responsive({
+        tablet: tlSize && sizeVariants[tlSize].root,
+        desktop: dtSize && sizeVariants[dtSize].root,
+      }),
+      options?.__override?.root ?? {},
+    ]);
 
-  addFunctionSerializer(Root, {
-    importPath: "@repo/components/button/partials",
-    importName: "root",
-    args: [[rootClasses]],
-  });
+    const Root = root(rootClasses);
 
-  /*================== build body =================*/
-  const bodyClasses = style([
-    staticStyles.body,
-    layoutVariants[layout].body,
-    responsive({
-      tablet: tlLayout && layoutVariants[tlLayout].body,
-      desktop: dtLayout && layoutVariants[dtLayout].body,
-    }),
-    options?.__override?.body ?? {},
-  ]);
+    addFunctionSerializer(Root, {
+      importPath: "@repo/components/button/partials",
+      importName: "root",
+      args: [[rootClasses]],
+    });
 
-  const Body = body(bodyClasses);
+    Button.Root = Root;
+  }
 
-  addFunctionSerializer(Body, {
-    importPath: "@repo/components/button/partials",
-    importName: "body",
-    args: [[bodyClasses]],
-  });
+  if (parts.includes("Body" as P)) {
+    /*================== build body =================*/
+    const bodyClasses = style([
+      staticStyles.body,
+      layoutVariants[layout].body,
+      responsive({
+        tablet: tlLayout && layoutVariants[tlLayout].body,
+        desktop: dtLayout && layoutVariants[dtLayout].body,
+      }),
+      options?.__override?.body ?? {},
+    ]);
 
-  /*================== build icon =================*/
-  const iconClasses = style([
-    staticStyles.icon,
-    sizeVariants[size].icon,
-    responsive({
-      tablet: tlSize && sizeVariants[tlSize].icon,
-      desktop: dtSize && sizeVariants[dtSize].icon,
-    }),
-    options?.__override?.icon ?? {},
-  ]);
+    const Body = body(bodyClasses);
 
-  const Icon = icon(iconClasses);
+    addFunctionSerializer(Body, {
+      importPath: "@repo/components/button/partials",
+      importName: "body",
+      args: [[bodyClasses]],
+    });
 
-  addFunctionSerializer(Icon, {
-    importPath: "@repo/components/button/partials",
-    importName: "icon",
-    args: [[iconClasses]],
-  });
+    Button.Body = Body;
+  }
 
-  /*================== build text =================*/
-  const textClasses = style([
-    staticStyles.text,
-    sizeVariants[size].text,
-    responsive({
-      tablet: tlSize && sizeVariants[tlSize].text,
-      desktop: dtSize && sizeVariants[dtSize].text,
-    }),
-    options?.__override?.text ?? {},
-  ]);
+  if (parts.includes("Icon" as P)) {
+    /*================== build icon =================*/
+    const iconClasses = style([
+      staticStyles.icon,
+      sizeVariants[size].icon,
+      responsive({
+        tablet: tlSize && sizeVariants[tlSize].icon,
+        desktop: dtSize && sizeVariants[dtSize].icon,
+      }),
+      options?.__override?.icon ?? {},
+    ]);
 
-  const Text = text(textClasses);
+    const Icon = icon(iconClasses);
 
-  addFunctionSerializer(Text, {
-    importPath: "@repo/components/button/partials",
-    importName: "text",
-    args: [[textClasses]],
-  });
+    addFunctionSerializer(Icon, {
+      importPath: "@repo/components/button/partials",
+      importName: "icon",
+      args: [[iconClasses]],
+    });
 
-  /*================== return =================*/
-  return { Root, Body, Icon, Text };
+    Button.Icon = Icon;
+  }
+  if (parts.includes("Text" as P)) {
+    /*================== build text =================*/
+    const textClasses = style([
+      staticStyles.text,
+      sizeVariants[size].text,
+      responsive({
+        tablet: tlSize && sizeVariants[tlSize].text,
+        desktop: dtSize && sizeVariants[dtSize].text,
+      }),
+      options?.__override?.text ?? {},
+    ]);
+
+    const Text = text(textClasses);
+
+    addFunctionSerializer(Text, {
+      importPath: "@repo/components/button/partials",
+      importName: "text",
+      args: [[textClasses]],
+    });
+
+    Button.Text = Text;
+  }
+
+  return Button as Button<P>;
 }
