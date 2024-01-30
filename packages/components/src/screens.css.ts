@@ -12,11 +12,12 @@ const TABLET = "(min-width: 768px)";
 const DESKTOP = "(min-width: 1280px)";
 
 function responsive({ tablet, desktop }: ResponsiveStyleRule): StyleRule {
-  if (tablet === undefined && desktop === undefined) return {};
-  const screens: StyleRule["@media"] = {};
-  if (tablet !== undefined) screens[TABLET] = tablet;
-  if (desktop !== undefined) screens[DESKTOP] = desktop;
-  return { "@media": screens };
+  return {
+    "@media": {
+      [TABLET]: tablet ?? {},
+      [DESKTOP]: desktop ?? {},
+    },
+  };
 }
 
 export { DESKTOP, TABLET, responsive };
