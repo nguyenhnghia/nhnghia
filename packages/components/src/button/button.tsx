@@ -14,6 +14,19 @@ import type { SizeVariant } from "./variants/size.css";
 import { sizeVariants } from "./variants/size.css";
 
 /*================== TYPING =================*/
+type RequiredParts = {
+  Root: ReturnType<typeof root>;
+};
+
+type OptionalParts = {
+  Body: ReturnType<typeof body>;
+  Icon: ReturnType<typeof icon>;
+  Text: ReturnType<typeof text>;
+};
+
+type Button<P extends keyof OptionalParts> = RequiredParts &
+  Pick<OptionalParts, P>;
+
 type ButtonUIVariants = {
   /**
    * @defaultValue `"wide" for mobile, undefined for tablet & desktop`
@@ -29,40 +42,16 @@ type ButtonUIVariants = {
   size?: SizeVariant;
 };
 
-type RequiredParts = {
-  Root: ReturnType<typeof root>;
-};
-
-type OptionalParts = {
-  Body: ReturnType<typeof body>;
-  Icon: ReturnType<typeof icon>;
-  Text: ReturnType<typeof text>;
-};
-
 type RegisterButtonOptions<P extends keyof OptionalParts> =
   UIResponsibleVariants<ButtonUIVariants> & {
-    __parts: P[];
-    __override?: {
-      root?: StyleRule;
-      body?: StyleRule;
-      icon?: StyleRule;
-      text?: StyleRule;
-    };
+    __override?: PartialRecord<keyof Button<P>, StyleRule>;
   };
-
-type Button<P extends keyof OptionalParts> = RequiredParts &
-  Pick<OptionalParts, P>;
-
-/*================== CONSTANTS =================*/
-const requiredParts: (keyof RequiredParts)[] = ["Root"];
 
 /*================== MAIN LOGIC =================*/
 export function registerButton<P extends keyof OptionalParts>(
+  parts: P[],
   options?: RegisterButtonOptions<P>,
 ): Button<P> {
-  /*================== get parts =================*/
-  const parts = [...requiredParts, ...(options?.__parts ?? [])];
-
   /*================== get variants =================*/
   const layout = options?.layout ?? "wide";
   const tlLayout = options?.__responsive?.tablet?.layout;
@@ -79,33 +68,31 @@ export function registerButton<P extends keyof OptionalParts>(
   /*================== collect parts =================*/
   const Button: Partial<RequiredParts & OptionalParts> = {};
 
-  if (parts.includes("Root")) {
-    /*================== build Root =================*/
-    const rootClasses = style([
-      staticStyles.root,
-      shapeVariants[shape].root,
-      sizeVariants[size].root,
-      responsive({
-        tablet: tlShape && shapeVariants[tlShape].root,
-        desktop: dtShape && shapeVariants[dtShape].root,
-      }),
-      responsive({
-        tablet: tlSize && sizeVariants[tlSize].root,
-        desktop: dtSize && sizeVariants[dtSize].root,
-      }),
-      options?.__override?.root ?? {},
-    ]);
+  /*================== build Root =================*/
+  const rootClasses = style([
+    staticStyles.root,
+    shapeVariants[shape].root,
+    sizeVariants[size].root,
+    responsive({
+      tablet: tlShape && shapeVariants[tlShape].root,
+      desktop: dtShape && shapeVariants[dtShape].root,
+    }),
+    responsive({
+      tablet: tlSize && sizeVariants[tlSize].root,
+      desktop: dtSize && sizeVariants[dtSize].root,
+    }),
+    options?.__override?.Root ?? {},
+  ]);
 
-    const Root = root(rootClasses);
+  const Root = root(rootClasses);
 
-    addFunctionSerializer(Root, {
-      importPath: "@repo/components/button",
-      importName: "root",
-      args: [[rootClasses]],
-    });
+  addFunctionSerializer(Root, {
+    importPath: "@repo/components/button",
+    importName: "root",
+    args: [[rootClasses]],
+  });
 
-    Button.Root = Root;
-  }
+  Button.Root = Root;
 
   if (parts.includes("Body" as P)) {
     /*================== build body =================*/
@@ -116,7 +103,7 @@ export function registerButton<P extends keyof OptionalParts>(
         tablet: tlLayout && layoutVariants[tlLayout].body,
         desktop: dtLayout && layoutVariants[dtLayout].body,
       }),
-      options?.__override?.body ?? {},
+      options?.__override?.["Body" as P] ?? {},
     ]);
 
     const Body = body(bodyClasses);
@@ -139,7 +126,7 @@ export function registerButton<P extends keyof OptionalParts>(
         tablet: tlSize && sizeVariants[tlSize].icon,
         desktop: dtSize && sizeVariants[dtSize].icon,
       }),
-      options?.__override?.icon ?? {},
+      options?.__override?.["Icon" as P] ?? {},
     ]);
 
     const Icon = icon(iconClasses);
@@ -161,7 +148,7 @@ export function registerButton<P extends keyof OptionalParts>(
         tablet: tlSize && sizeVariants[tlSize].text,
         desktop: dtSize && sizeVariants[dtSize].text,
       }),
-      options?.__override?.text ?? {},
+      options?.__override?.["Text" as P] ?? {},
     ]);
 
     const Text = text(textClasses);

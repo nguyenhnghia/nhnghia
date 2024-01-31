@@ -5,11 +5,10 @@ import { assignVars } from "@vanilla-extract/css";
 
 const { size } = buttonVariables;
 
-export const ButtonA = registerButton({
+export const ButtonA = registerButton(["Body", "Icon", "Text"], {
   layout: "tight",
   shape: "rectangle",
   size: "tiny",
-  __parts: ["Body", "Icon", "Text"],
   __responsive: {
     tablet: {
       layout: "wide",
@@ -21,7 +20,7 @@ export const ButtonA = registerButton({
     },
   },
   __override: {
-    root: {
+    Root: {
       "@media": {
         [TABLET]: {
           vars: assignVars(size.root, {
