@@ -1,22 +1,26 @@
 {
-  "name": "@repo/components",
+  "name": "@repo/component-registers",
   "version": "0.0.0",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
-    "./primitives": "./src/primitives/index.ts",
-    "./primitives/*": "./src/primitives/*.tsx"
+    "./screens": "./src/screens.css.ts",
+    "./button-variables": "./src/button-register/variables.ts",
+    "./button-register": "./src/button-register/register.tsx"
   },
   "peerDependencies": {
+    "@vanilla-extract/css": "^1.14.1",
     "react": "^18.2.0"
   },
   "dependencies": {
+    "@repo/components": "workspace:*",
     "@repo/icons": "workspace:*"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/react": "^18.2.46",
+    "@vanilla-extract/css": "^1.14.1",
     "react": "^18.2.0",
     "typescript": "^5.3.3"
   },

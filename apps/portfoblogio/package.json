@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@repo/component-registers": "workspace:*",
     "@repo/components": "workspace:*",
     "@repo/icons": "workspace:*",
     "@vanilla-extract/css": "^1.14.1",

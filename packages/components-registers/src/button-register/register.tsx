@@ -1,41 +1,27 @@
+import { button, div } from "@repo/components/primitives";
 import type { StyleRule } from "@vanilla-extract/css";
 import { style } from "@vanilla-extract/css";
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { responsive } from "../screens.css";
-import { body } from "./partials/body";
-import { icon } from "./partials/icon";
-import { root } from "./partials/root";
-import { text } from "./partials/text";
 import staticStyles from "./styles";
-import type { LayoutVariant } from "./variants/layout.css";
-import { layoutVariants } from "./variants/layout.css";
-import { shapeVariants, type ShapeVariant } from "./variants/shape.css";
 import type { SizeVariant } from "./variants/size.css";
 import { sizeVariants } from "./variants/size.css";
 
 /*================== TYPING =================*/
 type RequiredParts = {
-  Root: ReturnType<typeof root>;
+  Root: ReturnType<typeof button>;
 };
 
 type OptionalParts = {
-  Body: ReturnType<typeof body>;
-  Icon: ReturnType<typeof icon>;
-  Text: ReturnType<typeof text>;
+  Body: ReturnType<typeof div>;
+  Icon: ReturnType<typeof div>;
+  Text: ReturnType<typeof div>;
 };
 
 type Button<P extends keyof OptionalParts> = RequiredParts &
   Pick<OptionalParts, P>;
 
 type ButtonUIVariants = {
-  /**
-   * @defaultValue `"wide" for mobile, undefined for tablet & desktop`
-   */
-  layout?: LayoutVariant;
-  /**
-   * @defaultValue `"normal" for mobile, undefined for tablet & desktop`
-   */
-  shape?: ShapeVariant;
   /**
    * @defaultValue `"rectangle" for mobile, undefined for tablet & desktop`
    */
@@ -48,19 +34,11 @@ type RegisterButtonOptions<P extends keyof OptionalParts> =
   };
 
 /*================== MAIN LOGIC =================*/
-export function registerButton<P extends keyof OptionalParts>(
+function registerButton<P extends keyof OptionalParts>(
   parts: P[],
   options?: RegisterButtonOptions<P>,
 ): Button<P> {
   /*================== get variants =================*/
-  const layout = options?.layout ?? "wide";
-  const tlLayout = options?.__responsive?.tablet?.layout;
-  const dtLayout = options?.__responsive?.desktop?.layout;
-
-  const shape = options?.shape ?? "rectangle";
-  const tlShape = options?.__responsive?.tablet?.shape;
-  const dtShape = options?.__responsive?.desktop?.shape;
-
   const size = options?.size ?? "normal";
   const tlSize = options?.__responsive?.tablet?.size;
   const dtSize = options?.__responsive?.desktop?.size;
@@ -71,11 +49,11 @@ export function registerButton<P extends keyof OptionalParts>(
   /*================== build Root =================*/
   const rootClasses = style([
     staticStyles.root,
-    shapeVariants[shape].root,
+    sizeVariants[size].shared,
     sizeVariants[size].root,
     responsive({
-      tablet: tlShape && shapeVariants[tlShape].root,
-      desktop: dtShape && shapeVariants[dtShape].root,
+      tablet: tlSize && sizeVariants[tlSize].shared,
+      desktop: dtSize && sizeVariants[dtSize].shared,
     }),
     responsive({
       tablet: tlSize && sizeVariants[tlSize].root,
@@ -84,12 +62,14 @@ export function registerButton<P extends keyof OptionalParts>(
     options?.__override?.Root ?? {},
   ]);
 
-  const Root = root(rootClasses);
+  const rootArgs: Parameters<typeof button>[0] = { className: rootClasses };
+
+  const Root = button(rootArgs);
 
   addFunctionSerializer(Root, {
-    importPath: "@repo/components/button",
-    importName: "root",
-    args: [[rootClasses]],
+    importPath: "@repo/components/primitives",
+    importName: "button",
+    args: [rootArgs],
   });
 
   Button.Root = Root;
@@ -98,20 +78,17 @@ export function registerButton<P extends keyof OptionalParts>(
     /*================== build body =================*/
     const bodyClasses = style([
       staticStyles.body,
-      layoutVariants[layout].body,
-      responsive({
-        tablet: tlLayout && layoutVariants[tlLayout].body,
-        desktop: dtLayout && layoutVariants[dtLayout].body,
-      }),
       options?.__override?.["Body" as P] ?? {},
     ]);
 
-    const Body = body(bodyClasses);
+    const bodyArgs: Parameters<typeof div>[0] = { className: bodyClasses };
+
+    const Body = div(bodyArgs);
 
     addFunctionSerializer(Body, {
-      importPath: "@repo/components/button",
-      importName: "body",
-      args: [[bodyClasses]],
+      importPath: "@repo/components/primitives",
+      importName: "div",
+      args: [bodyArgs],
     });
 
     Button.Body = Body;
@@ -129,12 +106,14 @@ export function registerButton<P extends keyof OptionalParts>(
       options?.__override?.["Icon" as P] ?? {},
     ]);
 
-    const Icon = icon(iconClasses);
+    const iconArgs: Parameters<typeof div>[0] = { className: iconClasses };
+
+    const Icon = div(iconArgs);
 
     addFunctionSerializer(Icon, {
-      importPath: "@repo/components/button",
-      importName: "icon",
-      args: [[iconClasses]],
+      importPath: "@repo/components/primitives",
+      importName: "div",
+      args: [iconArgs],
     });
 
     Button.Icon = Icon;
@@ -151,12 +130,14 @@ export function registerButton<P extends keyof OptionalParts>(
       options?.__override?.["Text" as P] ?? {},
     ]);
 
-    const Text = text(textClasses);
+    const textArgs: Parameters<typeof div>[0] = { className: textClasses };
+
+    const Text = div(textArgs);
 
     addFunctionSerializer(Text, {
-      importPath: "@repo/components/button",
-      importName: "text",
-      args: [[textClasses]],
+      importPath: "@repo/components/primitives",
+      importName: "div",
+      args: [textArgs],
     });
 
     Button.Text = Text;
@@ -164,3 +145,5 @@ export function registerButton<P extends keyof OptionalParts>(
 
   return Button as Button<P>;
 }
+
+export default registerButton;
