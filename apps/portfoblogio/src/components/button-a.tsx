@@ -19,7 +19,16 @@ const ButtonA: FC<ButtonAProps> = (props) => {
   return (
     <Root className={cn("border border-current", className)} {...restProps}>
       {startIcon ? <Icon>{startIcon}</Icon> : null}
-      {children ? <Text>{children}</Text> : null}
+      {children ? (
+        <Text
+          className={cn("line-clamp-1 px-8 pl-0", {
+            "pr-0": !startIcon && Boolean(endIcon),
+            "pl-0": !endIcon && Boolean(startIcon),
+          })}
+        >
+          {children}
+        </Text>
+      ) : null}
       {endIcon ? <Icon>{endIcon}</Icon> : null}
     </Root>
   );
