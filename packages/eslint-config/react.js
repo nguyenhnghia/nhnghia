@@ -39,7 +39,6 @@ module.exports = {
   rules: {
     "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
     "import/no-default-export": "off",
-    "import/order": "off",
     "react/function-component-definition": [
       "warn",
       {

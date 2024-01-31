@@ -3,11 +3,17 @@ declare global {
     [Key in K]: T;
   }>;
 
-  type UIResponsibleVariants<T> = T & {
+  type ResponsibleUIVariants<V> = V & {
     __responsive?: {
-      tablet?: T;
-      desktop?: T;
+      tablet?: V;
+      desktop?: V;
     };
+  };
+
+  type ResponsibleUIProperties<P> = {
+    __baseProperties: P;
+    __tabletProperties?: P;
+    __desktopProperties?: P;
   };
 }
 

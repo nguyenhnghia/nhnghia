@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "clsx",
     "commitlint",
     "currentcolor",
     "nextjs",
@@ -15,13 +16,7 @@
     "xcss"
   ],
   "css.customData": [".vscode/tailwind.json"],
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit"
-  },
+  "editor.codeActionsOnSave": ["source.organizeImports", "source.fixAll"],
   "editor.formatOnSave": true,
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ]
+  "eslint.workingDirectories": [{ "mode": "auto" }]
 }

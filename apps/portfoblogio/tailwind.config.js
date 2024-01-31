@@ -4,6 +4,6 @@
  * @type {TailwindConfig}
  */
 module.exports = {
-  content: ["./src/app/**/*.tsx"],
+  content: ["./src/{app,components}/**/*.tsx"],
   presets: [require("@repo/tailwind-config/config")],
 };

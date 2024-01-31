@@ -23,7 +23,7 @@ const tiny: ButtonSize = {
     vars: assignVars(sizeVars.shared, { space: "4px" }),
   },
   root: {
-    vars: { ...assignVars(sizeVars.root, { height: "28px" }) },
+    vars: assignVars(sizeVars.root, { height: "28px" }),
   },
   text: {
     vars: assignVars(sizeVars.text, { fontSize: "14px", lineHeight: "18px" }),
@@ -113,4 +113,4 @@ const sizeVariants = { tiny, small, normal, medium, large, huge };
 type SizeVariant = keyof typeof sizeVariants;
 
 export { sizeVariants, sizeVars };
-export type { SizeVariant };
+export type { ButtonSize, SizeVariant };
