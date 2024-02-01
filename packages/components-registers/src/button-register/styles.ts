@@ -16,6 +16,7 @@ const root: ButtonStaticStyles["root"] = {
   // static
   display: "flex",
   alignItems: "center",
+  minWidth: "fit-content",
 };
 
 const icon: ButtonStaticStyles["icon"] = {

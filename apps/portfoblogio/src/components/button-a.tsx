@@ -21,9 +21,10 @@ const ButtonA: FC<ButtonAProps> = (props) => {
       {startIcon ? <Icon>{startIcon}</Icon> : null}
       {children ? (
         <Text
-          className={cn("line-clamp-1 px-8 pl-0", {
-            "pr-0": !startIcon && Boolean(endIcon),
-            "pl-0": !endIcon && Boolean(startIcon),
+          className={cn("line-clamp-1", {
+            "pl-8": !startIcon && Boolean(endIcon),
+            "pr-8": !endIcon && Boolean(startIcon),
+            "px-8": !endIcon && !startIcon,
           })}
         >
           {children}
