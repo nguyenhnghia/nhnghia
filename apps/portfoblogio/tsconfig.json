@@ -8,11 +8,5 @@
       "@utils/*": ["./src/utils/*"],
     },
   },
-  "include": [
-    "../../types",
-    ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-  ],
+  "include": [".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "next-env.d.ts"],
 }

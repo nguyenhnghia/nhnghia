@@ -2,6 +2,10 @@ import { button, div } from "@repo/components/primitives";
 import type { StyleRule } from "@vanilla-extract/css";
 import { style } from "@vanilla-extract/css";
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
+import type {
+  ResponsibleUIProperties,
+  ResponsibleUIVariants,
+} from "../common-types";
 import { responsive } from "../screens.css";
 import staticStyles from "./styles";
 import type { ButtonSize, SizeVariant } from "./variants/size.css";
@@ -17,14 +21,16 @@ type OptionalParts = {
   Text: ReturnType<typeof div>;
 };
 
-type ButtonBlueSprint<P extends keyof OptionalParts> = {
-  __config: {
-    parts: P[];
-    options?: RegisterButtonOptions<P>;
-  };
-} & ResponsibleUIProperties<{ size: ButtonSize }> &
-  RequiredParts &
+type ButtonBlueSprintParts<P extends keyof OptionalParts> = RequiredParts &
   Pick<OptionalParts, P>;
+
+type ButtonBlueSprint<P extends keyof OptionalParts> =
+  ButtonBlueSprintParts<P> & {
+    __config: {
+      parts: P[];
+      options?: RegisterButtonOptions<P>;
+    };
+  } & ResponsibleUIProperties<{ size: ButtonSize }>;
 
 type ButtonUIVariants = {
   /**
@@ -35,7 +41,7 @@ type ButtonUIVariants = {
 
 type RegisterButtonOptions<P extends keyof OptionalParts> =
   ResponsibleUIVariants<ButtonUIVariants> & {
-    __override?: PartialRecord<keyof ButtonBlueSprint<P>, StyleRule>;
+    __override?: Partial<Record<keyof ButtonBlueSprintParts<P>, StyleRule>>;
   };
 
 /*================== MAIN LOGIC =================*/
