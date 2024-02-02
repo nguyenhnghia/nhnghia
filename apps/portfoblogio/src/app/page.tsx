@@ -6,7 +6,7 @@ export default function Page(): JSX.Element {
     <main className="p-20">
       <div className="flex">
         <ButtonA
-          className="rounded-sm md:rounded-lg lg:rounded-full "
+          className="tl: rounded-sm tl:rounded-lg dt:rounded-full"
           startIcon={<div className="h-full w-full rounded-full bg-current" />}
           endIcon={<SvgArrowRight />}
         >
