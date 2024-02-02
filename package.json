@@ -23,7 +23,10 @@
     "typescript": "^5.3.3"
   },
   "scripts": {
-    "prepare": "mkdir -p .turbo/cookies && husky",
+    "init-husky": "husky",
+    "create-turbo-cookies-container": "mkdir -p .turbo/cookies",
+    "disable-turbo-telemetry": "turbo telemetry disable",
+    "prepare": "pnpm create-turbo-cookies-container && pnpm disable-turbo-telemetry && pnpm init-husky",
     "format": "prettier --write .",
     "clear-turbo-cookies": "rm -rf ./.turbo/cookies/*.cookie",
     "type-check": "turbo type-check --log-order=grouped",
