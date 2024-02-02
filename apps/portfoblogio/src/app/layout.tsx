@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./global.css";
+import "./_layout.css";
 
 export const metadata: Metadata = {
   title: "nhnghia - portfoblogio",
@@ -12,7 +12,11 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <header>this is shared header</header>
+        {children}
+        <footer>this is shared footer</footer>
+      </body>
     </html>
   );
 }
