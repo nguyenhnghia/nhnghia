@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@repo/component-registers": "workspace:*",
-    "@repo/components": "workspace:*",
     "@repo/icons": "workspace:*",
     "@vanilla-extract/css": "^1.14.1",
     "clsx": "^2.1.0",
@@ -16,6 +14,8 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.0",
     "@next/eslint-plugin-next": "^14.0.4",
+    "@repo/component-registers": "workspace:*",
+    "@repo/components": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",

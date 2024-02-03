@@ -2,6 +2,7 @@ import { button, div } from "@repo/components/primitives";
 import type { StyleRule } from "@vanilla-extract/css";
 import { style } from "@vanilla-extract/css";
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
+import getClasses from "../_utils/get-classes";
 import type {
   ResponsibleUIProperties,
   ResponsibleUIVariants,
@@ -20,6 +21,22 @@ type OptionalParts = {
   Icon: ReturnType<typeof div>;
   Text: ReturnType<typeof div>;
 };
+
+declare global {
+  /* eslint-disable-next-line no-var --
+  we need this global var
+  to save config as <screen>-<part>-<variant>
+  to prevent VE from generating same class among requests
+  eg: if there is already a request for size = 'tiny' at mobile screen,
+  we'll use that generated class to build component for next similar request
+  */
+  var buttonRegisteredSize: Partial<
+    Record<
+      `${"any" | "base" | "tablet" | "desktop"}-${keyof (RequiredParts & OptionalParts)}-${"any" | SizeVariant}`,
+      string
+    >
+  >;
+}
 
 type ButtonBlueSprintParts<P extends keyof OptionalParts> = RequiredParts &
   Pick<OptionalParts, P>;
@@ -45,6 +62,8 @@ type RegisterButtonOptions<P extends keyof OptionalParts> =
   };
 
 /*================== MAIN LOGIC =================*/
+global.buttonRegisteredSize = {};
+
 function registerButton<P extends keyof OptionalParts>(
   parts: P[],
   options?: RegisterButtonOptions<P>,
@@ -68,20 +87,43 @@ function registerButton<P extends keyof OptionalParts>(
   }
 
   /*================== build Root =================*/
-  const rootClasses = style([
-    staticStyles.root,
-    sizeVariants[size].shared,
-    sizeVariants[size].root,
-    responsive({
-      tablet: tlSize && sizeVariants[tlSize].shared,
-      desktop: dtSize && sizeVariants[dtSize].shared,
-    }),
-    responsive({
-      tablet: tlSize && sizeVariants[tlSize].root,
-      desktop: dtSize && sizeVariants[dtSize].root,
-    }),
-    options?.__override?.Root ?? {},
-  ]);
+  const rootClasses = [
+    getClasses(staticStyles.root, global.buttonRegisteredSize, "any-Root-any"),
+    getClasses(
+      [sizeVariants[size].shared, sizeVariants[size].root],
+      global.buttonRegisteredSize,
+      `base-Root-${size}`,
+    ),
+    tlSize &&
+      getClasses(
+        [
+          responsive({
+            tablet: sizeVariants[tlSize].shared,
+          }),
+          responsive({
+            tablet: sizeVariants[tlSize].root,
+          }),
+        ],
+        global.buttonRegisteredSize,
+        `tablet-Root-${tlSize}`,
+      ),
+    dtSize &&
+      getClasses(
+        [
+          responsive({
+            desktop: sizeVariants[dtSize].shared,
+          }),
+          responsive({
+            desktop: sizeVariants[dtSize].root,
+          }),
+        ],
+        global.buttonRegisteredSize,
+        `tablet-Root-${dtSize}`,
+      ),
+    options?.__override?.Root && style(options.__override.Root),
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const rootArgs: Parameters<typeof button>[0] = { className: rootClasses };
 
@@ -97,15 +139,38 @@ function registerButton<P extends keyof OptionalParts>(
 
   if (parts.includes("Icon" as P)) {
     /*================== build icon =================*/
-    const iconClasses = style([
-      staticStyles.icon,
-      sizeVariants[size].icon,
-      responsive({
-        tablet: tlSize && sizeVariants[tlSize].icon,
-        desktop: dtSize && sizeVariants[dtSize].icon,
-      }),
-      options?.__override?.["Icon" as P] ?? {},
-    ]);
+    const iconClasses = [
+      getClasses(
+        staticStyles.icon,
+        global.buttonRegisteredSize,
+        "any-Icon-any",
+      ),
+      getClasses(
+        sizeVariants[size].icon,
+        global.buttonRegisteredSize,
+        `base-Icon-${size}`,
+      ),
+      tlSize &&
+        getClasses(
+          responsive({
+            tablet: sizeVariants[tlSize].icon,
+          }),
+          global.buttonRegisteredSize,
+          `tablet-Icon-${tlSize}`,
+        ),
+      dtSize &&
+        getClasses(
+          responsive({
+            desktop: sizeVariants[dtSize].icon,
+          }),
+          global.buttonRegisteredSize,
+          `tablet-Icon-${dtSize}`,
+        ),
+      options?.__override?.["Icon" as P] &&
+        style(options.__override["Icon" as P] ?? {}),
+    ]
+      .filter(Boolean)
+      .join(" ");
 
     const iconArgs: Parameters<typeof div>[0] = { className: iconClasses };
 
@@ -121,15 +186,38 @@ function registerButton<P extends keyof OptionalParts>(
   }
   if (parts.includes("Text" as P)) {
     /*================== build text =================*/
-    const textClasses = style([
-      staticStyles.text,
-      sizeVariants[size].text,
-      responsive({
-        tablet: tlSize && sizeVariants[tlSize].text,
-        desktop: dtSize && sizeVariants[dtSize].text,
-      }),
-      options?.__override?.["Text" as P] ?? {},
-    ]);
+    const textClasses = [
+      getClasses(
+        staticStyles.text,
+        global.buttonRegisteredSize,
+        "any-Text-any",
+      ),
+      getClasses(
+        sizeVariants[size].text,
+        global.buttonRegisteredSize,
+        `base-Text-${size}`,
+      ),
+      tlSize &&
+        getClasses(
+          responsive({
+            tablet: sizeVariants[tlSize].text,
+          }),
+          global.buttonRegisteredSize,
+          `tablet-Text-${tlSize}`,
+        ),
+      dtSize &&
+        getClasses(
+          responsive({
+            desktop: sizeVariants[dtSize].text,
+          }),
+          global.buttonRegisteredSize,
+          `tablet-Text-${dtSize}`,
+        ),
+      options?.__override?.["Text" as P] &&
+        style(options.__override["Text" as P] ?? {}),
+    ]
+      .filter(Boolean)
+      .join(" ");
 
     const textArgs: Parameters<typeof div>[0] = { className: textClasses };
 
