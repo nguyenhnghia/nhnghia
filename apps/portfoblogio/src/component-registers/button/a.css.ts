@@ -1,6 +1,6 @@
 import registerButton from "@repo/component-registers/button-register";
 
-const buttonABlueSprint = registerButton(["Icon", "Text"], {
+const ButtonA = registerButton(["Icon", "Text"], {
   size: "huge",
   __responsive: {
     tablet: {
@@ -12,4 +12,4 @@ const buttonABlueSprint = registerButton(["Icon", "Text"], {
   },
 });
 
-export default buttonABlueSprint;
+export default ButtonA;

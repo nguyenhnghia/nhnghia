@@ -35,6 +35,14 @@ const text: ButtonStaticStyles["text"] = {
   // static
   flex: "1 1 auto",
   userSelect: "none",
+  selectors: {
+    "&:first-child": {
+      paddingLeft: "0.5ch",
+    },
+    "&:last-child": {
+      paddingRight: "0.5ch",
+    },
+  },
 };
 
 const staticStyles: ButtonStaticStyles = { root, icon, text };

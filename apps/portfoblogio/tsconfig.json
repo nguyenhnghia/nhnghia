@@ -5,6 +5,8 @@
     "paths": {
       "@components": ["./src/components/index.ts"],
       "@components/*": ["./src/components/*"],
+      "@component-registers": ["./src/component-registers/index.ts"],
+      "@component-registers/*": ["./src/component-registers/*"],
       "@utils/*": ["./src/utils/*"],
     },
   },

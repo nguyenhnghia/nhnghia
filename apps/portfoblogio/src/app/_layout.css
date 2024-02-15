@@ -1,5 +1,5 @@
 @tailwind base;
-@tailwind components;
+/* @tailwind components; */
 
 @layer base {
   /* define global style here */
@@ -10,7 +10,7 @@
   }
 }
 
-@layer components {
+@layer base {
   /* define class for shared layout here */
   main {
     @apply bg-red-200;
