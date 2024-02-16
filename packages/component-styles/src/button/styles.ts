@@ -36,7 +36,11 @@ type OptionalParts = {
 type Parts = keyof (RequiredParts & OptionalParts);
 
 type ButtonStyles<P extends keyof OptionalParts> = RequiredParts &
-  Pick<OptionalParts, P>;
+  Pick<OptionalParts, P> & {
+    __selectors: {
+      [K in keyof (RequiredParts & Pick<OptionalParts, P>)]: string;
+    };
+  };
 
 type ButtonUIVariants = {
   /**
@@ -57,7 +61,11 @@ function getButtonStyles<P extends keyof OptionalParts>(
   parts: P[],
   options?: RegisterButtonOptions<P>,
 ): ButtonStyles<P> {
-  const buttonStyles: Partial<ButtonStyles<"icon" | "text">> = {};
+  const buttonStyles: { [K in Parts]?: string } & {
+    __selectors: {
+      [K in Parts]?: string;
+    };
+  } = { __selectors: {} };
 
   /*================== get variants =================*/
   const size = options?.size ?? "normal";
@@ -65,8 +73,14 @@ function getButtonStyles<P extends keyof OptionalParts>(
   const dtSize = options?.__responsive?.desktop?.size;
 
   /*================== build Root =================*/
+  const rootSelector = getClasses(
+    staticStyles.root,
+    global.buttonRegisteredSize,
+    "any-root-any",
+  );
+
   const rootClasses = [
-    getClasses(staticStyles.root, global.buttonRegisteredSize, "any-root-any"),
+    rootSelector,
     getClasses(
       sizeVariants[size],
       global.buttonRegisteredSize,
@@ -91,6 +105,7 @@ function getButtonStyles<P extends keyof OptionalParts>(
     options?.__override?.root && style(options.__override.root),
   ];
 
+  buttonStyles.__selectors.root = rootSelector;
   buttonStyles.root = clsx(rootClasses);
 
   addFunctionSerializer(getDummyTag(rootClasses), {
@@ -101,16 +116,19 @@ function getButtonStyles<P extends keyof OptionalParts>(
 
   /*================== build icon =================*/
   if (parts.includes("icon" as P)) {
+    const iconSelector = getClasses(
+      staticStyles.icon,
+      global.buttonRegisteredSize,
+      "any-icon-any",
+    );
+
     const iconClasses = [
-      getClasses(
-        staticStyles.icon,
-        global.buttonRegisteredSize,
-        "any-icon-any",
-      ),
+      iconSelector,
       options?.__override?.["icon" as P] &&
         style(options.__override["icon" as P] ?? {}),
     ];
 
+    buttonStyles.__selectors.icon = iconSelector;
     buttonStyles.icon = clsx(iconClasses);
 
     addFunctionSerializer(getDummyTag(iconClasses), {
@@ -122,23 +140,25 @@ function getButtonStyles<P extends keyof OptionalParts>(
 
   /*================== build text =================*/
   if (parts.includes("text" as P)) {
+    const textSelector = getClasses(
+      staticStyles.text,
+      global.buttonRegisteredSize,
+      "any-text-any",
+    );
     const textClasses = [
-      getClasses(
-        staticStyles.text,
-        global.buttonRegisteredSize,
-        "any-text-any",
-      ),
+      textSelector,
       options?.__override?.["text" as P] &&
         style(options.__override["Text" as P] ?? {}),
     ];
+
+    buttonStyles.__selectors.text = textSelector;
+    buttonStyles.text = clsx(textClasses);
 
     addFunctionSerializer(getDummyTag(textClasses), {
       importPath: "#dummy-tag",
       importName: "getDummyTag",
       args: [textClasses],
     });
-
-    buttonStyles.text = clsx(textClasses);
   }
 
   return buttonStyles as ButtonStyles<P>;

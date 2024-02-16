@@ -41,9 +41,6 @@ importers:
 
   apps/portfoblogio:
     dependencies:
-      '@repo/component-styles':
-        specifier: workspace:*
-        version: link:../../packages/component-styles
       '@repo/icons':
         specifier: workspace:*
         version: link:../../packages/icons
@@ -72,6 +69,9 @@ importers:
       '@next/eslint-plugin-next':
         specifier: ^14.0.4
         version: 14.1.0
+      '@repo/component-styles':
+        specifier: workspace:*
+        version: link:../../packages/component-styles
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config

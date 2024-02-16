@@ -9,11 +9,7 @@ const isRunAnalyze = process.env.RUN_ANALYZE === "true";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: [
-    "@repo/component-registers",
-    "@repo/components",
-    "@repo/icons",
-  ],
+  transpilePackages: ["@repo/component-styles", "@repo/icons"],
 };
 
 /*================== VANILLA EXTRACT PLUGIN =================*/

@@ -9,9 +9,7 @@ export default function RootPage(): JSX.Element {
       <div className="flex">
         <button type="button" className={buttonAStyles.root}>
           <div className={buttonAStyles.text}>Click me</div>
-          <div className={buttonAStyles.icon}>
-            <SvgArrowRight />
-          </div>
+          <SvgArrowRight className={buttonAStyles.icon} />
         </button>
         <Link href="/test">go to test</Link>
       </div>
