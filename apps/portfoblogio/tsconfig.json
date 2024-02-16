@@ -3,10 +3,8 @@
   "compilerOptions": {
     "plugins": [{ "name": "next" }],
     "paths": {
-      "@components": ["./src/components/index.ts"],
+      "@component-styles/*": ["./src/component-styles/*"],
       "@components/*": ["./src/components/*"],
-      "@component-registers": ["./src/component-registers/index.ts"],
-      "@component-registers/*": ["./src/component-registers/*"],
       "@utils/*": ["./src/utils/*"],
     },
   },
