@@ -3,12 +3,16 @@
   "version": "0.0.0",
   "license": "MIT",
   "sideEffects": false,
-  "exports": {
-    "./screens": "./src/screens.css.ts",
-    "./button": "./src/button/styles.ts"
-  },
+  "files": [
+    "./src/reset.css.ts"
+  ],
   "imports": {
     "#dummy-tag": "./src/_utils/get-dummy-tag.tsx"
+  },
+  "exports": {
+    "./button": "./src/button/styles.ts",
+    "./reset": "./src/reset.css.ts",
+    "./screens": "./src/screens.css.ts"
   },
   "peerDependencies": {
     "@vanilla-extract/css": "^1.14.1",

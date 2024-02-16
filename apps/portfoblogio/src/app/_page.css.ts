@@ -1,6 +1,6 @@
 import getButtonStyles from "@repo/component-styles/button";
 
-const buttonAStyles = getButtonStyles(["icon", "text"], {
+export const buttonAStyles = getButtonStyles(["icon", "text"], {
   size: "huge",
   __responsive: {
     tablet: {
@@ -16,5 +16,3 @@ const buttonAStyles = getButtonStyles(["icon", "text"], {
     },
   },
 });
-
-export default buttonAStyles;

@@ -3,5 +3,5 @@ export default function Template({
 }: {
   children: React.ReactNode;
 }): JSX.Element {
-  return <div className="border-4 border-white">{children}</div>;
+  return <div>{children}</div>;
 }

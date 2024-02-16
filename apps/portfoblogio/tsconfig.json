@@ -3,7 +3,6 @@
   "compilerOptions": {
     "plugins": [{ "name": "next" }],
     "paths": {
-      "@component-styles/*": ["./src/component-styles/*"],
       "@components/*": ["./src/components/*"],
       "@utils/*": ["./src/utils/*"],
     },
