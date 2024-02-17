@@ -8,9 +8,13 @@ const MONO_FONT_FAMILY =
 
 globalStyle("*, ::before, ::after", {
   boxSizing: "border-box",
-  borderWidth: 1,
-  borderStyle: "solid",
-  borderColor: "transparent",
+  border: "1px solid transparent",
+});
+
+globalStyle(":focus-visible", {
+  outlineWidth: 2,
+  outlineStyle: "solid",
+  outlineOffset: 4,
 });
 
 globalStyle("html, :host", {
@@ -59,7 +63,9 @@ globalStyle("a", {
 /*
 Add the correct font weight in Edge and Safari.
 */
-globalStyle("b, strong", { fontWeight: "bolder" });
+globalStyle("b, strong", {
+  fontWeight: "bolder",
+});
 
 /*
 1. Use the user's configured `mono` font-family by default.
@@ -244,18 +250,17 @@ globalStyle("textarea", {
 1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
-globalStyle(
-  "input::placeholder, input::-moz-placeholder, textarea::placeholder, textarea::-moz-placeholder",
-  {
-    opacity: 1,
-    color: "#9ca3af",
-  },
-);
+globalStyle("input::placeholder, textarea::placeholder", {
+  opacity: 1,
+  color: "#9ca3af",
+});
 
 /*
 Set the default cursor for buttons.
 */
-globalStyle('button, [role="button"]', { cursor: "pointer" });
+globalStyle('button, [role="button"]', {
+  cursor: "pointer",
+});
 
 /*
 Make sure disabled buttons don't get the pointer cursor.
@@ -283,4 +288,6 @@ globalStyle("img, video", {
 });
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
-globalStyle("[hidden]", { display: "none" });
+globalStyle("[hidden]", {
+  display: "none",
+});

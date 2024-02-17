@@ -4,7 +4,7 @@ import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { clsx } from "clsx";
 import getClasses from "../_utils/get-classes";
 import { getDummyTag } from "../_utils/get-dummy-tag";
-import type { ResponsibleUIVariants, Screen } from "../common-types";
+import type { ResponsiveUIVariants, Screen } from "../common-types";
 import { responsive } from "../screens.css";
 import staticStyles from "./static";
 import type { SizeVariant } from "./variants/size.css";
@@ -19,7 +19,7 @@ declare global {
   eg: if there is already a request for size = 'tiny' at mobile screen,
   we'll use that generated class to build component for next similar request
   */
-  var buttonRegisteredSize: Partial<
+  var buttonSize: Partial<
     Record<`${"any" | Screen}-${Parts}-${"any" | SizeVariant}`, string>
   >;
 }
@@ -49,17 +49,17 @@ type ButtonUIVariants = {
   size?: SizeVariant;
 };
 
-type RegisterButtonOptions<P extends keyof OptionalParts> =
-  ResponsibleUIVariants<ButtonUIVariants> & {
+type ButtonStyleOptions<P extends keyof OptionalParts> =
+  ResponsiveUIVariants<ButtonUIVariants> & {
     __override?: Partial<Record<keyof ButtonStyles<P>, StyleRule>>;
   };
 
 /*================== MAIN LOGIC =================*/
-global.buttonRegisteredSize = {};
+global.buttonSize = {};
 
 function getButtonStyles<P extends keyof OptionalParts>(
   parts: P[],
-  options?: RegisterButtonOptions<P>,
+  options?: ButtonStyleOptions<P>,
 ): ButtonStyles<P> {
   const buttonStyles: { [K in Parts]?: string } & {
     __selectors: {
@@ -75,23 +75,19 @@ function getButtonStyles<P extends keyof OptionalParts>(
   /*================== build Root =================*/
   const rootSelector = getClasses(
     staticStyles.root,
-    global.buttonRegisteredSize,
+    global.buttonSize,
     "any-root-any",
   );
 
   const rootClasses = [
     rootSelector,
-    getClasses(
-      sizeVariants[size],
-      global.buttonRegisteredSize,
-      `base-root-${size}`,
-    ),
+    getClasses(sizeVariants[size], global.buttonSize, `base-root-${size}`),
     tlSize &&
       getClasses(
         responsive({
           tablet: sizeVariants[tlSize],
         }),
-        global.buttonRegisteredSize,
+        global.buttonSize,
         `tablet-root-${tlSize}`,
       ),
     dtSize &&
@@ -99,7 +95,7 @@ function getButtonStyles<P extends keyof OptionalParts>(
         responsive({
           desktop: sizeVariants[dtSize],
         }),
-        global.buttonRegisteredSize,
+        global.buttonSize,
         `tablet-root-${dtSize}`,
       ),
     options?.__override?.root && style(options.__override.root),
@@ -118,7 +114,7 @@ function getButtonStyles<P extends keyof OptionalParts>(
   if (parts.includes("icon" as P)) {
     const iconSelector = getClasses(
       staticStyles.icon,
-      global.buttonRegisteredSize,
+      global.buttonSize,
       "any-icon-any",
     );
 
@@ -142,7 +138,7 @@ function getButtonStyles<P extends keyof OptionalParts>(
   if (parts.includes("text" as P)) {
     const textSelector = getClasses(
       staticStyles.text,
-      global.buttonRegisteredSize,
+      global.buttonSize,
       "any-text-any",
     );
     const textClasses = [
