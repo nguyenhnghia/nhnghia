@@ -17,8 +17,10 @@ const root: ButtonStaticStyles["root"] = {
   paddingRight: sizeVars.space,
   // static
   display: "flex",
+  justifyContent: "center",
   alignItems: "center",
   minWidth: "fit-content",
+  border: "1px solid currentcolor",
 };
 
 const icon: ButtonStaticStyles["icon"] = {
@@ -35,7 +37,6 @@ const text: ButtonStaticStyles["text"] = {
   fontSize: sizeVars.fontSize,
   lineHeight: sizeVars.contentHeight,
   // static
-  flex: "1 1 auto",
   userSelect: "none",
   selectors: {
     "&:first-child": {

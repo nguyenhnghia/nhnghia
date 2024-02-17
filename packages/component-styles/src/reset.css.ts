@@ -291,3 +291,11 @@ globalStyle("img, video", {
 globalStyle("[hidden]", {
   display: "none",
 });
+
+/**
+ * Make element inside svg inherit it's color
+ */
+globalStyle("svg *", {
+  fill: "inherit",
+  stroke: "inherit",
+});
