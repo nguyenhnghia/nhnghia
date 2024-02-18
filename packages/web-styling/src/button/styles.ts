@@ -17,7 +17,7 @@ declare global {
   to save config as <screen>-<part>-<variant>
   to prevent VE from generating same class among requests
   eg: if there is already a request for size = 'tiny' at mobile screen,
-  we'll use that generated class to build component for next similar request
+  we'll use that generated class for next similar request
   */
   var buttonSize: Partial<
     Record<`${"any" | Screen}-${Parts}-${"any" | SizeVariant}`, string>
@@ -44,13 +44,14 @@ type ButtonStyles<P extends keyof OptionalParts> = RequiredParts &
 
 type ButtonUIVariants = {
   /**
-   * @defaultValue `"rectangle" for mobile, undefined for tablet & desktop`
+   * @defaultValue `"normal" for mobile, undefined for tablet & desktop`
    */
   size?: SizeVariant;
 };
 
 type ButtonStyleOptions<P extends keyof OptionalParts> =
   ResponsiveUIVariants<ButtonUIVariants> & {
+    __extend?: Partial<Record<keyof ButtonStyles<P>, string[]>>;
     __override?: Partial<Record<keyof ButtonStyles<P>, StyleRule>>;
   };
 
@@ -98,6 +99,7 @@ function getButtonStyles<P extends keyof OptionalParts>(
         globalThis.buttonSize,
         `tablet-root-${dtSize}`,
       ),
+    options?.__extend?.root,
     options?.__override?.root && style(options.__override.root),
   ];
 
@@ -120,6 +122,7 @@ function getButtonStyles<P extends keyof OptionalParts>(
 
     const iconClasses = [
       iconSelector,
+      options?.__extend?.["icon" as P],
       options?.__override?.["icon" as P] &&
         style(options.__override["icon" as P] ?? {}),
     ];
@@ -143,6 +146,7 @@ function getButtonStyles<P extends keyof OptionalParts>(
     );
     const textClasses = [
       textSelector,
+      options?.__extend?.["text" as P],
       options?.__override?.["text" as P] &&
         style(options.__override["Text" as P] ?? {}),
     ];

@@ -12,7 +12,9 @@
   "exports": {
     "./button": "./src/button/styles.ts",
     "./reset": "./src/reset.css.ts",
-    "./screens": "./src/screens.css.ts"
+    "./screens": "./src/screens.css.ts",
+    "./utilities": "./src/utilities/index.ts",
+    "./utilities/*": "./src/utilities/*.ts"
   },
   "peerDependencies": {
     "@vanilla-extract/css": "^1.14.1",
