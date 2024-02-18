@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@repo/icons": "workspace:*",
+    "@repo/web-styling": "workspace:*",
     "@vanilla-extract/css": "^1.14.1",
     "clsx": "^2.1.0",
     "next": "^14.0.4",
@@ -13,7 +14,6 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.0",
     "@next/eslint-plugin-next": "^14.0.4",
-    "@repo/component-styles": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^20.10.6",

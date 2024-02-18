@@ -1,4 +1,4 @@
-import "@repo/component-styles/reset";
+import "@repo/web-styling/reset";
 import type { Metadata } from "next";
 import "./_layout.css";
 

@@ -1,4 +1,4 @@
-import getButtonStyles from "@repo/component-styles/button";
+import getButtonStyles from "@repo/web-styling/button";
 
 export const buttonA = getButtonStyles(["icon", "text"], {
   __responsive: {

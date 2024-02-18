@@ -44,6 +44,9 @@ importers:
       '@repo/icons':
         specifier: workspace:*
         version: link:../../packages/icons
+      '@repo/web-styling':
+        specifier: workspace:*
+        version: link:../../packages/web-styling
       '@vanilla-extract/css':
         specifier: ^1.14.1
         version: 1.14.1
@@ -66,9 +69,6 @@ importers:
       '@next/eslint-plugin-next':
         specifier: ^14.0.4
         version: 14.1.0
-      '@repo/component-styles':
-        specifier: workspace:*
-        version: link:../../packages/component-styles
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
@@ -90,30 +90,6 @@ importers:
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
-
-  packages/component-styles:
-    devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      '@types/react':
-        specifier: ^18.2.46
-        version: 18.2.48
-      '@vanilla-extract/css':
-        specifier: ^1.14.1
-        version: 1.14.1
-      clsx:
-        specifier: ^2.1.0
-        version: 2.1.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      typescript:
-        specifier: ^5.1.6
-        version: 5.3.3
 
   packages/eslint-config:
     devDependencies:
@@ -152,6 +128,30 @@ importers:
         version: 3.4.1
 
   packages/typescript-config: {}
+
+  packages/web-styling:
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/react':
+        specifier: ^18.2.46
+        version: 18.2.48
+      '@vanilla-extract/css':
+        specifier: ^1.14.1
+        version: 1.14.1
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      typescript:
+        specifier: ^5.1.6
+        version: 5.3.3
 
 packages:
 
