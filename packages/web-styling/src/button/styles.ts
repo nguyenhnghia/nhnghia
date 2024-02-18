@@ -55,7 +55,7 @@ type ButtonStyleOptions<P extends keyof OptionalParts> =
   };
 
 /*================== MAIN LOGIC =================*/
-global.buttonSize = {};
+globalThis.buttonSize = {};
 
 function getButtonStyles<P extends keyof OptionalParts>(
   parts: P[],
@@ -75,19 +75,19 @@ function getButtonStyles<P extends keyof OptionalParts>(
   /*================== build Root =================*/
   const rootSelector = getClasses(
     staticStyles.root,
-    global.buttonSize,
+    globalThis.buttonSize,
     "any-root-any",
   );
 
   const rootClasses = [
     rootSelector,
-    getClasses(sizeVariants[size], global.buttonSize, `base-root-${size}`),
+    getClasses(sizeVariants[size], globalThis.buttonSize, `base-root-${size}`),
     tlSize &&
       getClasses(
         responsive({
           tablet: sizeVariants[tlSize],
         }),
-        global.buttonSize,
+        globalThis.buttonSize,
         `tablet-root-${tlSize}`,
       ),
     dtSize &&
@@ -95,7 +95,7 @@ function getButtonStyles<P extends keyof OptionalParts>(
         responsive({
           desktop: sizeVariants[dtSize],
         }),
-        global.buttonSize,
+        globalThis.buttonSize,
         `tablet-root-${dtSize}`,
       ),
     options?.__override?.root && style(options.__override.root),
@@ -114,7 +114,7 @@ function getButtonStyles<P extends keyof OptionalParts>(
   if (parts.includes("icon" as P)) {
     const iconSelector = getClasses(
       staticStyles.icon,
-      global.buttonSize,
+      globalThis.buttonSize,
       "any-icon-any",
     );
 
@@ -138,7 +138,7 @@ function getButtonStyles<P extends keyof OptionalParts>(
   if (parts.includes("text" as P)) {
     const textSelector = getClasses(
       staticStyles.text,
-      global.buttonSize,
+      globalThis.buttonSize,
       "any-text-any",
     );
     const textClasses = [
