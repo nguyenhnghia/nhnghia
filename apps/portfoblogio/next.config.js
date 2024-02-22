@@ -10,6 +10,10 @@ const isRunAnalyze = process.env.RUN_ANALYZE === "true";
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@repo/icons", "@repo/web-styling"],
+  webpack: (config, { dev }) => {
+    config.optimization.minimize = !dev;
+    return config;
+  },
 };
 
 /*================== VANILLA EXTRACT PLUGIN =================*/
@@ -17,7 +21,7 @@ const withVanillaExtract = vanillaExtract.createVanillaExtractPlugin({
   identifiers: isDevMode ? "debug" : "short",
 });
 
-/*================== BUNDLE ANALYZER PLUGIN =================*/
+/*================== BUNDLE plugANALYZER PLUGIN =================*/
 const withBundleAnalyze = (config) => {
   return bundleAnalyzer({
     enabled: isRunAnalyze,
