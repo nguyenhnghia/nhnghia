@@ -1,4 +1,4 @@
-import getButtonStyles from "@repo/web-styling/button";
+import getButtonStyles from "@repo/web-styling/components/button";
 import getConnerStyles from "@repo/web-styling/utilities/rounded-conner";
 
 export const buttonA = getButtonStyles(["icon", "text"], {

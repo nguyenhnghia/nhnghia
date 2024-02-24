@@ -10,10 +10,11 @@
     "#dummy-tag": "./src/_utils/get-dummy-tag.tsx"
   },
   "exports": {
-    "./button": "./src/button/styles.ts",
-    "./reset": "./src/reset.css.ts",
-    "./screens": "./src/screens.css.ts",
-    "./utilities": "./src/utilities/index.ts",
+    "./components": "./src/components/index.ts",
+    "./components/*": "./src/components/*/styles.ts",
+    "./constants/*": "./src/constants/*.ts",
+    "./helpers/*": "./src/helpers/*.ts",
+    "./templates/*": "./src/templates/*.css.ts",
     "./utilities/*": "./src/utilities/*.ts"
   },
   "peerDependencies": {
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20.10.6",
     "@types/react": "^18.2.46",
     "@vanilla-extract/css": "^1.14.1",
     "clsx": "^2.1.0",
@@ -32,6 +34,6 @@
   },
   "scripts": {
     "lint": "eslint --fix src/",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc"
   }
 }

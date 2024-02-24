@@ -2,10 +2,10 @@ import type { StyleRule } from "@vanilla-extract/css";
 import { style } from "@vanilla-extract/css";
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { clsx } from "clsx";
-import getClasses from "../_utils/get-classes";
-import { getDummyTag } from "../_utils/get-dummy-tag";
-import type { ResponsiveUIVariants, Screen } from "../common-types";
-import { responsive } from "../screens.css";
+import type { ResponsiveUIVariants, Screen } from "../../_types/common";
+import getClasses from "../../_utils/get-classes";
+import { getDummyTag } from "../../_utils/get-dummy-tag";
+import responsive from "../../helpers/responsive";
 import staticStyles from "./static";
 import type { SizeVariant } from "./variants/size.css";
 import { sizeVariants } from "./variants/size.css";
@@ -82,7 +82,11 @@ function getButtonStyles<P extends keyof OptionalParts>(
 
   const rootClasses = [
     rootSelector,
-    getClasses(sizeVariants[size], globalThis.buttonSize, `base-root-${size}`),
+    getClasses(
+      sizeVariants[size],
+      globalThis.buttonSize,
+      `mobile-root-${size}`,
+    ),
     tlSize &&
       getClasses(
         responsive({

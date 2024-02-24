@@ -1,41 +1,41 @@
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { clsx } from "clsx";
+import type { Screen, StaticStyleRule } from "../_types/common";
 import getClasses from "../_utils/get-classes";
 import { getDummyTag } from "../_utils/get-dummy-tag";
-import type { Screen } from "../common-types";
-import { responsive, type StyleRuleByDevice } from "../screens.css";
+import responsive from "../helpers/responsive";
 
 /*================== VARIANTS =================*/
-const tiny: StyleRuleByDevice = {
+const tiny: StaticStyleRule = {
   borderRadius: 2,
 };
 
-const small: StyleRuleByDevice = {
+const small: StaticStyleRule = {
   borderRadius: 4,
 };
 
-const normal: StyleRuleByDevice = {
+const normal: StaticStyleRule = {
   borderRadius: 6,
 };
 
-const medium: StyleRuleByDevice = {
+const medium: StaticStyleRule = {
   borderRadius: 8,
 };
 
-const large: StyleRuleByDevice = {
+const large: StaticStyleRule = {
   borderRadius: 12,
 };
 
-const huge: StyleRuleByDevice = {
+const huge: StaticStyleRule = {
   borderRadius: 16,
 };
 
-const full: StyleRuleByDevice = {
+const full: StaticStyleRule = {
   borderRadius: 9999,
 };
 
 const variants = { tiny, small, normal, medium, large, huge, full };
-type Variant = keyof typeof variants;
+type ConnerVariant = keyof typeof variants;
 
 /*================== TYPING =================*/
 declare global {
@@ -46,20 +46,22 @@ declare global {
   eg: if there is already a request for conner = 'tiny' at mobile screen,
   we'll use that generated class for next similar request
   */
-  var corner: Partial<Record<`${Screen}-${Variant}`, string>>;
+  var corner: Partial<
+    Record<`${"any" | Screen}-${"any" | ConnerVariant}`, string>
+  >;
 }
 
 /*================== MAIN LOGIC =================*/
 globalThis.corner = {};
 
-function getConnerStyles(
-  base: Variant,
-  tablet?: Variant,
-  desktop?: Variant,
+function conner(
+  base: ConnerVariant,
+  tablet?: ConnerVariant,
+  desktop?: ConnerVariant,
 ): string {
   /*================== build classes =================*/
   const classes = [
-    getClasses(variants[base], globalThis.corner, `base-${base}`),
+    getClasses(variants[base], globalThis.corner, `mobile-${base}`),
     tablet &&
       getClasses(
         responsive({
@@ -87,4 +89,4 @@ function getConnerStyles(
   return clsx(classes);
 }
 
-export default getConnerStyles;
+export default conner;

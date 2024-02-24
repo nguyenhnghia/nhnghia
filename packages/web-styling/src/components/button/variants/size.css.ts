@@ -1,5 +1,5 @@
 import { createVar } from "@vanilla-extract/css";
-import type { StyleRuleByDevice } from "../../screens.css";
+import type { StaticStyleRule } from "../../../_types/common";
 
 /*================== VARIABLES =================*/
 const sizeVars = {
@@ -10,7 +10,7 @@ const sizeVars = {
 };
 
 /*================== VARIANTS =================*/
-const tiny: StyleRuleByDevice = {
+const tiny: StaticStyleRule = {
   vars: {
     [sizeVars.height]: "28px",
     [sizeVars.space]: "4px",
@@ -19,7 +19,7 @@ const tiny: StyleRuleByDevice = {
   },
 };
 
-const small: StyleRuleByDevice = {
+const small: StaticStyleRule = {
   vars: {
     [sizeVars.height]: "34px",
     [sizeVars.space]: "6px",
@@ -28,7 +28,7 @@ const small: StyleRuleByDevice = {
   },
 };
 
-const normal: StyleRuleByDevice = {
+const normal: StaticStyleRule = {
   vars: {
     [sizeVars.height]: "40px",
     [sizeVars.space]: "8px",
@@ -37,7 +37,7 @@ const normal: StyleRuleByDevice = {
   },
 };
 
-const medium: StyleRuleByDevice = {
+const medium: StaticStyleRule = {
   vars: {
     [sizeVars.height]: "48px",
     [sizeVars.space]: "10px",
@@ -46,7 +46,7 @@ const medium: StyleRuleByDevice = {
   },
 };
 
-const large: StyleRuleByDevice = {
+const large: StaticStyleRule = {
   vars: {
     [sizeVars.height]: "54px",
     [sizeVars.space]: "12px",
@@ -55,7 +55,7 @@ const large: StyleRuleByDevice = {
   },
 };
 
-const huge: StyleRuleByDevice = {
+const huge: StaticStyleRule = {
   vars: {
     [sizeVars.height]: "60px",
     [sizeVars.space]: "14px",

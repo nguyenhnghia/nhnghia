@@ -23,6 +23,6 @@
     "generate-static-icons": "pnpm svgr --config-file assets/static-icons/.svgr.config.js assets/static-icons --silent",
     "lint": "eslint --fix src/",
     "prepare": "pnpm generate-static-icons && pnpm lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc"
   }
 }
