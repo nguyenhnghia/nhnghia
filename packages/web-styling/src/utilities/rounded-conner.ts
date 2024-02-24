@@ -46,7 +46,7 @@ declare global {
   eg: if there is already a request for conner = 'tiny' at mobile screen,
   we'll use that generated class for next similar request
   */
-  var corner: Partial<Record<`${"any" | Screen}-${"any" | Variant}`, string>>;
+  var corner: Partial<Record<`${Screen}-${Variant}`, string>>;
 }
 
 /*================== MAIN LOGIC =================*/
@@ -59,7 +59,7 @@ function getConnerStyles(
 ): string {
   /*================== build classes =================*/
   const classes = [
-    getClasses(variants[base], globalThis.corner, "any-any"),
+    getClasses(variants[base], globalThis.corner, `base-${base}`),
     tablet &&
       getClasses(
         responsive({
@@ -74,7 +74,7 @@ function getConnerStyles(
           desktop: variants[desktop],
         }),
         globalThis.corner,
-        `tablet-${desktop}`,
+        `desktop-${desktop}`,
       ),
   ];
 
