@@ -10,8 +10,7 @@
     "#dummy-tag": "./src/_utils/get-dummy-tag.tsx"
   },
   "exports": {
-    "./components": "./src/components/index.ts",
-    "./components/*": "./src/components/*/styles.ts",
+    "./components/*": "./src/components/*/index.ts",
     "./constants/*": "./src/constants/*.ts",
     "./helpers/*": "./src/helpers/*.ts",
     "./templates/*": "./src/templates/*.css.ts",
