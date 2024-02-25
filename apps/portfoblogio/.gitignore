@@ -13,6 +13,9 @@
 /out
 /analyze
 
+# web-styling cache
+.web-styling
+
 # production
 /build
 

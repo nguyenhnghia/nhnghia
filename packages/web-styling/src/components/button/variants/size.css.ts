@@ -1,5 +1,6 @@
 import { createVar } from "@vanilla-extract/css";
 import type { StaticStyleRule } from "../../../_types/common";
+import type { ButtonSizes } from "../../../_types/components/button";
 
 /*================== VARIABLES =================*/
 const sizeVars = {
@@ -65,8 +66,13 @@ const huge: StaticStyleRule = {
 };
 
 /*================== EXPOSE =================*/
-const sizeVariants = { tiny, small, normal, medium, large, huge };
-type SizeVariant = keyof typeof sizeVariants;
+const sizeVariants: Record<ButtonSizes, StaticStyleRule> = {
+  tiny,
+  small,
+  normal,
+  medium,
+  large,
+  huge,
+};
 
 export { sizeVariants, sizeVars };
-export type { SizeVariant };

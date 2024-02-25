@@ -1,6 +1,8 @@
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { clsx } from "clsx";
-import type { Screen, StaticStyleRule } from "../_types/common";
+import { CachedUnits } from "../_configurations/caching";
+import type { StaticStyleRule } from "../_types/common";
+import type { ConnerVariants } from "../_types/utilities/conner";
 import getClasses from "../_utils/get-classes";
 import { getDummyTag } from "../_utils/get-dummy-tag";
 import responsive from "../helpers/responsive";
@@ -34,40 +36,31 @@ const full: StaticStyleRule = {
   borderRadius: 9999,
 };
 
-const variants = { tiny, small, normal, medium, large, huge, full };
-type ConnerVariant = keyof typeof variants;
-
-/*================== TYPING =================*/
-declare global {
-  /* eslint-disable-next-line no-var --
-  we need this global var
-  to save config as <screen>-<variant>
-  to prevent VE from generating same class among requests
-  eg: if there is already a request for conner = 'tiny' at mobile screen,
-  we'll use that generated class for next similar request
-  */
-  var corner: Partial<
-    Record<`${"any" | Screen}-${"any" | ConnerVariant}`, string>
-  >;
-}
+const variants: Record<ConnerVariants, StaticStyleRule> = {
+  tiny,
+  small,
+  normal,
+  medium,
+  large,
+  huge,
+  full,
+};
 
 /*================== MAIN LOGIC =================*/
-globalThis.corner = {};
-
 function conner(
-  base: ConnerVariant,
-  tablet?: ConnerVariant,
-  desktop?: ConnerVariant,
+  base: ConnerVariants,
+  tablet?: ConnerVariants,
+  desktop?: ConnerVariants,
 ): string {
   /*================== build classes =================*/
   const classes = [
-    getClasses(variants[base], globalThis.corner, `mobile-${base}`),
+    getClasses(variants[base], CachedUnits.Conner, `mobile-${base}`),
     tablet &&
       getClasses(
         responsive({
           tablet: variants[tablet],
         }),
-        globalThis.corner,
+        CachedUnits.Conner,
         `tablet-${tablet}`,
       ),
     desktop &&
@@ -75,7 +68,7 @@ function conner(
         responsive({
           desktop: variants[desktop],
         }),
-        globalThis.corner,
+        CachedUnits.Conner,
         `desktop-${desktop}`,
       ),
   ];
