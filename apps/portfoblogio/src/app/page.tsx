@@ -1,8 +1,8 @@
 import SvgArrowRight from "@repo/icons/arrow-right";
 import Link from "next/link";
 import { buttonA } from "@components/button-a.css";
-// import { buttonB } from "@components/button-b.css";
-// import { buttonC } from "@components/button-c.css";
+import { buttonB } from "@components/button-b.css";
+import { buttonC } from "@components/button-c.css";
 import { link } from "./_page.css";
 
 export default function RootPage(): JSX.Element {
@@ -16,12 +16,12 @@ export default function RootPage(): JSX.Element {
         <Link href="/test" className={link}>
           go to test
         </Link>
-        {/* <button type="button" className={buttonB.root}>
+        <button type="button" className={buttonB.root}>
           <SvgArrowRight className={buttonB.icon} />
         </button>
         <button type="button" className={buttonC.root}>
           <SvgArrowRight className={buttonC.icon} />
-        </button> */}
+        </button>
       </div>
     </main>
   );

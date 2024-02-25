@@ -66,17 +66,13 @@ function button<P extends keyof OptionalParts>(
     cn(sizeVariants[size], CachedUnits.ButtonSize, `mobile-root-${size}`),
     tlSize &&
       cn(
-        responsive({
-          tablet: sizeVariants[tlSize],
-        }),
+        responsive({ tablet: sizeVariants[tlSize] }),
         CachedUnits.ButtonSize,
         `tablet-root-${tlSize}`,
       ),
     dtSize &&
       cn(
-        responsive({
-          desktop: sizeVariants[dtSize],
-        }),
+        responsive({ desktop: sizeVariants[dtSize] }),
         CachedUnits.ButtonSize,
         `tablet-root-${dtSize}`,
       ),

@@ -57,17 +57,13 @@ function conner(
     cn(variants[base], CachedUnits.Conner, `mobile-${base}`),
     tablet &&
       cn(
-        responsive({
-          tablet: variants[tablet],
-        }),
+        responsive({ tablet: variants[tablet] }),
         CachedUnits.Conner,
         `tablet-${tablet}`,
       ),
     desktop &&
       cn(
-        responsive({
-          desktop: variants[desktop],
-        }),
+        responsive({ desktop: variants[desktop] }),
         CachedUnits.Conner,
         `desktop-${desktop}`,
       ),
