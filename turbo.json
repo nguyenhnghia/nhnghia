@@ -21,7 +21,7 @@
     "build": {
       "dependsOn": ["lint", "clean", "^build"],
       "outputMode": "new-only",
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": ["!.next/cache/**", ".next/**", ".web-styling/**"]
     },
     "start": {
       "cache": false,

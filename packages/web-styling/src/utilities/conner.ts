@@ -3,7 +3,7 @@ import { clsx } from "clsx";
 import { CachedUnits } from "../_configurations/caching";
 import type { StaticStyleRule } from "../_types/common";
 import type { ConnerVariants } from "../_types/utilities/conner";
-import getClasses from "../_utils/get-classes";
+import cn from "../_utils/class-name";
 import { getDummyTag } from "../_utils/get-dummy-tag";
 import responsive from "../helpers/responsive";
 
@@ -54,9 +54,9 @@ function conner(
 ): string {
   /*================== build classes =================*/
   const classes = [
-    getClasses(variants[base], CachedUnits.Conner, `mobile-${base}`),
+    cn(variants[base], CachedUnits.Conner, `mobile-${base}`),
     tablet &&
-      getClasses(
+      cn(
         responsive({
           tablet: variants[tablet],
         }),
@@ -64,7 +64,7 @@ function conner(
         `tablet-${tablet}`,
       ),
     desktop &&
-      getClasses(
+      cn(
         responsive({
           desktop: variants[desktop],
         }),
@@ -82,4 +82,5 @@ function conner(
   return clsx(classes);
 }
 
+/*================== EXPOSE =================*/
 export default conner;

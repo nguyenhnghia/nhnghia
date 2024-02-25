@@ -3,6 +3,10 @@ import type { CachedUnits } from "../_configurations/caching";
 import type { CacheStore } from "./caching";
 import { cacheResult, getCacheStore } from "./caching";
 
+export function createSelector(): string {
+  return style({});
+}
+
 export default function cn<
   S extends CachedUnits,
   K extends keyof CacheStore[S],

@@ -3,38 +3,23 @@ import { style } from "@vanilla-extract/css";
 import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { clsx } from "clsx";
 import { CachedUnits } from "../../_configurations/caching";
-import type { ResponsiveUIVariants, Screen } from "../../_types/common";
-import type { ButtonSizes } from "../../_types/components/button";
-import getClasses from "../../_utils/get-classes";
+import type { ResponsiveUIVariants } from "../../_types/common";
+import type {
+  ButtonOptionalParts,
+  ButtonParts,
+  ButtonRequiredParts,
+  ButtonSizes,
+} from "../../_types/components/button";
+import cn, { createSelector } from "../../_utils/class-name";
 import { getDummyTag } from "../../_utils/get-dummy-tag";
 import responsive from "../../helpers/responsive";
 import staticStyles from "./static";
 import { sizeVariants } from "./variants/size.css";
 
 /*================== TYPING =================*/
-declare global {
-  /* eslint-disable-next-line no-var --
-  we need this global var
-  to save config as <screen>-<part>-<variant>
-  to prevent VE from generating same class among requests
-  eg: if there is already a request for size = 'tiny' at mobile screen,
-  we'll use that generated class for next similar request
-  */
-  var buttonSize: Partial<
-    Record<`${"any" | Screen}-${Parts}-${"any" | ButtonSizes}`, string>
-  >;
-}
+type RequiredParts = Record<ButtonRequiredParts, string>;
 
-type RequiredParts = {
-  root: string;
-};
-
-type OptionalParts = {
-  icon: string;
-  text: string;
-};
-
-type Parts = keyof (RequiredParts & OptionalParts);
+type OptionalParts = Record<ButtonOptionalParts, string>;
 
 type ButtonStyles<P extends keyof OptionalParts> = RequiredParts &
   Pick<OptionalParts, P> & {
@@ -57,15 +42,13 @@ type ButtonStyleOptions<P extends keyof OptionalParts> =
   };
 
 /*================== MAIN LOGIC =================*/
-// CachedUnits.ButtonSize = {};
-
 function button<P extends keyof OptionalParts>(
   parts: P[],
   options?: ButtonStyleOptions<P>,
 ): ButtonStyles<P> {
-  const buttonStyles: { [K in Parts]?: string } & {
+  const buttonStyles: { [K in ButtonParts]?: string } & {
     __selectors: {
-      [K in Parts]?: string;
+      [K in ButtonParts]?: string;
     };
   } = { __selectors: {} };
 
@@ -75,21 +58,14 @@ function button<P extends keyof OptionalParts>(
   const dtSize = options?.__responsive?.desktop?.size;
 
   /*================== build Root =================*/
-  const rootSelector = getClasses(
-    staticStyles.root,
-    CachedUnits.ButtonSize,
-    "any-root-any",
-  );
+  const rootSelector = createSelector();
 
   const rootClasses = [
     rootSelector,
-    getClasses(
-      sizeVariants[size],
-      CachedUnits.ButtonSize,
-      `mobile-root-${size}`,
-    ),
+    cn(staticStyles.root, CachedUnits.ButtonSize, "any-root-any"),
+    cn(sizeVariants[size], CachedUnits.ButtonSize, `mobile-root-${size}`),
     tlSize &&
-      getClasses(
+      cn(
         responsive({
           tablet: sizeVariants[tlSize],
         }),
@@ -97,7 +73,7 @@ function button<P extends keyof OptionalParts>(
         `tablet-root-${tlSize}`,
       ),
     dtSize &&
-      getClasses(
+      cn(
         responsive({
           desktop: sizeVariants[dtSize],
         }),
@@ -119,14 +95,11 @@ function button<P extends keyof OptionalParts>(
 
   /*================== build icon =================*/
   if (parts.includes("icon" as P)) {
-    const iconSelector = getClasses(
-      staticStyles.icon,
-      CachedUnits.ButtonSize,
-      "any-icon-any",
-    );
+    const iconSelector = createSelector();
 
     const iconClasses = [
       iconSelector,
+      cn(staticStyles.icon, CachedUnits.ButtonSize, "any-icon-any"),
       options?.__extend?.["icon" as P],
       options?.__override?.["icon" as P] &&
         style(options.__override["icon" as P] ?? {}),
@@ -144,13 +117,11 @@ function button<P extends keyof OptionalParts>(
 
   /*================== build text =================*/
   if (parts.includes("text" as P)) {
-    const textSelector = getClasses(
-      staticStyles.text,
-      CachedUnits.ButtonSize,
-      "any-text-any",
-    );
+    const textSelector = createSelector();
+
     const textClasses = [
       textSelector,
+      cn(staticStyles.text, CachedUnits.ButtonSize, "any-text-any"),
       options?.__extend?.["text" as P],
       options?.__override?.["text" as P] &&
         style(options.__override["Text" as P] ?? {}),
@@ -169,4 +140,5 @@ function button<P extends keyof OptionalParts>(
   return buttonStyles as ButtonStyles<P>;
 }
 
+/*================== EXPOSE =================*/
 export default button;

@@ -5,11 +5,14 @@ import type { Screen } from "../_types/common";
 import type { ButtonParts, ButtonSizes } from "../_types/components/button";
 import type { ConnerVariants } from "../_types/utilities/conner";
 
+export type ButtonSizeCacheStoreKey =
+  `${"any" | Screen}-${ButtonParts}-${"any" | ButtonSizes}`;
+
+export type ConnerCacheStoreKey = `${Screen}-${ConnerVariants}`;
+
 export type CacheStore = {
-  [CachedUnits.ButtonSize]: Partial<
-    Record<`${"any" | Screen}-${ButtonParts}-${"any" | ButtonSizes}`, string>
-  >;
-  [CachedUnits.Conner]: Partial<Record<`${Screen}-${ConnerVariants}`, string>>;
+  [CachedUnits.ButtonSize]: Partial<Record<ButtonSizeCacheStoreKey, string>>;
+  [CachedUnits.Conner]: Partial<Record<ConnerCacheStoreKey, string>>;
 };
 
 export function getCacheStore<K extends CachedUnits>(

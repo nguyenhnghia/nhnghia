@@ -1,5 +1,5 @@
 import button from "@repo/web-styling/components/button";
-import conner from "@repo/web-styling/utilities/rounded-conner";
+import conner from "@repo/web-styling/utilities/conner";
 
 export const buttonB = button(["icon"], {
   __extend: {
