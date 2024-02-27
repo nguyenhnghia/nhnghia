@@ -11,11 +11,14 @@ export default function cn<
   S extends CachedUnits,
   K extends keyof CacheStore[S],
 >(rules: ComplexStyleRule, storeKey: S, key: K): CacheStore[S][K] | string {
+  // get cache data
   const cache = getCacheStore(storeKey);
 
-  if (typeof cache[key] === "string") return cache[key];
+  // cache hit
+  if (key in cache && typeof cache[key] === "string") return cache[key];
 
-  const value = style(rules);
-  cacheResult(storeKey, { ...cache, [key]: value });
-  return value;
+  // cache miss
+  const className = style(rules);
+  cacheResult(storeKey, { ...cache, [key]: className });
+  return className;
 }

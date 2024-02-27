@@ -1,11 +1,9 @@
-import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { clsx } from "clsx";
 import { CachedUnits } from "../_configurations/caching";
 import type { StaticStyleRule } from "../_types/common";
 import type { ConnerVariants } from "../_types/utilities/conner";
 import cn from "../_utils/class-name";
-import { getDummyTag } from "../_utils/get-dummy-tag";
-import responsive from "../helpers/responsive";
+import { desktop, mobile, tablet } from "../helpers/responsive";
 
 /*================== VARIANTS =================*/
 const tiny: StaticStyleRule = {
@@ -49,31 +47,15 @@ const variants: Record<ConnerVariants, StaticStyleRule> = {
 /*================== MAIN LOGIC =================*/
 function conner(
   base: ConnerVariants,
-  tablet?: ConnerVariants,
-  desktop?: ConnerVariants,
+  tl?: ConnerVariants,
+  dt?: ConnerVariants,
 ): string {
   /*================== build classes =================*/
   const classes = [
-    cn(variants[base], CachedUnits.Conner, `mobile-${base}`),
-    tablet &&
-      cn(
-        responsive({ tablet: variants[tablet] }),
-        CachedUnits.Conner,
-        `tablet-${tablet}`,
-      ),
-    desktop &&
-      cn(
-        responsive({ desktop: variants[desktop] }),
-        CachedUnits.Conner,
-        `desktop-${desktop}`,
-      ),
+    cn(mobile(variants[base]), CachedUnits.Conner, `mobile-${base}`),
+    tl && cn(tablet(variants[tl]), CachedUnits.Conner, `tablet-${tl}`),
+    dt && cn(desktop(variants[dt]), CachedUnits.Conner, `desktop-${dt}`),
   ];
-
-  addFunctionSerializer(getDummyTag(classes), {
-    importPath: "#dummy-tag",
-    importName: "getDummyTag",
-    args: [classes],
-  });
 
   return clsx(classes);
 }

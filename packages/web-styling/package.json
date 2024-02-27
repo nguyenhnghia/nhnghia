@@ -6,9 +6,6 @@
   "files": [
     "./src/reset.css.ts"
   ],
-  "imports": {
-    "#dummy-tag": "./src/_utils/get-dummy-tag.tsx"
-  },
   "exports": {
     "./components/*": "./src/components/*/index.ts",
     "./constants/*": "./src/constants/*.ts",

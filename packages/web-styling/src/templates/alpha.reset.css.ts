@@ -1,4 +1,7 @@
-import { globalStyle } from "@vanilla-extract/css";
+import { globalLayer, globalStyle } from "@vanilla-extract/css";
+import { RESET_LAYER_NAME } from "../constants/layers";
+
+export const RESET_LAYER = globalLayer(RESET_LAYER_NAME);
 
 const DEFAULT_FONT_FAMILY =
   'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
@@ -7,64 +10,103 @@ const MONO_FONT_FAMILY =
   'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace';
 
 globalStyle("*, ::before, ::after", {
-  boxSizing: "border-box",
-  border: "1px solid transparent",
+  "@layer": {
+    [RESET_LAYER]: {
+      border: "1px solid transparent",
+      boxSizing: "border-box",
+      transitionDuration: "0.33s",
+      transitionProperty: "none",
+      transitionTimingFunction: "ease-in-out",
+    },
+  },
 });
 
 globalStyle(":focus-visible", {
-  outlineWidth: 2,
-  outlineStyle: "solid",
-  outlineOffset: 4,
+  "@layer": {
+    [RESET_LAYER]: {
+      outlineOffset: 4,
+      outlineStyle: "solid",
+      outlineWidth: 2,
+    },
+  },
 });
 
 globalStyle("html, :host", {
-  lineHeight: 1.5,
-  tabSize: 4,
-  fontFamily: DEFAULT_FONT_FAMILY,
-  fontFeatureSettings: "normal",
-  fontVariationSettings: "normal",
-  WebkitTapHighlightColor: "transparent",
+  "@layer": {
+    [RESET_LAYER]: {
+      fontFamily: DEFAULT_FONT_FAMILY,
+      fontFeatureSettings: "normal",
+      fontVariationSettings: "normal",
+      lineHeight: 1.5,
+      tabSize: 4,
+      WebkitTapHighlightColor: "transparent",
+    },
+  },
 });
 
 globalStyle("body", {
-  margin: 0,
-  lineHeight: "inherit",
+  "@layer": {
+    [RESET_LAYER]: {
+      lineHeight: "inherit",
+      margin: 0,
+    },
+  },
 });
 
 globalStyle("hr", {
-  height: 0,
-  color: "inherit",
-  borderTopWidth: 1,
+  "@layer": {
+    [RESET_LAYER]: {
+      borderTopWidth: 1,
+      color: "inherit",
+      height: 0,
+    },
+  },
 });
 
 /*
 Add the correct text decoration in Chrome, Edge, and Safari.
 */
 globalStyle("abbr:where([title])", {
-  textDecoration: "underline dotted",
+  "@layer": {
+    [RESET_LAYER]: {
+      textDecoration: "underline dotted",
+    },
+  },
 });
 
 /*
 Remove the default font size and weight for headings.
 */
 globalStyle("h1, h2, h3, h4, h5, h6", {
-  fontSize: "inherit",
-  fontWeight: "inherit",
+  "@layer": {
+    [RESET_LAYER]: {
+      fontSize: "inherit",
+      fontWeight: "inherit",
+    },
+  },
 });
 
 /*
 Reset links to optimize for opt-in styling instead of opt-out.
 */
 globalStyle("a", {
-  color: "inherit",
-  textDecoration: "inherit",
+  "@layer": {
+    [RESET_LAYER]: {
+      color: "inherit",
+      textDecoration: "inherit",
+    },
+  },
 });
 
 /*
 Add the correct font weight in Edge and Safari.
 */
 globalStyle("b, strong", {
-  fontWeight: "bolder",
+  "@layer": {
+    [RESET_LAYER]: {
+      fontWeight: "bolder",
+    },
+  },
 });
 
 /*
@@ -74,35 +116,55 @@ globalStyle("b, strong", {
 4. Correct the odd `em` font sizing in all browsers.
 */
 globalStyle("code, kbd, samp, pre", {
-  fontFamily: MONO_FONT_FAMILY,
-  fontFeatureSettings: "normal",
-  fontVariationSettings: "normal",
-  fontSize: "1em",
+  "@layer": {
+    [RESET_LAYER]: {
+      fontFamily: MONO_FONT_FAMILY,
+      fontFeatureSettings: "normal",
+      fontSize: "1em",
+      fontVariationSettings: "normal",
+    },
+  },
 });
 
 /*
 Add the correct font size in all browsers.
 */
 globalStyle("small", {
-  fontSize: "80%",
+  "@layer": {
+    [RESET_LAYER]: {
+      fontSize: "80%",
+    },
+  },
 });
 
 /*
 Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 */
 globalStyle("sub, sup", {
-  fontSize: "75%",
-  lineHeight: 0,
-  position: "relative",
-  verticalAlign: "baseline",
+  "@layer": {
+    [RESET_LAYER]: {
+      fontSize: "75%",
+      lineHeight: 0,
+      position: "relative",
+      verticalAlign: "baseline",
+    },
+  },
 });
 
 globalStyle("sub", {
-  bottom: "-0.25em",
+  "@layer": {
+    [RESET_LAYER]: {
+      bottom: "-0.25em",
+    },
+  },
 });
 
 globalStyle("sup", {
-  top: "-0.5em",
+  "@layer": {
+    [RESET_LAYER]: {
+      top: "-0.5em",
+    },
+  },
 });
 
 /*
@@ -111,9 +173,13 @@ globalStyle("sup", {
 3. Remove gaps between table borders by default.
 */
 globalStyle("table", {
-  textIndent: 0,
-  borderColor: "inherit",
-  borderCollapse: "collapse",
+  "@layer": {
+    [RESET_LAYER]: {
+      borderCollapse: "collapse",
+      borderColor: "inherit",
+      textIndent: 0,
+    },
+  },
 });
 
 /*
@@ -122,22 +188,30 @@ globalStyle("table", {
 3. Remove default padding in all browsers.
 */
 globalStyle("button, input, optgroup, select, textarea", {
-  fontFamily: "inherit",
-  fontFeatureSettings: "inherit",
-  fontVariationSettings: "inherit",
-  fontSize: "100%",
-  fontWeight: "inherit",
-  lineHeight: "inherit",
-  color: "inherit",
-  margin: 0,
-  padding: 0,
+  "@layer": {
+    [RESET_LAYER]: {
+      color: "inherit",
+      fontFamily: "inherit",
+      fontFeatureSettings: "inherit",
+      fontSize: "100%",
+      fontVariationSettings: "inherit",
+      fontWeight: "inherit",
+      lineHeight: "inherit",
+      margin: 0,
+      padding: 0,
+    },
+  },
 });
 
 /*
 Remove the inheritance of text transform in Edge and Firefox.
 */
 globalStyle("button, select", {
-  textTransform: "none",
+  "@layer": {
+    [RESET_LAYER]: {
+      textTransform: "none",
+    },
+  },
 });
 
 /*
@@ -145,37 +219,57 @@ globalStyle("button, select", {
 2. Remove default button styles.
 */
 globalStyle("button, [type='button'], [type='reset'], [type='submit']", {
-  WebkitAppearance: "button",
-  backgroundColor: "transparent",
-  backgroundImage: "none",
+  "@layer": {
+    [RESET_LAYER]: {
+      backgroundColor: "transparent",
+      backgroundImage: "none",
+      WebkitAppearance: "button",
+    },
+  },
 });
 
 /*
 Use the modern Firefox focus style for all focusable elements.
 */
 globalStyle(":-moz-focusring", {
-  outline: "auto",
+  "@layer": {
+    [RESET_LAYER]: {
+      outline: "auto",
+    },
+  },
 });
 
 /*
 Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
 */
 globalStyle(":-moz-ui-invalid", {
-  boxShadow: "none",
+  "@layer": {
+    [RESET_LAYER]: {
+      boxShadow: "none",
+    },
+  },
 });
 
 /*
 Add the correct vertical alignment in Chrome and Firefox.
 */
 globalStyle("progress", {
-  verticalAlign: "baseline",
+  "@layer": {
+    [RESET_LAYER]: {
+      verticalAlign: "baseline",
+    },
+  },
 });
 
 /*
 Correct the cursor style of increment and decrement buttons in Safari.
 */
 globalStyle("::-webkit-inner-spin-button, ::-webkit-outer-spin-button", {
-  height: "auto",
+  "@layer": {
+    [RESET_LAYER]: {
+      height: "auto",
+    },
+  },
 });
 
 /*
@@ -183,15 +277,23 @@ globalStyle("::-webkit-inner-spin-button, ::-webkit-outer-spin-button", {
 2. Correct the outline style in Safari.
 */
 globalStyle("[type='search']", {
-  WebkitAppearance: "textfield",
-  outlineOffset: -2,
+  "@layer": {
+    [RESET_LAYER]: {
+      outlineOffset: -2,
+      WebkitAppearance: "textfield",
+    },
+  },
 });
 
 /*
 Remove the inner padding in Chrome and Safari on macOS.
 */
 globalStyle("::-webkit-search-decoration", {
-  WebkitAppearance: "none",
+  "@layer": {
+    [RESET_LAYER]: {
+      WebkitAppearance: "none",
+    },
+  },
 });
 
 /*
@@ -199,51 +301,83 @@ globalStyle("::-webkit-search-decoration", {
 2. Change font properties to `inherit` in Safari.
 */
 globalStyle("::-webkit-file-upload-button", {
-  WebkitAppearance: "button",
-  font: "inherit",
+  "@layer": {
+    [RESET_LAYER]: {
+      font: "inherit",
+      WebkitAppearance: "button",
+    },
+  },
 });
 
 /*
 Add the correct display in Chrome and Safari.
 */
 globalStyle("summary", {
-  display: "list-item",
+  "@layer": {
+    [RESET_LAYER]: {
+      display: "list-item",
+    },
+  },
 });
 
 /*
 Removes the default spacing and border for appropriate elements.
 */
 globalStyle("blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre", {
-  margin: 0,
+  "@layer": {
+    [RESET_LAYER]: {
+      margin: 0,
+    },
+  },
 });
 
 globalStyle("fieldset", {
-  margin: 0,
-  padding: 0,
+  "@layer": {
+    [RESET_LAYER]: {
+      margin: 0,
+      padding: 0,
+    },
+  },
 });
 
 globalStyle("legend", {
-  padding: 0,
+  "@layer": {
+    [RESET_LAYER]: {
+      padding: 0,
+    },
+  },
 });
 
 globalStyle("ol, ul, menu", {
-  listStyle: "none",
-  margin: 0,
-  padding: 0,
+  "@layer": {
+    [RESET_LAYER]: {
+      listStyle: "none",
+      margin: 0,
+      padding: 0,
+    },
+  },
 });
 
 /*
 Reset default styling for dialogs.
 */
 globalStyle("dialog", {
-  padding: 0,
+  "@layer": {
+    [RESET_LAYER]: {
+      padding: 0,
+    },
+  },
 });
 
 /*
 Prevent resizing textarea horizontally by default.
 */
 globalStyle("textarea", {
-  resize: "vertical",
+  "@layer": {
+    [RESET_LAYER]: {
+      resize: "vertical",
+    },
+  },
 });
 
 /*
@@ -251,22 +385,34 @@ globalStyle("textarea", {
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 globalStyle("input::placeholder, textarea::placeholder", {
-  opacity: 1,
-  color: "#9ca3af",
+  "@layer": {
+    [RESET_LAYER]: {
+      color: "#9ca3af",
+      opacity: 1,
+    },
+  },
 });
 
 /*
 Set the default cursor for buttons.
 */
 globalStyle('button, [role="button"]', {
-  cursor: "pointer",
+  "@layer": {
+    [RESET_LAYER]: {
+      cursor: "pointer",
+    },
+  },
 });
 
 /*
 Make sure disabled buttons don't get the pointer cursor.
 */
 globalStyle(":disabled", {
-  cursor: "not-allowed",
+  "@layer": {
+    [RESET_LAYER]: {
+      cursor: "not-allowed",
+    },
+  },
 });
 
 /*
@@ -275,27 +421,43 @@ globalStyle(":disabled", {
    This can trigger a poorly considered lint error in some tools but is included by design.
 */
 globalStyle("img, svg, video, canvas, audio, iframe, embed, object", {
-  display: "block",
-  verticalAlign: "middle",
+  "@layer": {
+    [RESET_LAYER]: {
+      display: "block",
+      verticalAlign: "middle",
+    },
+  },
 });
 
 /*
 Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
 */
 globalStyle("img, video", {
-  maxWidth: "100%",
-  height: "auto",
+  "@layer": {
+    [RESET_LAYER]: {
+      height: "auto",
+      maxWidth: "100%",
+    },
+  },
 });
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
 globalStyle("[hidden]", {
-  display: "none",
+  "@layer": {
+    [RESET_LAYER]: {
+      display: "none",
+    },
+  },
 });
 
 /**
  * Make element inside svg inherit it's color
  */
 globalStyle("svg *", {
-  fill: "inherit",
-  stroke: "inherit",
+  "@layer": {
+    [RESET_LAYER]: {
+      fill: "inherit",
+      stroke: "inherit",
+    },
+  },
 });

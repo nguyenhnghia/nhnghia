@@ -1,6 +1,5 @@
 import type { StyleRule } from "@vanilla-extract/css";
 import { style } from "@vanilla-extract/css";
-import { addFunctionSerializer } from "@vanilla-extract/css/functionSerializer";
 import { clsx } from "clsx";
 import { CachedUnits } from "../../_configurations/caching";
 import type { ResponsiveUIVariants } from "../../_types/common";
@@ -11,8 +10,7 @@ import type {
   ButtonSizes,
 } from "../../_types/components/button";
 import cn, { createSelector } from "../../_utils/class-name";
-import { getDummyTag } from "../../_utils/get-dummy-tag";
-import responsive from "../../helpers/responsive";
+import { desktop, mobile, tablet } from "../../helpers/responsive";
 import staticStyles from "./static";
 import { sizeVariants } from "./variants/size.css";
 
@@ -21,12 +19,14 @@ type RequiredParts = Record<ButtonRequiredParts, string>;
 
 type OptionalParts = Record<ButtonOptionalParts, string>;
 
-type ButtonStyles<P extends keyof OptionalParts> = RequiredParts &
-  Pick<OptionalParts, P> & {
-    __selectors: {
-      [K in keyof (RequiredParts & Pick<OptionalParts, P>)]: string;
-    };
+type Parts<P extends keyof OptionalParts> = RequiredParts &
+  Pick<OptionalParts, P>;
+
+type ButtonStyles<P extends keyof OptionalParts> = Parts<P> & {
+  __selectors: {
+    [K in keyof Parts<P>]: string;
   };
+};
 
 type ButtonUIVariants = {
   /**
@@ -37,8 +37,8 @@ type ButtonUIVariants = {
 
 type ButtonStyleOptions<P extends keyof OptionalParts> =
   ResponsiveUIVariants<ButtonUIVariants> & {
-    __extend?: Partial<Record<keyof ButtonStyles<P>, string[]>>;
-    __override?: Partial<Record<keyof ButtonStyles<P>, StyleRule>>;
+    __extend?: Partial<Record<keyof Parts<P>, string[]>>;
+    __override?: Partial<Record<keyof Parts<P>, StyleRule>>;
   };
 
 /*================== MAIN LOGIC =================*/
@@ -63,16 +63,20 @@ function button<P extends keyof OptionalParts>(
   const rootClasses = [
     rootSelector,
     cn(staticStyles.root, CachedUnits.ButtonSize, "any-root-any"),
-    cn(sizeVariants[size], CachedUnits.ButtonSize, `mobile-root-${size}`),
+    cn(
+      mobile(sizeVariants[size]),
+      CachedUnits.ButtonSize,
+      `mobile-root-${size}`,
+    ),
     tlSize &&
       cn(
-        responsive({ tablet: sizeVariants[tlSize] }),
+        tablet(sizeVariants[tlSize]),
         CachedUnits.ButtonSize,
         `tablet-root-${tlSize}`,
       ),
     dtSize &&
       cn(
-        responsive({ desktop: sizeVariants[dtSize] }),
+        desktop(sizeVariants[dtSize]),
         CachedUnits.ButtonSize,
         `tablet-root-${dtSize}`,
       ),
@@ -82,12 +86,6 @@ function button<P extends keyof OptionalParts>(
 
   buttonStyles.__selectors.root = rootSelector;
   buttonStyles.root = clsx(rootClasses);
-
-  addFunctionSerializer(getDummyTag(rootClasses), {
-    importPath: "#dummy-tag",
-    importName: "getDummyTag",
-    args: [rootClasses],
-  });
 
   /*================== build icon =================*/
   if (parts.includes("icon" as P)) {
@@ -103,12 +101,6 @@ function button<P extends keyof OptionalParts>(
 
     buttonStyles.__selectors.icon = iconSelector;
     buttonStyles.icon = clsx(iconClasses);
-
-    addFunctionSerializer(getDummyTag(iconClasses), {
-      importPath: "#dummy-tag",
-      importName: "getDummyTag",
-      args: [iconClasses],
-    });
   }
 
   /*================== build text =================*/
@@ -125,12 +117,6 @@ function button<P extends keyof OptionalParts>(
 
     buttonStyles.__selectors.text = textSelector;
     buttonStyles.text = clsx(textClasses);
-
-    addFunctionSerializer(getDummyTag(textClasses), {
-      importPath: "#dummy-tag",
-      importName: "getDummyTag",
-      args: [textClasses],
-    });
   }
 
   return buttonStyles as ButtonStyles<P>;
