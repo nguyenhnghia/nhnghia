@@ -13,6 +13,7 @@ export type ConnerCacheStoreKey = `${Screen}-${ConnerVariants}`;
 export type CacheStore = {
   [CachedUnits.ButtonSize]: Partial<Record<ButtonSizeCacheStoreKey, string>>;
   [CachedUnits.Conner]: Partial<Record<ConnerCacheStoreKey, string>>;
+  [CachedUnits.Custom]: Partial<Record<string, string>>;
 };
 
 export function getCacheStore<K extends CachedUnits>(

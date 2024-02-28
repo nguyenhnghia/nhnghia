@@ -3,12 +3,12 @@ import Link from "next/link";
 import { buttonA } from "@components/button-a.css";
 import { buttonB } from "@components/button-b.css";
 import { buttonC } from "@components/button-c.css";
-import { link } from "./_page.css";
+import { link, test } from "./_page.css";
 
 export default function RootPage(): JSX.Element {
   return (
     <main>
-      <div>
+      <div className={test}>
         <button type="button" className={buttonA.root}>
           <div className={buttonA.text}>Click me</div>
           <SvgArrowRight className={buttonA.icon} />

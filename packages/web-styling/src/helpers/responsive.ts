@@ -1,5 +1,8 @@
 import { type StyleRule } from "@vanilla-extract/css";
-import type { ResponsiveStyleRule, StaticStyleRule } from "../_types/common";
+import type {
+  ResponsiveStyleRule,
+  StyleRuleWithoutMediaQueries,
+} from "../_types/common";
 import {
   DESKTOP_BREAK_POINT,
   TABLET_BREAK_POINT,
@@ -10,11 +13,11 @@ import {
   TABLET_LAYER,
 } from "../templates/beta.responsive-layers.css";
 
-function mobile(rule: StaticStyleRule): StyleRule {
+function mobile(rule: StyleRuleWithoutMediaQueries): StyleRule {
   return { "@layer": { [MOBILE_LAYER]: rule } };
 }
 
-function tablet(rule: StaticStyleRule): StyleRule {
+function tablet(rule: StyleRuleWithoutMediaQueries): StyleRule {
   return {
     "@layer": {
       [TABLET_LAYER]: {
@@ -26,7 +29,7 @@ function tablet(rule: StaticStyleRule): StyleRule {
   };
 }
 
-function desktop(rule: StaticStyleRule): StyleRule {
+function desktop(rule: StyleRuleWithoutMediaQueries): StyleRule {
   return {
     "@layer": {
       [DESKTOP_LAYER]: {

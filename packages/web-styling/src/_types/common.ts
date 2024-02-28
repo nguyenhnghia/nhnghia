@@ -2,12 +2,14 @@ import type { StyleRule } from "@vanilla-extract/css";
 
 export type Screen = "mobile" | "tablet" | "desktop";
 
-export type StaticStyleRule = Omit<StyleRule, "@media" | "@layers">;
+export type StyleRuleWithout<K extends keyof StyleRule> = Omit<StyleRule, K>;
+
+export type StyleRuleWithoutMediaQueries = StyleRuleWithout<"@media">;
 
 export type ResponsiveStyleRule = {
-  mobile?: StyleRule;
-  tablet?: StaticStyleRule;
-  desktop?: StaticStyleRule;
+  mobile?: StyleRuleWithoutMediaQueries;
+  tablet?: StyleRuleWithoutMediaQueries;
+  desktop?: StyleRuleWithoutMediaQueries;
 };
 
 export type ResponsiveUIVariants<V extends Record<string, unknown>> = V & {

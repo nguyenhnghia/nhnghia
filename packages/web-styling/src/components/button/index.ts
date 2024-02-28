@@ -1,5 +1,4 @@
 import type { StyleRule } from "@vanilla-extract/css";
-import { style } from "@vanilla-extract/css";
 import { clsx } from "clsx";
 import { CachedUnits } from "../../_configurations/caching";
 import type { ResponsiveUIVariants } from "../../_types/common";
@@ -11,10 +10,10 @@ import type {
 } from "../../_types/components/button";
 import cn, { createSelector } from "../../_utils/class-name";
 import { desktop, mobile, tablet } from "../../helpers/responsive";
+import classes from "../../utilities/classes";
 import staticStyles from "./static";
 import { sizeVariants } from "./variants/size.css";
 
-/*================== TYPING =================*/
 type RequiredParts = Record<ButtonRequiredParts, string>;
 
 type OptionalParts = Record<ButtonOptionalParts, string>;
@@ -41,7 +40,6 @@ type ButtonStyleOptions<P extends keyof OptionalParts> =
     __override?: Partial<Record<keyof Parts<P>, StyleRule>>;
   };
 
-/*================== MAIN LOGIC =================*/
 function button<P extends keyof OptionalParts>(
   parts: P[],
   options?: ButtonStyleOptions<P>,
@@ -52,12 +50,11 @@ function button<P extends keyof OptionalParts>(
     };
   } = { __selectors: {} };
 
-  /*================== get variants =================*/
   const size = options?.size ?? "normal";
   const tlSize = options?.__responsive?.tablet?.size;
   const dtSize = options?.__responsive?.desktop?.size;
 
-  /*================== build Root =================*/
+  /*================== ROOT =================*/
   const rootSelector = createSelector();
 
   const rootClasses = [
@@ -81,13 +78,13 @@ function button<P extends keyof OptionalParts>(
         `tablet-root-${dtSize}`,
       ),
     options?.__extend?.root,
-    options?.__override?.root && style(options.__override.root),
+    options?.__override?.root && classes(options.__override.root),
   ];
 
   buttonStyles.__selectors.root = rootSelector;
   buttonStyles.root = clsx(rootClasses);
 
-  /*================== build icon =================*/
+  /*================== ICON =================*/
   if (parts.includes("icon" as P)) {
     const iconSelector = createSelector();
 
@@ -96,14 +93,14 @@ function button<P extends keyof OptionalParts>(
       cn(staticStyles.icon, CachedUnits.ButtonSize, "any-icon-any"),
       options?.__extend?.["icon" as P],
       options?.__override?.["icon" as P] &&
-        style(options.__override["icon" as P] ?? {}),
+        classes(options.__override["icon" as P] ?? {}),
     ];
 
     buttonStyles.__selectors.icon = iconSelector;
     buttonStyles.icon = clsx(iconClasses);
   }
 
-  /*================== build text =================*/
+  /*================== TEXT =================*/
   if (parts.includes("text" as P)) {
     const textSelector = createSelector();
 
@@ -112,7 +109,7 @@ function button<P extends keyof OptionalParts>(
       cn(staticStyles.text, CachedUnits.ButtonSize, "any-text-any"),
       options?.__extend?.["text" as P],
       options?.__override?.["text" as P] &&
-        style(options.__override["Text" as P] ?? {}),
+        classes(options.__override["Text" as P] ?? {}),
     ];
 
     buttonStyles.__selectors.text = textSelector;
@@ -122,5 +119,4 @@ function button<P extends keyof OptionalParts>(
   return buttonStyles as ButtonStyles<P>;
 }
 
-/*================== EXPOSE =================*/
 export default button;

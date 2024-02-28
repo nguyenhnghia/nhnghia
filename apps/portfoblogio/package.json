@@ -24,7 +24,9 @@
   },
   "scripts": {
     "build": "next build",
-    "clean": "rm -rf .next && rm -rf .web-styling",
+    "clean-next": "rm -rf analyze && rm -rf .next",
+    "clean-web-styling": "rm -rf .web-styling",
+    "clean": "pnpm clean-next && pnpm clean-web-styling",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",

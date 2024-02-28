@@ -152,6 +152,9 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
+      slugify:
+        specifier: ^1.6.6
+        version: 1.6.6
       typescript:
         specifier: ^5.1.6
         version: 5.3.3
@@ -5218,6 +5221,11 @@ packages:
     dependencies:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 5.0.0
+    dev: true
+
+  /slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
     dev: true
 
   /snake-case@3.0.4:
