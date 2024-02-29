@@ -27,7 +27,7 @@
     "clean-next": "rm -rf analyze && rm -rf .next",
     "clean-web-styling": "rm -rf .web-styling",
     "clean": "pnpm clean-next && pnpm clean-web-styling",
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "lint": "next lint",
     "start": "next start",
     "type-check": "tsc"
