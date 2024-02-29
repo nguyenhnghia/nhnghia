@@ -28,7 +28,9 @@
     "clean-web-styling": "rm -rf .web-styling",
     "clean": "pnpm clean-next && pnpm clean-web-styling",
     "dev": "next dev --turbo",
+    "disable-next-telemetry": "pnpm next telemetry disable",
     "lint": "next lint",
+    "prepare": "pnpm disable-next-telemetry",
     "start": "next start",
     "type-check": "tsc"
   }

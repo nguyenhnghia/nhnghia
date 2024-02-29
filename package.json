@@ -23,18 +23,18 @@
     "typescript": "^5.1.6"
   },
   "scripts": {
-    "init-husky": "husky",
-    "create-turbo-cookies-container": "mkdir -p .turbo/cookies",
-    "disable-turbo-telemetry": "turbo telemetry disable",
-    "prepare": "pnpm create-turbo-cookies-container && pnpm disable-turbo-telemetry && pnpm init-husky",
-    "format": "prettier --write .",
+    "build-portfoblogio": "pnpm turbo build --filter=portfoblogio --log-order=grouped",
+    "build": "pnpm turbo build --log-order=grouped",
     "clear-turbo-cookies": "rm -rf ./.turbo/cookies/*.cookie",
-    "type-check": "turbo type-check --log-order=grouped",
-    "lint": "turbo lint --log-order=grouped",
-    "build": "turbo build --log-order=grouped",
-    "build-portfoblogio": "turbo build --filter=portfoblogio --log-order=grouped",
-    "start-portfoblogio": "turbo start --filter=portfoblogio",
-    "dev-portfoblogio": "turbo dev --filter=portfoblogio",
-    "graph-portfoblogio": "turbo build --filter=portfoblogio --graph=_portfoblogio.graph.html"
+    "create-turbo-cookies-container": "mkdir -p .turbo/cookies",
+    "dev-portfoblogio": "pnpm turbo dev --filter=portfoblogio",
+    "disable-turbo-telemetry": "pnpm turbo telemetry disable",
+    "format": "prettier --write .",
+    "graph-portfoblogio": "pnpm turbo build --filter=portfoblogio --graph=_portfoblogio.graph.html",
+    "init-husky": "husky",
+    "lint": "pnpm turbo lint --log-order=grouped",
+    "prepare": "pnpm create-turbo-cookies-container && pnpm disable-turbo-telemetry && pnpm init-husky",
+    "start-portfoblogio": "pnpm turbo start --filter=portfoblogio",
+    "type-check": "pnpm turbo type-check --log-order=grouped"
   }
 }
