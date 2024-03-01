@@ -27,7 +27,7 @@
     "clean-next": "rm -rf analyze && rm -rf .next",
     "clean-web-styling": "rm -rf .web-styling",
     "clean": "pnpm clean-next && pnpm clean-web-styling",
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "disable-next-telemetry": "pnpm next telemetry disable",
     "lint": "next lint",
     "prepare": "pnpm disable-next-telemetry",
