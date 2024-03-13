@@ -11,8 +11,11 @@ export default function cn<
   S extends CachedUnits,
   K extends keyof CacheStore[S],
 >(rules: ComplexStyleRule, storeKey: S, key: K): CacheStore[S][K] | string {
-  // skip cache when NODE_ENV is development
-  if (process.env.NODE_ENV === "development") return style(rules);
+  // skip cache & add debug id in development
+  if (process.env.NODE_ENV === "development") {
+    const debugId = `${storeKey}-${String(key)}`;
+    return style(rules, debugId);
+  }
 
   // get cache data
   const cache = getCacheStore(storeKey);

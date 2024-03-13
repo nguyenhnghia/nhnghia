@@ -1,8 +1,8 @@
 import slug from "slugify";
 
-export default function slugify(input: string): string {
-  return slug(input, {
-    locale: "vi",
+export default function slugify(...input: string[]): string {
+  return slug(input.join("-"), {
+    locale: "en",
     lower: true,
     replacement: "-",
     trim: true,

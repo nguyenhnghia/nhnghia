@@ -1,4 +1,4 @@
-import type { StyleRule } from "@vanilla-extract/css";
+import { style, type StyleRule } from "@vanilla-extract/css";
 import { clsx } from "clsx";
 import { CachedUnits } from "../../_configurations/caching";
 import type { ResponsiveUIVariants } from "../../_types/common";
@@ -10,7 +10,6 @@ import type {
 } from "../../_types/components/button";
 import cn, { createSelector } from "../../_utils/class-name";
 import { desktop, mobile, tablet } from "../../helpers/responsive";
-import classes from "../../utilities/classes";
 import staticStyles from "./static";
 import { sizeVariants } from "./variants/size.css";
 
@@ -78,7 +77,7 @@ function button<P extends keyof OptionalParts>(
         `tablet-root-${dtSize}`,
       ),
     options?.__extend?.root,
-    options?.__override?.root && classes(options.__override.root),
+    options?.__override?.root && style(options.__override.root),
   ];
 
   buttonStyles.__selectors.root = rootSelector;
@@ -93,7 +92,7 @@ function button<P extends keyof OptionalParts>(
       cn(staticStyles.icon, CachedUnits.ButtonSize, "any-icon-any"),
       options?.__extend?.["icon" as P],
       options?.__override?.["icon" as P] &&
-        classes(options.__override["icon" as P] ?? {}),
+        style(options.__override["icon" as P] ?? {}),
     ];
 
     buttonStyles.__selectors.icon = iconSelector;
@@ -109,7 +108,7 @@ function button<P extends keyof OptionalParts>(
       cn(staticStyles.text, CachedUnits.ButtonSize, "any-text-any"),
       options?.__extend?.["text" as P],
       options?.__override?.["text" as P] &&
-        classes(options.__override["Text" as P] ?? {}),
+        style(options.__override["Text" as P] ?? {}),
     ];
 
     buttonStyles.__selectors.text = textSelector;
