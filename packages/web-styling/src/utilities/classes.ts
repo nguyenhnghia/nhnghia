@@ -65,7 +65,7 @@ function buildClasses(
             _builder = (r) => builder({ selectors: { [selector]: r } });
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "selectors", selector];
-            cls.push(...buildClasses(_builder, _rule, _cachePath));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, config));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -78,7 +78,7 @@ function buildClasses(
             _builder = (r) => builder({ "@container": { [container]: r } });
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@container", container];
-            cls.push(...buildClasses(_builder, _rule, _cachePath));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, config));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -91,7 +91,7 @@ function buildClasses(
             _builder = (r) => builder({ "@layer": { [layer]: r } });
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@layer", layer];
-            cls.push(...buildClasses(_builder, _rule, _cachePath));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, config));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -104,7 +104,7 @@ function buildClasses(
             _builder = (r) => builder({ "@media": { [media]: r } });
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@media", media];
-            cls.push(...buildClasses(_builder, _rule, _cachePath));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, config));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -117,7 +117,7 @@ function buildClasses(
             _builder = (r) => builder({ "@supports": { [support]: r } });
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@supports", support];
-            cls.push(...buildClasses(_builder, _rule, _cachePath));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, config));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
