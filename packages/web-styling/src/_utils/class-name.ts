@@ -1,32 +1,32 @@
 import { style, type ComplexStyleRule } from "@vanilla-extract/css";
-import type { GeneratedClasses, OptimizationUnit } from "../types/optimization";
+import type { GeneratedClasses, OptimizationUnit } from "../types";
 import { getGeneratedClasses, setGeneratedClasses } from "./optimization";
 
 export function createSelector(): string {
   return style({});
 }
 
-export default function createClassName<Unit extends OptimizationUnit, Key extends keyof GeneratedClasses[Unit]>(
+export default function createClassName<Unit extends OptimizationUnit, BuildId extends keyof GeneratedClasses[Unit]>(
   rules: ComplexStyleRule,
-  optimizeUnit: Unit,
-  id: Key,
-): GeneratedClasses[Unit][Key] | string {
+  optimizationUnit: Unit,
+  buildId: BuildId,
+): GeneratedClasses[Unit][BuildId] | string {
   // skip cache & add debug id in development
   if (process.env.NODE_ENV === "development") {
-    const debugId = `${optimizeUnit}-${String(id)}`;
+    const debugId = `${optimizationUnit}-${String(buildId)}`;
     return style(rules, debugId);
   }
 
   // get generated classes (cache store)
-  const generatedClasses = getGeneratedClasses(optimizeUnit);
+  const generatedClasses = getGeneratedClasses(optimizationUnit);
 
   // cache hit
-  if (id in generatedClasses && typeof generatedClasses[id] === "string") {
-    return generatedClasses[id];
+  if (buildId in generatedClasses && typeof generatedClasses[buildId] === "string") {
+    return generatedClasses[buildId];
   }
 
   // cache miss
   const className = style(rules);
-  setGeneratedClasses(optimizeUnit, { ...generatedClasses, [id]: className });
+  setGeneratedClasses(optimizationUnit, { ...generatedClasses, [buildId]: className });
   return className;
 }
