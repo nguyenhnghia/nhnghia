@@ -4,11 +4,7 @@ export const metadata: Metadata = {
   title: "nhnghia - portfoblogio - test",
 };
 
-export default function TestLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
+export default function TestLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <section>
       <header>this is test header</header>

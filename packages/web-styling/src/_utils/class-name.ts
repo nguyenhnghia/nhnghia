@@ -1,30 +1,32 @@
 import { style, type ComplexStyleRule } from "@vanilla-extract/css";
-import type { CachedUnits } from "../_configurations/caching";
-import type { CacheStore } from "./caching";
-import { cacheResult, getCacheStore } from "./caching";
+import type { GeneratedClasses, OptimizationUnit } from "../types/optimization";
+import { getGeneratedClasses, setGeneratedClasses } from "./optimization";
 
 export function createSelector(): string {
   return style({});
 }
 
-export default function cn<
-  S extends CachedUnits,
-  K extends keyof CacheStore[S],
->(rules: ComplexStyleRule, storeKey: S, key: K): CacheStore[S][K] | string {
+export default function createClassName<Unit extends OptimizationUnit, Key extends keyof GeneratedClasses[Unit]>(
+  rules: ComplexStyleRule,
+  optimizeUnit: Unit,
+  id: Key,
+): GeneratedClasses[Unit][Key] | string {
   // skip cache & add debug id in development
   if (process.env.NODE_ENV === "development") {
-    const debugId = `${storeKey}-${String(key)}`;
+    const debugId = `${optimizeUnit}-${String(id)}`;
     return style(rules, debugId);
   }
 
-  // get cache data
-  const cache = getCacheStore(storeKey);
+  // get generated classes (cache store)
+  const generatedClasses = getGeneratedClasses(optimizeUnit);
 
   // cache hit
-  if (key in cache && typeof cache[key] === "string") return cache[key];
+  if (id in generatedClasses && typeof generatedClasses[id] === "string") {
+    return generatedClasses[id];
+  }
 
   // cache miss
   const className = style(rules);
-  cacheResult(storeKey, { ...cache, [key]: className });
+  setGeneratedClasses(optimizeUnit, { ...generatedClasses, [id]: className });
   return className;
 }

@@ -1,6 +1,6 @@
 import { createVar } from "@vanilla-extract/css";
-import type { StyleRuleWithoutMediaQueries } from "../../../_types/common";
-import type { ButtonSizes } from "../../../_types/components/button";
+import type { ButtonVariants } from "../../../types/configurations";
+import type { StyleRuleWithoutMediaQueries } from "../../../types/web-styling";
 
 const sizeVars = {
   height: createVar(),
@@ -9,7 +9,7 @@ const sizeVars = {
   fontSize: createVar(),
 };
 
-const sizeVariants: Record<ButtonSizes, StyleRuleWithoutMediaQueries> = {
+const sizeVariants: Record<ButtonVariants["size"], StyleRuleWithoutMediaQueries> = {
   tiny: {
     vars: {
       [sizeVars.height]: "28px",

@@ -1,5 +1,5 @@
 import type { StyleRule } from "@vanilla-extract/css";
-import type { ButtonParts } from "../../_types/components/button";
+import type { ButtonParts } from "../../types/configurations";
 import { sizeVars } from "./variants/size.css";
 
 const staticStyles: Record<ButtonParts, StyleRule> = {

@@ -1,9 +1,5 @@
 import { globalLayer } from "@vanilla-extract/css";
-import {
-  DESKTOP_LAYER_NAME,
-  MOBILE_LAYER_NAME,
-  TABLET_LAYER_NAME,
-} from "../constants/layers";
+import { DESKTOP_LAYER_NAME, MOBILE_LAYER_NAME, TABLET_LAYER_NAME } from "../_configurations/layers";
 
 export const MOBILE_LAYER = globalLayer(MOBILE_LAYER_NAME);
 export const TABLET_LAYER = globalLayer(TABLET_LAYER_NAME);

@@ -1,18 +1,16 @@
 import { globalLayer, globalStyle } from "@vanilla-extract/css";
-import { RESET_LAYER_NAME } from "../constants/layers";
+import { RESET_LAYER_NAME } from "../_configurations/layers";
 
 export const RESET_LAYER = globalLayer(RESET_LAYER_NAME);
 
-const DEFAULT_FONT_FAMILY =
-  'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
+const DEFAULT_FONT_FAMILY = 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
 
-const MONO_FONT_FAMILY =
-  'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace';
+const MONO_FONT_FAMILY = 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace';
 
 globalStyle("*, ::before, ::after", {
   "@layer": {
     [RESET_LAYER]: {
-      border: "1px solid transparent",
+      border: "0px solid transparent",
       boxSizing: "border-box",
       transitionDuration: "0.33s",
       transitionProperty: "none",

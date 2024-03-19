@@ -6,6 +6,6 @@ Naming things is matter, especially in this case. we need to make sure that temp
 
 ## Naming convention
 
-lets make it `<greek alphabet(in kebab case)>.<template name (in kebab case)>.css.ts`
+lets make it `<alphabet>.<template name (in kebab case)>.css.ts`
 
 with this convention. we can decide what should be import first by the alphabet part which is also make sure auto sort import doesn't impact final result

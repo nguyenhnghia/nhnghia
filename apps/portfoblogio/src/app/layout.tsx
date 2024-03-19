@@ -1,16 +1,12 @@
-import "@repo/web-styling/templates/alpha.reset";
-import "@repo/web-styling/templates/beta.responsive-layers";
+import "@repo/web-styling/templates/a.reset";
+import "@repo/web-styling/templates/b.responsive-layers";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "nhnghia - portfoblogio",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
+export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <html lang="en">
       <body>

@@ -1,10 +1,7 @@
-import { DESKTOP_BREAK_POINT } from "@repo/web-styling/constants";
 import classes from "@repo/web-styling/utilities/classes";
-import conner from "@repo/web-styling/utilities/conner";
+import { DESKTOP_BREAK_POINT } from "@utils/break-points";
 
-const getClasses = classes({ utilitiesSelector: true });
-
-export const link = conner("small");
+const getClasses = classes({ utilization: { selector: true } });
 
 export const test = getClasses({
   background: "red",

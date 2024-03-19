@@ -4,14 +4,10 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@components/*": ["./src/components/*"],
+      "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"],
     },
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    ".next/types/**/*.ts",
-    "next-env.d.ts",
-  ],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", ".next/types/**/*.ts", "next-env.d.ts"],
   "exclude": ["node_modules"],
 }
