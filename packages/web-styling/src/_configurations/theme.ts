@@ -1,3 +1,4 @@
+import type { createGlobalTheme } from "@vanilla-extract/css";
 import { createGlobalThemeContract } from "@vanilla-extract/css";
 import slugify from "../_utils/slugify";
 
@@ -51,7 +52,7 @@ export const buttonTheme = createGlobalThemeContract(
   generateThemeVar,
 );
 
-export const defaultButtonThemeValue = {
+export const defaultButtonThemeValue: ButtonThemeValue = {
   size: {
     tiny: {
       height: "28px",
@@ -93,7 +94,7 @@ export const defaultButtonThemeValue = {
 };
 
 export type ButtonTheme = typeof buttonTheme;
-export type ButtonThemeValue = typeof defaultButtonThemeValue;
+export type ButtonThemeValue = Parameters<typeof createGlobalTheme<ButtonTheme>>[2];
 /*================== All Theme =================*/
 
 export const theme = {
