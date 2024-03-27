@@ -10,6 +10,7 @@ import { sizeVariants } from "./variants/size.css";
 type ButtonBuilderConfig = ClassBuilderConfig;
 
 function button(config?: ButtonBuilderConfig): ButtonClassesGetter {
+  const scope = config?.scope ?? "any-scope";
   const builderConfig = config?.builder;
 
   const mobile = getMobileRuleBuilder(builderConfig?.mobile);
@@ -25,24 +26,24 @@ function button(config?: ButtonBuilderConfig): ButtonClassesGetter {
 
     /*================== ROOT =================*/
     const rootClasses = [
-      createClassName(staticStyles.root, OptimizationUnit.Component, "button-root-on-any-screen:size=any"),
-      createClassName(mobile(sizeVariants[size]), OptimizationUnit.Component, `button-root-on-mobile:size=${size}`),
-      tlSize && createClassName(tablet(sizeVariants[tlSize]), OptimizationUnit.Component, `button-root-on-tablet:size=${tlSize}`),
-      dtSize && createClassName(desktop(sizeVariants[dtSize]), OptimizationUnit.Component, `button-root-on-desktop:size=${dtSize}`),
+      createClassName(staticStyles.root, OptimizationUnit.Component, `(${scope})button-root-on-any-screen:size=any`),
+      createClassName(mobile(sizeVariants[size]), OptimizationUnit.Component, `(${scope})button-root-on-mobile:size=${size}`),
+      tlSize && createClassName(tablet(sizeVariants[tlSize]), OptimizationUnit.Component, `(${scope})button-root-on-tablet:size=${tlSize}`),
+      dtSize && createClassName(desktop(sizeVariants[dtSize]), OptimizationUnit.Component, `(${scope})button-root-on-desktop:size=${dtSize}`),
     ];
 
     buttonStyles.root = clsx(rootClasses);
 
     /*================== ICON =================*/
     if (parts.includes("icon" as P)) {
-      const iconClasses = [createClassName(staticStyles.icon, OptimizationUnit.Component, "button-icon-on-any-screen:size=any")];
+      const iconClasses = [createClassName(staticStyles.icon, OptimizationUnit.Component, `(${scope})button-icon-on-any-screen:size=any`)];
 
       buttonStyles.icon = clsx(iconClasses);
     }
 
     /*================== TEXT =================*/
     if (parts.includes("text" as P)) {
-      const textClasses = [createClassName(staticStyles.text, OptimizationUnit.Component, "button-text-on-any-screen:size=any")];
+      const textClasses = [createClassName(staticStyles.text, OptimizationUnit.Component, `(${scope})button-text-on-any-screen:size=any`)];
 
       buttonStyles.text = clsx(textClasses);
     }

@@ -47,7 +47,9 @@ type ClassesBuilderConfig = ClassBuilderConfig & {
 
 const utilizationEverything: ClassesBuilderConfig["utilization"] = { container: true, layer: true, media: true, selector: true, support: true };
 
-function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cachePath: string[], utilization?: ClassesBuilderConfig["utilization"]): ClassValue[] {
+function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cachePath: string[], config?: Pick<ClassesBuilderConfig, "scope" | "utilization">): ClassValue[] {
+  const scope = config?.scope ?? "any-scope";
+  const utilization = config?.utilization;
   const cls: ClassValue[] = [];
 
   Object.entries(rule).forEach((entry) => {
@@ -62,7 +64,7 @@ function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cache
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "selectors", selector];
 
-            cls.push(...buildClasses(_builder, _rule, _cachePath, utilizationEverything));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, { scope: config?.scope, utilization: utilizationEverything }));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -76,7 +78,7 @@ function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cache
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@container", container];
 
-            cls.push(...buildClasses(_builder, _rule, _cachePath, utilizationEverything));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, { scope: config?.scope, utilization: utilizationEverything }));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -90,7 +92,7 @@ function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cache
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@layer", layer];
 
-            cls.push(...buildClasses(_builder, _rule, _cachePath, utilizationEverything));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, { scope: config?.scope, utilization: utilizationEverything }));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -104,7 +106,7 @@ function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cache
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@media", media];
 
-            cls.push(...buildClasses(_builder, _rule, _cachePath, utilizationEverything));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, { scope: config?.scope, utilization: utilizationEverything }));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -118,7 +120,7 @@ function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cache
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@supports", support];
 
-            cls.push(...buildClasses(_builder, _rule, _cachePath, utilizationEverything));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, { scope: config?.scope, utilization: utilizationEverything }));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -126,7 +128,7 @@ function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cache
         break;
 
       default:
-        cls.push(createClassName(builder({ [key]: value }), OptimizationUnit.Utility, slugify(...cachePath, key, String(value))));
+        cls.push(createClassName(builder({ [key]: value }), OptimizationUnit.Utility, `(${scope})${slugify(...cachePath, key, String(value))}`));
     }
   });
 
@@ -148,6 +150,7 @@ function classes(config?: ClassesBuilderConfig) {
      */
     dt?: Omit<Rule, "@layer">,
   ): string {
+    const scopeConfig = config?.scope;
     const utilizationConfig = config?.utilization;
     const builderConfig = config?.builder;
 
@@ -155,9 +158,9 @@ function classes(config?: ClassesBuilderConfig) {
     const tablet = getTabletRuleBuilder(builderConfig?.tablet);
     const desktop = getDesktopRuleBuilder(builderConfig?.desktop);
 
-    const cls = buildClasses(mobile, mb, ["mobile"], utilizationConfig);
-    if (tl) cls.push(buildClasses(tablet, tl, ["tablet"]), utilizationConfig);
-    if (dt) cls.push(buildClasses(desktop, dt, ["desktop"]), utilizationConfig);
+    const cls = buildClasses(mobile, mb, ["mobile"], { scope: scopeConfig, utilization: utilizationConfig });
+    if (tl) cls.push(buildClasses(tablet, tl, ["tablet"]), { scope: scopeConfig, utilization: utilizationConfig });
+    if (dt) cls.push(buildClasses(desktop, dt, ["desktop"]), { scope: scopeConfig, utilization: utilizationConfig });
 
     return clsx(cls);
   };

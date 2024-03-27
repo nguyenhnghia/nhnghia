@@ -24,6 +24,12 @@ export type ResponsiveRuleBuilderConfig = {
 };
 
 export type ClassBuilderConfig = {
+  /**
+   * Root file which init the class builder call
+   * When a class builder is called inside some-random-directory/example.css.ts,
+   * it's mean some-random-directory/example.css.ts is that's builder scope
+   */
+  scope?: string;
   builder?: ResponsiveRuleBuilderConfig;
 };
 
