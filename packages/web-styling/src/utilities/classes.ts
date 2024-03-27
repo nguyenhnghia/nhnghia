@@ -45,6 +45,8 @@ type ClassesBuilderConfig = ClassBuilderConfig & {
   };
 };
 
+const utilizationEverything: ClassesBuilderConfig["utilization"] = { container: true, layer: true, media: true, selector: true, support: true };
+
 function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cachePath: string[], utilization?: ClassesBuilderConfig["utilization"]): ClassValue[] {
   const cls: ClassValue[] = [];
 
@@ -60,7 +62,7 @@ function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cache
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "selectors", selector];
 
-            cls.push(...buildClasses(_builder, _rule, _cachePath, utilization));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, utilizationEverything));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -74,7 +76,7 @@ function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cache
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@container", container];
 
-            cls.push(...buildClasses(_builder, _rule, _cachePath, utilization));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, utilizationEverything));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -88,7 +90,7 @@ function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cache
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@layer", layer];
 
-            cls.push(...buildClasses(_builder, _rule, _cachePath, utilization));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, utilizationEverything));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -102,7 +104,7 @@ function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cache
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@media", media];
 
-            cls.push(...buildClasses(_builder, _rule, _cachePath, utilization));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, utilizationEverything));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));
@@ -116,7 +118,7 @@ function buildClasses(builder: (rule: StyleRule) => StyleRule, rule: Rule, cache
             const _rule = _value as Rule;
             const _cachePath = [...cachePath, "@supports", support];
 
-            cls.push(...buildClasses(_builder, _rule, _cachePath, utilization));
+            cls.push(...buildClasses(_builder, _rule, _cachePath, utilizationEverything));
           });
         } else {
           cls.push(style(_builder({ [key]: value } as StyleRule)));

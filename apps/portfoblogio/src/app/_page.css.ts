@@ -1,28 +1,20 @@
-import classes from "@repo/web-styling/utilities/classes";
-import { DESKTOP_BREAK_POINT } from "@utils/break-points";
-
-const getClasses = classes({ utilization: { selector: true } });
+import { theme } from "@repo/web-styling/theme";
+import getClasses from "@utils/classes";
 
 export const test = getClasses({
-  background: "red",
-  color: "green",
+  background: theme.colors.__solid("cyan", "500", 0.5),
+  color: theme.colors.__solid("green", "500"),
   padding: 20,
   selectors: {
     "&:hover": {
-      background: "green",
+      background: theme.colors.__solid("green", "500"),
       width: "var(--height)",
-      color: "red",
+      color: theme.colors.__solid("red", "500"),
       textDecoration: "underline",
-      "@media": {
-        [DESKTOP_BREAK_POINT]: {
-          background: "black",
-        },
-      },
     },
     "main > &": {
-      background: "purple",
+      background: theme.colors.__solid("purple", "500", 0.5),
       color: "white",
-      textDecoration: "line-through",
     },
   },
 });

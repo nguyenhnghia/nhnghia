@@ -1,5 +1,4 @@
-import "@repo/web-styling/templates/a.reset";
-import "@repo/web-styling/templates/b.responsive-layers";
+import "@repo/web-styling/templates/foundation";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

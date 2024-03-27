@@ -17,8 +17,6 @@ const staticStyles: Record<ButtonParts, StyleRule> = {
   },
   icon: {
     fontSize: sizeVars.contentHeight,
-    height: sizeVars.contentHeight,
-    width: sizeVars.contentHeight,
 
     flex: "0 0 auto",
   },
@@ -27,14 +25,6 @@ const staticStyles: Record<ButtonParts, StyleRule> = {
     lineHeight: sizeVars.contentHeight,
 
     userSelect: "none",
-    selectors: {
-      "&:first-child": {
-        paddingLeft: "0.4ch",
-      },
-      "&:last-child": {
-        paddingRight: "0.4ch",
-      },
-    },
   },
 };
 

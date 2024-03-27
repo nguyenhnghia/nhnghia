@@ -9,7 +9,7 @@ export default function RootPage(): JSX.Element {
   return (
     <main>
       <div className={test}>
-        <button type="button" className={buttonA.root}>
+        <button type="button" className={buttonA.root} style={{ display: "inline-flex" }}>
           <div className={buttonA.text}>Click me</div>
           <SvgArrowRight className={buttonA.icon} />
         </button>

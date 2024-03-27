@@ -1,7 +1,10 @@
 import { globalLayer, globalStyle } from "@vanilla-extract/css";
-import { RESET_LAYER_NAME } from "../_configurations/layers";
+import { DESKTOP_LAYER_NAME, MOBILE_LAYER_NAME, RESET_LAYER_NAME, TABLET_LAYER_NAME } from "../configurations/layers";
 
 export const RESET_LAYER = globalLayer(RESET_LAYER_NAME);
+export const MOBILE_LAYER = globalLayer(MOBILE_LAYER_NAME);
+export const TABLET_LAYER = globalLayer(TABLET_LAYER_NAME);
+export const DESKTOP_LAYER = globalLayer(DESKTOP_LAYER_NAME);
 
 const DEFAULT_FONT_FAMILY = 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
 
@@ -10,7 +13,8 @@ const MONO_FONT_FAMILY = 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 globalStyle("*, ::before, ::after", {
   "@layer": {
     [RESET_LAYER]: {
-      border: "0px solid transparent",
+      position: "static",
+      zIndex: 0,
       boxSizing: "border-box",
       transitionDuration: "0.33s",
       transitionProperty: "none",
@@ -447,7 +451,6 @@ globalStyle("[hidden]", {
     },
   },
 });
-
 /**
  * Make element inside svg inherit it's color
  */
@@ -456,6 +459,30 @@ globalStyle("svg *", {
     [RESET_LAYER]: {
       fill: "inherit",
       stroke: "inherit",
+    },
+  },
+});
+
+globalStyle("body", {
+  "@layer": {
+    [MOBILE_LAYER]: {
+      margin: 0,
+    },
+  },
+});
+
+globalStyle("body", {
+  "@layer": {
+    [TABLET_LAYER]: {
+      margin: 0,
+    },
+  },
+});
+
+globalStyle("body", {
+  "@layer": {
+    [DESKTOP_LAYER]: {
+      margin: 0,
     },
   },
 });

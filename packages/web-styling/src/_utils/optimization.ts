@@ -1,5 +1,5 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { OPTIMIZING_CONFIG } from "../_configurations/optimization";
+import { OPTIMIZING_CONFIG } from "../configurations/optimization";
 import type { GeneratedClasses, OptimizationUnit } from "../types/optimization";
 
 export function getGeneratedClasses<Unit extends OptimizationUnit>(unit: Unit): GeneratedClasses[Unit] {
