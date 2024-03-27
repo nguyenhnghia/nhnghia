@@ -16,7 +16,8 @@ const staticStyles: Record<ButtonParts, StyleRule> = {
     border: "1px solid currentcolor",
   },
   icon: {
-    fontSize: sizeVars.contentHeight,
+    width: sizeVars.contentHeight,
+    height: sizeVars.contentHeight,
 
     flex: "0 0 auto",
   },

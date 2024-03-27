@@ -8,9 +8,9 @@ const typoThemeValue = defaultTheme.typos;
 
 const sizeVars = {
   height: createVar(),
-  contentHeight: createVar(),
   space: createVar(),
   fontSize: createVar(),
+  contentHeight: createVar(),
 };
 
 const sizeVariants: Record<ButtonVariants["size"], StyleRuleWithoutMediaQueries> = {

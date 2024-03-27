@@ -1,6 +1,6 @@
 import SvgArrowRight from "@repo/icons/arrow-right";
 import Link from "next/link";
-import { buttonC } from "../../styles/button-c.css";
+import { buttonC } from "./_page.css";
 
 export default function TestPage(): JSX.Element {
   return (

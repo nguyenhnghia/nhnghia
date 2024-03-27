@@ -1,10 +1,10 @@
 import { globalLayer, globalStyle } from "@vanilla-extract/css";
 import { DESKTOP_LAYER_NAME, MOBILE_LAYER_NAME, RESET_LAYER_NAME, TABLET_LAYER_NAME } from "../configurations/layers";
 
-export const RESET_LAYER = globalLayer(RESET_LAYER_NAME);
-export const MOBILE_LAYER = globalLayer(MOBILE_LAYER_NAME);
-export const TABLET_LAYER = globalLayer(TABLET_LAYER_NAME);
-export const DESKTOP_LAYER = globalLayer(DESKTOP_LAYER_NAME);
+globalLayer(RESET_LAYER_NAME);
+globalLayer(MOBILE_LAYER_NAME);
+globalLayer(TABLET_LAYER_NAME);
+globalLayer(DESKTOP_LAYER_NAME);
 
 const DEFAULT_FONT_FAMILY = 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
 
@@ -12,9 +12,7 @@ const MONO_FONT_FAMILY = 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 
 globalStyle("*, ::before, ::after", {
   "@layer": {
-    [RESET_LAYER]: {
-      position: "static",
-      zIndex: 0,
+    [RESET_LAYER_NAME]: {
       boxSizing: "border-box",
       transitionDuration: "0.33s",
       transitionProperty: "none",
@@ -25,7 +23,7 @@ globalStyle("*, ::before, ::after", {
 
 globalStyle(":focus-visible", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       outlineOffset: 4,
       outlineStyle: "solid",
       outlineWidth: 2,
@@ -35,7 +33,7 @@ globalStyle(":focus-visible", {
 
 globalStyle("html, :host", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       fontFamily: DEFAULT_FONT_FAMILY,
       fontFeatureSettings: "normal",
       fontVariationSettings: "normal",
@@ -48,7 +46,7 @@ globalStyle("html, :host", {
 
 globalStyle("body", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       lineHeight: "inherit",
       margin: 0,
     },
@@ -57,7 +55,7 @@ globalStyle("body", {
 
 globalStyle("hr", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       borderTopWidth: 1,
       color: "inherit",
       height: 0,
@@ -70,7 +68,7 @@ Add the correct text decoration in Chrome, Edge, and Safari.
 */
 globalStyle("abbr:where([title])", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       textDecoration: "underline dotted",
     },
   },
@@ -81,7 +79,7 @@ Remove the default font size and weight for headings.
 */
 globalStyle("h1, h2, h3, h4, h5, h6", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       fontSize: "inherit",
       fontWeight: "inherit",
     },
@@ -93,7 +91,7 @@ Reset links to optimize for opt-in styling instead of opt-out.
 */
 globalStyle("a", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       color: "inherit",
       textDecoration: "inherit",
     },
@@ -105,7 +103,7 @@ Add the correct font weight in Edge and Safari.
 */
 globalStyle("b, strong", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       fontWeight: "bolder",
     },
   },
@@ -119,7 +117,7 @@ globalStyle("b, strong", {
 */
 globalStyle("code, kbd, samp, pre", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       fontFamily: MONO_FONT_FAMILY,
       fontFeatureSettings: "normal",
       fontSize: "1em",
@@ -133,7 +131,7 @@ Add the correct font size in all browsers.
 */
 globalStyle("small", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       fontSize: "80%",
     },
   },
@@ -144,7 +142,7 @@ Prevent `sub` and `sup` elements from affecting the line height in all browsers.
 */
 globalStyle("sub, sup", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       fontSize: "75%",
       lineHeight: 0,
       position: "relative",
@@ -155,7 +153,7 @@ globalStyle("sub, sup", {
 
 globalStyle("sub", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       bottom: "-0.25em",
     },
   },
@@ -163,7 +161,7 @@ globalStyle("sub", {
 
 globalStyle("sup", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       top: "-0.5em",
     },
   },
@@ -176,7 +174,7 @@ globalStyle("sup", {
 */
 globalStyle("table", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       borderCollapse: "collapse",
       borderColor: "inherit",
       textIndent: 0,
@@ -191,7 +189,7 @@ globalStyle("table", {
 */
 globalStyle("button, input, optgroup, select, textarea", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       color: "inherit",
       fontFamily: "inherit",
       fontFeatureSettings: "inherit",
@@ -210,7 +208,7 @@ Remove the inheritance of text transform in Edge and Firefox.
 */
 globalStyle("button, select", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       textTransform: "none",
     },
   },
@@ -222,9 +220,10 @@ globalStyle("button, select", {
 */
 globalStyle("button, [type='button'], [type='reset'], [type='submit']", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       backgroundColor: "transparent",
       backgroundImage: "none",
+      appearance: "button",
       WebkitAppearance: "button",
     },
   },
@@ -235,7 +234,7 @@ Use the modern Firefox focus style for all focusable elements.
 */
 globalStyle(":-moz-focusring", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       outline: "auto",
     },
   },
@@ -246,7 +245,7 @@ Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/
 */
 globalStyle(":-moz-ui-invalid", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       boxShadow: "none",
     },
   },
@@ -257,7 +256,7 @@ Add the correct vertical alignment in Chrome and Firefox.
 */
 globalStyle("progress", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       verticalAlign: "baseline",
     },
   },
@@ -268,7 +267,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 */
 globalStyle("::-webkit-inner-spin-button, ::-webkit-outer-spin-button", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       height: "auto",
     },
   },
@@ -280,8 +279,9 @@ globalStyle("::-webkit-inner-spin-button, ::-webkit-outer-spin-button", {
 */
 globalStyle("[type='search']", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       outlineOffset: -2,
+      appearance: "textfield",
       WebkitAppearance: "textfield",
     },
   },
@@ -292,7 +292,8 @@ Remove the inner padding in Chrome and Safari on macOS.
 */
 globalStyle("::-webkit-search-decoration", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
+      appearance: "none",
       WebkitAppearance: "none",
     },
   },
@@ -304,8 +305,9 @@ globalStyle("::-webkit-search-decoration", {
 */
 globalStyle("::-webkit-file-upload-button", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       font: "inherit",
+      appearance: "button",
       WebkitAppearance: "button",
     },
   },
@@ -316,7 +318,7 @@ Add the correct display in Chrome and Safari.
 */
 globalStyle("summary", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       display: "list-item",
     },
   },
@@ -327,7 +329,7 @@ Removes the default spacing and border for appropriate elements.
 */
 globalStyle("blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       margin: 0,
     },
   },
@@ -335,7 +337,7 @@ globalStyle("blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre", {
 
 globalStyle("fieldset", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       margin: 0,
       padding: 0,
     },
@@ -344,7 +346,7 @@ globalStyle("fieldset", {
 
 globalStyle("legend", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       padding: 0,
     },
   },
@@ -352,7 +354,7 @@ globalStyle("legend", {
 
 globalStyle("ol, ul, menu", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       listStyle: "none",
       margin: 0,
       padding: 0,
@@ -365,7 +367,7 @@ Reset default styling for dialogs.
 */
 globalStyle("dialog", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       padding: 0,
     },
   },
@@ -376,7 +378,7 @@ Prevent resizing textarea horizontally by default.
 */
 globalStyle("textarea", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       resize: "vertical",
     },
   },
@@ -388,7 +390,7 @@ globalStyle("textarea", {
 */
 globalStyle("input::placeholder, textarea::placeholder", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       color: "#9ca3af",
       opacity: 1,
     },
@@ -400,7 +402,7 @@ Set the default cursor for buttons.
 */
 globalStyle('button, [role="button"]', {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       cursor: "pointer",
     },
   },
@@ -411,7 +413,7 @@ Make sure disabled buttons don't get the pointer cursor.
 */
 globalStyle(":disabled", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       cursor: "not-allowed",
     },
   },
@@ -424,9 +426,8 @@ globalStyle(":disabled", {
 */
 globalStyle("img, svg, video, canvas, audio, iframe, embed, object", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       display: "block",
-      verticalAlign: "middle",
     },
   },
 });
@@ -436,7 +437,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 */
 globalStyle("img, video", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       height: "auto",
       maxWidth: "100%",
     },
@@ -446,7 +447,7 @@ globalStyle("img, video", {
 /* Make elements with the HTML hidden attribute stay hidden by default */
 globalStyle("[hidden]", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       display: "none",
     },
   },
@@ -456,33 +457,9 @@ globalStyle("[hidden]", {
  */
 globalStyle("svg *", {
   "@layer": {
-    [RESET_LAYER]: {
+    [RESET_LAYER_NAME]: {
       fill: "inherit",
       stroke: "inherit",
-    },
-  },
-});
-
-globalStyle("body", {
-  "@layer": {
-    [MOBILE_LAYER]: {
-      margin: 0,
-    },
-  },
-});
-
-globalStyle("body", {
-  "@layer": {
-    [TABLET_LAYER]: {
-      margin: 0,
-    },
-  },
-});
-
-globalStyle("body", {
-  "@layer": {
-    [DESKTOP_LAYER]: {
-      margin: 0,
     },
   },
 });
