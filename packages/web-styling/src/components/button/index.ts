@@ -27,9 +27,12 @@ function button(config?: ButtonBuilderConfig): ButtonClassesGetter {
     /*================== ROOT =================*/
     const rootClasses = [
       createClassName(staticStyles.root, OptimizationUnit.Component, `(${scope})button-root-on-any-screen:size=any`),
+      // size
       createClassName(mobile(sizeVariants[size]), OptimizationUnit.Component, `(${scope})button-root-on-mobile:size=${size}`),
       tlSize && createClassName(tablet(sizeVariants[tlSize]), OptimizationUnit.Component, `(${scope})button-root-on-tablet:size=${tlSize}`),
       dtSize && createClassName(desktop(sizeVariants[dtSize]), OptimizationUnit.Component, `(${scope})button-root-on-desktop:size=${dtSize}`),
+      // ...other variants
+      // ...
     ];
 
     buttonStyles.root = clsx(rootClasses);
