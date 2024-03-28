@@ -1,5 +1,6 @@
 import "@repo/web-styling/templates/foundation";
 import type { Metadata } from "next";
+import Insights from "./insights";
 
 export const metadata: Metadata = {
   title: "nhnghia - portfoblogio",
@@ -12,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
         <header>this is shared header</header>
         {children}
         <footer>this is shared footer</footer>
+        <Insights />
       </body>
     </html>
   );
