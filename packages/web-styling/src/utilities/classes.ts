@@ -4,8 +4,8 @@ import { clsx } from "clsx";
 import createClassName from "../_utils/class-name";
 import slugify from "../_utils/slugify";
 import { getDesktopRuleBuilder, getMobileRuleBuilder, getTabletRuleBuilder } from "../helpers/responsive";
-import { OptimizationUnit } from "../types/optimization";
-import type { ClassBuilderConfig } from "../types/web-styling";
+import type { ClassBuilderConfig } from "../types";
+import { OptimizationUnit } from "../types";
 
 type Rule = CSSProperties & {
   selectors?: Record<string, Rule>;

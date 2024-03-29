@@ -33,7 +33,7 @@ export type ClassBuilderConfig = {
   builder?: ResponsiveRuleBuilderConfig;
 };
 
-export type ResponsiveUIVariants<V extends Record<string, string>> = V & {
+export type ResponsiveUIVariants<V extends Record<string, string>> = Partial<V> & {
   __responsive?: {
     tablet?: V;
     desktop?: V;

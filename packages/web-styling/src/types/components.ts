@@ -1,5 +1,11 @@
-export type ComponentDesign<RP extends string, OP extends string, V extends Record<string, string>> = {
-  foundation: RP;
-  optional: OP;
-  variants: V;
+import type { ResponsiveUIVariants } from ".";
+
+export type ComponentStyleDesign = {
+  name: string;
+  fragments: string;
+  variants: Record<string, string>;
+};
+
+export type ComponentStyle<Design extends ComponentStyleDesign> = Design & {
+  classesGetter: <P extends Design["fragments"]>(fragments: [P, ...P[]], options?: ResponsiveUIVariants<Design["variants"]>) => Record<P, string>;
 };

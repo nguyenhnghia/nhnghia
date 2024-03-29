@@ -1,7 +1,6 @@
 import { createVar } from "@vanilla-extract/css";
 import { defaultTheme } from "../../../theme";
-import type { ButtonVariants } from "../../../types/configurations";
-import type { StyleRuleWithoutMediaQueries } from "../../../types/web-styling";
+import type { ButtonStyle, StyleRuleWithoutMediaQueries } from "../../../types";
 
 const spaceThemeValue = defaultTheme.spaces;
 const typoThemeValue = defaultTheme.typos;
@@ -13,7 +12,7 @@ const sizeVars = {
   contentHeight: createVar(),
 };
 
-const sizeVariants: Record<ButtonVariants["size"], StyleRuleWithoutMediaQueries> = {
+const sizeVariants: Record<ButtonStyle["variants"]["size"], StyleRuleWithoutMediaQueries> = {
   tiny: {
     vars: {
       [sizeVars.height]: spaceThemeValue.s14,

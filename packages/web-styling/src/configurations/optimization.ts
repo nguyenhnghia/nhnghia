@@ -1,6 +1,6 @@
 import path from "node:path";
-import type { OptimizationConfig } from "../types/optimization";
-import { OptimizationUnit } from "../types/optimization";
+import type { OptimizationConfig } from "../types";
+import { OptimizationUnit } from "../types";
 
 export const WEB_STYLING_OPTIMIZING_DIRECTORY = ".web-styling";
 

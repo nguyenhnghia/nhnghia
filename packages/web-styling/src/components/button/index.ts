@@ -1,15 +1,12 @@
 import { clsx } from "clsx";
 import createClassName from "../../_utils/class-name";
 import { getDesktopRuleBuilder, getMobileRuleBuilder, getTabletRuleBuilder } from "../../helpers";
-import type { ButtonClasses, ButtonClassesGetter, ButtonOptionalParts, ButtonParts, ButtonVariants } from "../../types/configurations";
-import { OptimizationUnit } from "../../types/optimization";
-import type { ClassBuilderConfig, ResponsiveUIVariants } from "../../types/web-styling";
+import type { ButtonStyle, ClassBuilderConfig, ResponsiveUIVariants } from "../../types";
+import { OptimizationUnit } from "../../types";
 import staticStyles from "./static";
 import { sizeVariants } from "./variants/size.css";
 
-type ButtonBuilderConfig = ClassBuilderConfig;
-
-function button(config?: ButtonBuilderConfig): ButtonClassesGetter {
+function buttonStyles(config?: ClassBuilderConfig): ButtonStyle["classesGetter"] {
   const scope = config?.scope ?? "any-scope";
   const builderConfig = config?.builder;
 
@@ -17,42 +14,51 @@ function button(config?: ButtonBuilderConfig): ButtonClassesGetter {
   const tablet = getTabletRuleBuilder(builderConfig?.tablet);
   const desktop = getDesktopRuleBuilder(builderConfig?.desktop);
 
-  return function getButtonClasses<P extends ButtonOptionalParts>(parts: P[], options?: ResponsiveUIVariants<Partial<ButtonVariants>>) {
-    const buttonStyles: { [K in ButtonParts]?: string } = {};
+  return function getButtonClasses<P extends ButtonStyle["fragments"]>(fragments: [P, ...P[]], options?: ResponsiveUIVariants<ButtonStyle["variants"]>) {
+    let styles = {};
 
     const size = options?.size ?? "normal";
     const tlSize = options?.__responsive?.tablet?.size;
     const dtSize = options?.__responsive?.desktop?.size;
 
-    /*================== ROOT =================*/
-    const rootClasses = [
-      createClassName(staticStyles.root, OptimizationUnit.Component, `(${scope})button-root-on-any-screen:size=any`),
-      // size
-      createClassName(mobile(sizeVariants[size]), OptimizationUnit.Component, `(${scope})button-root-on-mobile:size=${size}`),
-      tlSize && createClassName(tablet(sizeVariants[tlSize]), OptimizationUnit.Component, `(${scope})button-root-on-tablet:size=${tlSize}`),
-      dtSize && createClassName(desktop(sizeVariants[dtSize]), OptimizationUnit.Component, `(${scope})button-root-on-desktop:size=${dtSize}`),
-      // ...other variants
-      // ...
-    ];
+    for (const fragment of fragments) {
+      if (fragment in styles) continue;
+      let classes = "";
 
-    buttonStyles.root = clsx(rootClasses);
+      /*================== Root =================*/
+      if (fragment === "root") {
+        classes = clsx([
+          // static style
+          createClassName(staticStyles.root, OptimizationUnit.Component, `(${scope})button-root-on-any-screen:size=any`),
+          // size style
+          createClassName(mobile(sizeVariants[size]), OptimizationUnit.Component, `(${scope})button-root-on-mobile:size=${size}`),
+          tlSize && createClassName(tablet(sizeVariants[tlSize]), OptimizationUnit.Component, `(${scope})button-root-on-tablet:size=${tlSize}`),
+          dtSize && createClassName(desktop(sizeVariants[dtSize]), OptimizationUnit.Component, `(${scope})button-root-on-desktop:size=${dtSize}`),
+          // ...other variants
+          // ...
+        ]);
+      }
 
-    /*================== ICON =================*/
-    if (parts.includes("icon" as P)) {
-      const iconClasses = [createClassName(staticStyles.icon, OptimizationUnit.Component, `(${scope})button-icon-on-any-screen:size=any`)];
+      /*================== Icon =================*/
+      if (fragment === "icon") {
+        classes = clsx([
+          // static style
+          createClassName(staticStyles.icon, OptimizationUnit.Component, `(${scope})button-icon-on-any-screen:size=any`),
+        ]);
+      }
 
-      buttonStyles.icon = clsx(iconClasses);
+      /*================== Text =================*/
+      if (fragment === "text") {
+        classes = clsx([
+          // static style
+          createClassName(staticStyles.text, OptimizationUnit.Component, `(${scope})button-text-on-any-screen:size=any`),
+        ]);
+      }
+      if (classes) styles = { ...styles, [fragment]: classes };
     }
 
-    /*================== TEXT =================*/
-    if (parts.includes("text" as P)) {
-      const textClasses = [createClassName(staticStyles.text, OptimizationUnit.Component, `(${scope})button-text-on-any-screen:size=any`)];
-
-      buttonStyles.text = clsx(textClasses);
-    }
-
-    return buttonStyles as ButtonClasses<P>;
+    return styles as Record<P, string>;
   };
 }
 
-export default button;
+export default buttonStyles;

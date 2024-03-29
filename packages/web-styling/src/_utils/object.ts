@@ -1,4 +1,4 @@
-import type { DeepPartial } from "../types/common";
+import type { DeepPartial } from "../types";
 
 export function isObject(target: unknown): boolean {
   return typeof target === "object" && target !== null && !Array.isArray(target);

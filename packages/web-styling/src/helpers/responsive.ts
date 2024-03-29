@@ -1,7 +1,7 @@
 import { type StyleRule } from "@vanilla-extract/css";
 import { DESKTOP_BREAK_POINT, TABLET_BREAK_POINT } from "../configurations/break-points";
 import { DESKTOP_LAYER_NAME, MOBILE_LAYER_NAME, TABLET_LAYER_NAME } from "../configurations/layers";
-import type { ResponsiveRuleBuilderConfig, ScreenRuleBuilderConfig } from "../types/web-styling";
+import type { ResponsiveRuleBuilderConfig, ScreenRuleBuilderConfig } from "../types";
 
 export type StyleRuleWithoutMediaQueries = Omit<StyleRule, "@media">;
 
