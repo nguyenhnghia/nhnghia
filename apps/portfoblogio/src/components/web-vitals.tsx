@@ -11,7 +11,12 @@ globalThis.__webVitalsReport = {};
 
 const WebVitals: React.FC = () => {
   useReportWebVitals((metric: { name: string }) => {
-    if (process.env.NODE_ENV === "production") return;
+    /**
+     * Skip report if
+     * - in server
+     * - local storage doesn't have 'report-web-vitals' equals to '1'
+     */
+    if (typeof window === "undefined" || localStorage.getItem("report-web-vitals") !== "1") return;
     try {
       globalThis.__webVitalsReport[metric.name] = metric;
     } catch (error) {
