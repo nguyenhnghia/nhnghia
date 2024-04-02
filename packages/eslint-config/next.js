@@ -51,5 +51,6 @@ module.exports = {
       },
     ],
     "react/jsx-sort-props": ["off"],
+    "import/order": ["off"],
   },
 };

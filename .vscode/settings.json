@@ -189,8 +189,8 @@
     "yargs",
     "yocto"
   ],
-  "css.customData": [".vscode/tailwind.json"],
-  "editor.codeActionsOnSave": ["source.organizeImports", "source.fixAll"],
+  // "css.customData": [".vscode/tailwind.json"], -- enable this if tailwindcss is used
+  // "editor.codeActionsOnSave": ["source.organizeImports", "source.fixAll"], -- this is not work properly at all
   "editor.formatOnSave": true,
   "eslint.workingDirectories": [{ "mode": "auto" }]
 }

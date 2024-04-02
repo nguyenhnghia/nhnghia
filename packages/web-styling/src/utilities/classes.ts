@@ -140,15 +140,15 @@ function classes(config?: ClassesBuilderConfig) {
     /**
      * Style rules for mobile media query
      */
-    mb: Omit<Rule, "@layer">,
+    mobileRule: Omit<Rule, "@layer">,
     /**
      * Style rules for tablet media query
      */
-    tl?: Omit<Rule, "@layer">,
+    tabletRule?: Omit<Rule, "@layer">,
     /**
      * Style rules for desktop media query
      */
-    dt?: Omit<Rule, "@layer">,
+    desktopRule?: Omit<Rule, "@layer">,
   ): string {
     const scopeConfig = config?.scope;
     const utilizationConfig = config?.utilization;
@@ -158,9 +158,13 @@ function classes(config?: ClassesBuilderConfig) {
     const tablet = getTabletRuleBuilder(builderConfig?.tablet);
     const desktop = getDesktopRuleBuilder(builderConfig?.desktop);
 
-    const cls = buildClasses(mobile, mb, ["mobile"], { scope: scopeConfig, utilization: utilizationConfig });
-    if (tl) cls.push(buildClasses(tablet, tl, ["tablet"]), { scope: scopeConfig, utilization: utilizationConfig });
-    if (dt) cls.push(buildClasses(desktop, dt, ["desktop"]), { scope: scopeConfig, utilization: utilizationConfig });
+    const cls = buildClasses(mobile, mobileRule, ["mobile"], { scope: scopeConfig, utilization: utilizationConfig });
+    if (tabletRule) {
+      cls.push(buildClasses(tablet, tabletRule, ["tablet"]), { scope: scopeConfig, utilization: utilizationConfig });
+    }
+    if (desktopRule) {
+      cls.push(buildClasses(desktop, desktopRule, ["desktop"]), { scope: scopeConfig, utilization: utilizationConfig });
+    }
 
     return clsx(cls);
   };
