@@ -1,23 +1,23 @@
-import SvgArrowRight from "@repo/icons/arrow-right";
-import Link from "next/link";
-import { buttonA } from "./_page.css";
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { main } from "./page.css";
 
-export default function RootPage(): JSX.Element {
+const MiniProfile = dynamic(() => import("@components/header/mini-profile"));
+
+export const metadata: Metadata = {
+  title: "nhnghia - portfoblogio",
+};
+
+const RootPage: React.FC = () => {
+  /*================== render =================*/
   return (
-    <main>
-      <div className="">
-        <Link href="/test">go to test</Link>
-        <button type="button" className={buttonA.root}>
-          <div className={buttonA.text}>Click me</div>
-          <SvgArrowRight className={buttonA.icon} />
-        </button>
-        {/* <button type="button" className={buttonB.root}>
-          <SvgArrowRight className={buttonB.icon} />
-        </button>
-        <button type="button" className={buttonC.root}>
-          <SvgArrowRight className={buttonC.icon} />
-        </button> */}
-      </div>
+    <main className={main}>
+      <div>Lorem ipsum dolor sit amet.</div>
+      <MiniProfile />
     </main>
   );
-}
+};
+
+RootPage.displayName = "RootPage";
+
+export default RootPage;

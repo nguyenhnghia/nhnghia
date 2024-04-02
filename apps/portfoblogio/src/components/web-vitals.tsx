@@ -14,7 +14,7 @@ globalThis.__webVitalsReport = {};
 const WebVitals: React.FC = () => {
   useReportWebVitals((metric: { name: string }) => {
     if (isServerSide()) return;
-    if (isProdEnv() && !isActiveRWV()) return;
+    if (!isProdEnv() || !isActiveRWV()) return;
     try {
       if (metric.name in globalThis.__webVitalsReport) {
         globalThis.__webVitalsReport[metric.name].push(metric);
