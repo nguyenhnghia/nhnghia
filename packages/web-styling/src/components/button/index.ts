@@ -25,7 +25,7 @@ function buttonStyles(config?: ClassBuilderConfig): ButtonStyle["classesGetter"]
       if (fragment in styles) continue;
       let classes = "";
 
-      /*================== Root =================*/
+      //#region - root
       if (fragment === "root") {
         classes = clsx([
           // static style
@@ -38,22 +38,26 @@ function buttonStyles(config?: ClassBuilderConfig): ButtonStyle["classesGetter"]
           // ...
         ]);
       }
+      //#endregion
 
-      /*================== Icon =================*/
+      //#region - icon
       if (fragment === "icon") {
         classes = clsx([
           // static style
           createClassName(staticStyles.icon, OptimizationUnit.Component, `(${scope})button-icon-on-any-screen:size=any`),
         ]);
       }
+      //#endregion
 
-      /*================== Text =================*/
+      //#region - text
       if (fragment === "text") {
         classes = clsx([
           // static style
           createClassName(staticStyles.text, OptimizationUnit.Component, `(${scope})button-text-on-any-screen:size=any`),
         ]);
       }
+      //#endregion
+
       if (classes) styles = { ...styles, [fragment]: classes };
     }
 

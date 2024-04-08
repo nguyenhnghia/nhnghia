@@ -1,11 +1,12 @@
 const bundleAnalyzer = require("@next/bundle-analyzer");
 const vanillaExtract = require("@vanilla-extract/next-plugin");
 
-/*================== LOGICS WITH ENV =================*/
+//#region - logics with env
 const isDevMode = process.env.NODE_ENV === "development";
 const isRunAnalyze = process.env.RUN_ANALYZE === "true";
+//#endregion
 
-/*================== BASE CONFIG =================*/
+//#region - base config
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -15,18 +16,21 @@ const nextConfig = {
     return config;
   },
 };
+//#endregion
 
-/*================== VANILLA EXTRACT PLUGIN =================*/
+//#region - vanilla extract plugin
 const withVanillaExtract = vanillaExtract.createVanillaExtractPlugin({
   identifiers: isDevMode ? "debug" : "short",
 });
+//#endregion
 
-/*================== BUNDLE plugANALYZER PLUGIN =================*/
+//#region - bundle pluganalyzer plugin
 const withBundleAnalyze = (config) => {
   return bundleAnalyzer({
     enabled: isRunAnalyze,
     openAnalyzer: false,
   })(config);
 };
+//#endregion
 
 module.exports = withBundleAnalyze(withVanillaExtract(nextConfig));

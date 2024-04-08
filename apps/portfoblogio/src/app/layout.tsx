@@ -11,10 +11,11 @@ type RootLayoutProps = {
 };
 
 const RootLayout: React.FC<RootLayoutProps> = (props) => {
-  /*================== props =================*/
+  //#region - props
   const { children } = props;
+  //#endregion
 
-  /*================== render =================*/
+  //#region - render
   return (
     <html lang="en">
       <body>
@@ -28,6 +29,7 @@ const RootLayout: React.FC<RootLayoutProps> = (props) => {
       </body>
     </html>
   );
+  //#endregion
 };
 
 RootLayout.displayName = "RootLayout";

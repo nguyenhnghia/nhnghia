@@ -9,13 +9,15 @@ const MiniProfile = dynamic(() => import("./mini-profile"));
 type HeaderProps = React.ComponentProps<"header">;
 
 const Header: React.FC<HeaderProps> = (props) => {
-  /*================== props =================*/
+  //#region - props
   const { ...restProps } = props;
+  //#endregion
 
-  /*================== logics =================*/
+  //#region - logics
   const [show, setShow] = useState(false);
+  //#endregion
 
-  /*================== render =================*/
+  //#region - render
   return (
     <header {...restProps}>
       <button
@@ -32,6 +34,7 @@ const Header: React.FC<HeaderProps> = (props) => {
       </ConditionalRender>
     </header>
   );
+  //#endregion
 };
 
 Header.displayName = "Header";

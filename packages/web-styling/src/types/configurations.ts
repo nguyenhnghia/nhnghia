@@ -1,7 +1,7 @@
 import type { Screen } from "./web-styling";
 import type { ComponentStyle } from ".";
 
-/*================== Button =================*/
+//#region - button
 export type ButtonStyle = ComponentStyle<{
   name: "button";
   fragments: "root" | "icon" | "text";
@@ -12,8 +12,10 @@ export type ButtonStyle = ComponentStyle<{
     size: "tiny" | "small" | "normal" | "medium" | "large" | "huge";
   };
 }>;
+//#endregion
 
-/*================== Button Optimization =================*/
+//#region - button optimization
 export type ButtonVariantTokens = `size=${"any" | ButtonStyle["variants"]["size"]}`;
 
 export type ButtonBuildTokens = `${ButtonStyle["name"]}-${ButtonStyle["fragments"]}-on-${"any-screen" | Screen}:${ButtonVariantTokens}`;
+//#endregion

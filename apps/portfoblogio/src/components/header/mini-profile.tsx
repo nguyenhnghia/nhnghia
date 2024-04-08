@@ -3,7 +3,7 @@ import { button, test } from "./mini-profile.css";
 type MiniProfileProps = React.ComponentProps<"div">;
 
 const MiniProfile: React.FC<MiniProfileProps> = (props) => {
-  /*================== render =================*/
+  //#region - render
   return (
     <div {...props}>
       this is mini profile
@@ -13,6 +13,7 @@ const MiniProfile: React.FC<MiniProfileProps> = (props) => {
       <div className={test}>Lorem ipsum dolor sit amet.</div>
     </div>
   );
+  //#endregion
 };
 
 MiniProfile.displayName = "MiniProfile";

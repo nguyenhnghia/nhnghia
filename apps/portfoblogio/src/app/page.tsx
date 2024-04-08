@@ -9,13 +9,14 @@ export const metadata: Metadata = {
 };
 
 const RootPage: React.FC = () => {
-  /*================== render =================*/
+  //#region - render
   return (
     <main className={main}>
       <div>Lorem ipsum dolor sit amet.</div>
       <MiniProfile />
     </main>
   );
+  //#endregion
 };
 
 RootPage.displayName = "RootPage";

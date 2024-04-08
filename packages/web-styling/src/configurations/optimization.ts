@@ -4,15 +4,17 @@ import { OptimizationUnit } from "../types";
 
 export const WEB_STYLING_OPTIMIZING_DIRECTORY = ".web-styling";
 
-/*================== Components =================*/
+//#region - components
 export const COMPONENTS_OPTIMIZING_FILE_NAME = `${OptimizationUnit.Component}.json`;
 
 export const COMPONENTS_OPTIMIZING_FILE_PATH = path.join(WEB_STYLING_OPTIMIZING_DIRECTORY, COMPONENTS_OPTIMIZING_FILE_NAME);
+//#endregion
 
-/*================== Utilities =================*/
+//#region - utilities
 export const UTILITIES_OPTIMIZING_FILE_NAME = `${OptimizationUnit.Utility}.json`;
 
 export const UTILITIES_OPTIMIZING_FILE_PATH = path.join(WEB_STYLING_OPTIMIZING_DIRECTORY, UTILITIES_OPTIMIZING_FILE_NAME);
+//#endregion
 
 export const OPTIMIZING_CONFIG: OptimizationConfig = {
   [OptimizationUnit.Component]: {

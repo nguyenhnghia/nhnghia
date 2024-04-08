@@ -4,6 +4,7 @@ import slugify from "../_utils/slugify";
 
 export const colorTheme = createGlobalThemeContract(
   {
+    //#region - red contract
     red: {
       /**
        * @defaultValue #fef2f2 | rgb(254, 242, 242)
@@ -50,6 +51,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-red-950" as const,
     },
+    //#endregion
+
+    //#region - orange contract
     orange: {
       /**
        * @defaultValue #fff7ed | rgb(255, 247, 237)
@@ -96,6 +100,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-orange-950" as const,
     },
+    //#endregion
+
+    //#region - amber contract
     amber: {
       /**
        * @defaultValue #fffbeb | rgb(255, 251, 235)
@@ -142,6 +149,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-amber-950" as const,
     },
+    //#endregion
+
+    //#region - yellow contract
     yellow: {
       /**
        * @defaultValue #fefce8 | rgb(254, 252, 232)
@@ -188,6 +198,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-yellow-950" as const,
     },
+    //#endregion
+
+    //#region - lime contract
     lime: {
       /**
        * @defaultValue #f7fee7 | rgb(247, 254, 231)
@@ -234,6 +247,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-lime-950" as const,
     },
+    //#endregion
+
+    //#region - green contract
     green: {
       /**
        * @defaultValue #f0fdf4 | rgb(240, 253, 244)
@@ -280,6 +296,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-green-950" as const,
     },
+    //#endregion
+
+    //#region - emerald contract
     emerald: {
       /**
        * @defaultValue #ecfdf5 | rgb(236, 253, 245)
@@ -326,6 +345,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-emerald-950" as const,
     },
+    //#endregion
+
+    //#region - teal contract
     teal: {
       /**
        * @defaultValue #f0fdfa | rgb(240, 253, 250)
@@ -372,6 +394,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-teal-950" as const,
     },
+    //#endregion
+
+    //#region - cyan contract
     cyan: {
       /**
        * @defaultValue #ecfeff | rgb(236, 254, 255)
@@ -418,6 +443,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-cyan-950" as const,
     },
+    //#endregion
+
+    //#region - sky contract
     sky: {
       /**
        * @defaultValue #f0f9ff | rgb(240, 249, 255)
@@ -464,6 +492,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-sky-950" as const,
     },
+    //#endregion
+
+    //#region - blue contract
     blue: {
       /**
        * @defaultValue #eff6ff | rgb(239, 246, 255)
@@ -510,6 +541,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-blue-950" as const,
     },
+    //#endregion
+
+    //#region - indigo contract
     indigo: {
       /**
        * @defaultValue #eef2ff | rgb(238, 242, 255)
@@ -556,6 +590,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-indigo-950" as const,
     },
+    //#endregion
+
+    //#region - violet contract
     violet: {
       /**
        * @defaultValue #f5f3ff | rgb(245, 243, 255)
@@ -602,6 +639,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-violet-950" as const,
     },
+    //#endregion
+
+    //#region - purple contract
     purple: {
       /**
        * @defaultValue #faf5ff | rgb(250, 245, 255)
@@ -648,6 +688,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-purple-950" as const,
     },
+    //#endregion
+
+    //#region - fuchsia contract
     fuchsia: {
       /**
        * @defaultValue #fdf4ff | rgb(253, 244, 255)
@@ -694,6 +737,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-fuchsia-950" as const,
     },
+    //#endregion
+
+    //#region - pink contract
     pink: {
       /**
        * @defaultValue #fdf2f8 | rgb(253, 242, 248)
@@ -740,6 +786,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-pink-950" as const,
     },
+    //#endregion
+
+    //#region - rose contract
     rose: {
       /**
        * @defaultValue #fff1f2 | rgb(255, 241, 242)
@@ -786,6 +835,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-rose-950" as const,
     },
+    //#endregion
+
+    //#region - stone contract
     stone: {
       /**
        * @defaultValue #fafaf9 | rgb(250, 250, 249)
@@ -832,6 +884,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-stone-950" as const,
     },
+    //#endregion
+
+    //#region - neutral contract
     neutral: {
       /**
        * @defaultValue #fafafa | rgb(250, 250, 250)
@@ -878,6 +933,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-neutral-950" as const,
     },
+    //#endregion
+
+    //#region - zinc contract
     zinc: {
       /**
        * @defaultValue #fafafa | rgb(250, 250, 250)
@@ -924,6 +982,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-zinc-950" as const,
     },
+    //#endregion
+
+    //#region - gray contract
     gray: {
       /**
        * @defaultValue #f9fafb | rgb(249, 250, 251)
@@ -970,6 +1031,9 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-gray-950" as const,
     },
+    //#endregion
+
+    //#region - slate contract
     slate: {
       /**
        * @defaultValue #f8fafc | rgb(248, 250, 252)
@@ -1016,11 +1080,13 @@ export const colorTheme = createGlobalThemeContract(
        */
       "950": "--color-stale-950" as const,
     },
+    //#endregion
   },
   (value, path) => value ?? slugify(...path),
 );
 
 export const colorThemeValue: ColorThemeValue = {
+  //#region - red value
   red: {
     "50": fallbackVar(colorTheme.red[50], "254 242 242"),
     "100": fallbackVar(colorTheme.red[100], "254 226 226"),
@@ -1034,6 +1100,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.red[900], "127 29 29"),
     "950": fallbackVar(colorTheme.red[950], "69 10 10"),
   },
+  //#endregion
+
+  //#region - orange value
   orange: {
     "50": fallbackVar(colorTheme.orange[50], "255 247 237"),
     "100": fallbackVar(colorTheme.orange[100], "255 237 213"),
@@ -1047,6 +1116,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.orange[900], "124 45 18"),
     "950": fallbackVar(colorTheme.orange[950], "67 20 7"),
   },
+  //#endregion
+
+  //#region - amber value
   amber: {
     "50": fallbackVar(colorTheme.amber[50], "255 251 235"),
     "100": fallbackVar(colorTheme.amber[100], "254 243 199"),
@@ -1060,6 +1132,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.amber[900], "120 53 15"),
     "950": fallbackVar(colorTheme.amber[950], "69 26 3"),
   },
+  //#endregion
+
+  //#region - yellow value
   yellow: {
     "50": fallbackVar(colorTheme.yellow[50], "254 252 232"),
     "100": fallbackVar(colorTheme.yellow[100], "254 249 195"),
@@ -1073,6 +1148,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.yellow[900], "66 32 6"),
     "950": fallbackVar(colorTheme.yellow[950], "113 63 18"),
   },
+  //#endregion
+
+  //#region - lime value
   lime: {
     "50": fallbackVar(colorTheme.lime[50], "247 254 231"),
     "100": fallbackVar(colorTheme.lime[100], "236 252 203"),
@@ -1086,6 +1164,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.lime[900], "54 83 20"),
     "950": fallbackVar(colorTheme.lime[950], "26 46 5"),
   },
+  //#endregion
+
+  //#region - green value
   green: {
     "50": fallbackVar(colorTheme.green[50], "240 253 244"),
     "100": fallbackVar(colorTheme.green[100], "220 252 231"),
@@ -1099,6 +1180,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.green[900], "20 83 45"),
     "950": fallbackVar(colorTheme.green[950], "5 46 22"),
   },
+  //#endregion
+
+  //#region - emerald value
   emerald: {
     "50": fallbackVar(colorTheme.emerald[50], "236 253 245"),
     "100": fallbackVar(colorTheme.emerald[100], "209 250 229"),
@@ -1112,6 +1196,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.emerald[900], "6 78 59"),
     "950": fallbackVar(colorTheme.emerald[950], "2 44 34"),
   },
+  //#endregion
+
+  //#region - teal value
   teal: {
     "50": fallbackVar(colorTheme.teal[50], "240 253 250"),
     "100": fallbackVar(colorTheme.teal[100], "204 251 241"),
@@ -1125,6 +1212,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.teal[900], "19 78 74"),
     "950": fallbackVar(colorTheme.teal[950], "4 47 46"),
   },
+  //#endregion
+
+  //#region - cyan value
   cyan: {
     "50": fallbackVar(colorTheme.cyan[50], "236 254 255"),
     "100": fallbackVar(colorTheme.cyan[100], "207 250 254"),
@@ -1138,6 +1228,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.cyan[900], "22 78 99"),
     "950": fallbackVar(colorTheme.cyan[950], "8 51 68"),
   },
+  //#endregion
+
+  //#region - sky value
   sky: {
     "50": fallbackVar(colorTheme.sky[50], "240 249 255"),
     "100": fallbackVar(colorTheme.sky[100], "224 242 254"),
@@ -1151,6 +1244,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.sky[900], "12 74 110"),
     "950": fallbackVar(colorTheme.sky[950], "8 47 73"),
   },
+  //#endregion
+
+  //#region - blue value
   blue: {
     "50": fallbackVar(colorTheme.blue[50], "239 246 255"),
     "100": fallbackVar(colorTheme.blue[100], "219 234 254"),
@@ -1164,6 +1260,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.blue[900], "30 58 138"),
     "950": fallbackVar(colorTheme.blue[950], "23 37 84"),
   },
+  //#endregion
+
+  //#region - indigo value
   indigo: {
     "50": fallbackVar(colorTheme.indigo[50], "238 242 255"),
     "100": fallbackVar(colorTheme.indigo[100], "224 231 255"),
@@ -1177,6 +1276,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.indigo[900], "49 46 129"),
     "950": fallbackVar(colorTheme.indigo[950], "30 27 75"),
   },
+  //#endregion
+
+  //#region - violet value
   violet: {
     "50": fallbackVar(colorTheme.violet[50], "245 243 255"),
     "100": fallbackVar(colorTheme.violet[100], "237 233 254"),
@@ -1190,6 +1292,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.violet[900], "76 29 149"),
     "950": fallbackVar(colorTheme.violet[950], "46 16 101"),
   },
+  //#endregion
+
+  //#region - purple value
   purple: {
     "50": fallbackVar(colorTheme.purple[50], "250 245 255"),
     "100": fallbackVar(colorTheme.purple[100], "243 232 255"),
@@ -1203,6 +1308,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.purple[900], "88 28 135"),
     "950": fallbackVar(colorTheme.purple[950], "59 7 100"),
   },
+  //#endregion
+
+  //#region - fuchsia value
   fuchsia: {
     "50": fallbackVar(colorTheme.fuchsia[50], "253 244 255"),
     "100": fallbackVar(colorTheme.fuchsia[100], "250 232 255"),
@@ -1216,6 +1324,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.fuchsia[900], "112 26 117"),
     "950": fallbackVar(colorTheme.fuchsia[950], "74 4 78"),
   },
+  //#endregion
+
+  //#region - pink value
   pink: {
     "50": fallbackVar(colorTheme.pink[50], "253 242 248"),
     "100": fallbackVar(colorTheme.pink[100], "252 231 243"),
@@ -1229,6 +1340,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.pink[900], "131 24 67"),
     "950": fallbackVar(colorTheme.pink[950], "80 7 36"),
   },
+  //#endregion
+
+  //#region - rose value
   rose: {
     "50": fallbackVar(colorTheme.rose[50], "255 241 242"),
     "100": fallbackVar(colorTheme.rose[100], "255 228 230"),
@@ -1242,6 +1356,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.rose[900], "136 19 55"),
     "950": fallbackVar(colorTheme.rose[950], "76 5 25"),
   },
+  //#endregion
+
+  //#region - stone value
   stone: {
     "50": fallbackVar(colorTheme.stone[50], "250 250 249"),
     "100": fallbackVar(colorTheme.stone[100], "245 245 244"),
@@ -1255,6 +1372,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.stone[900], "28 25 23"),
     "950": fallbackVar(colorTheme.stone[950], "12 10 9"),
   },
+  //#endregion
+
+  //#region - neutral value
   neutral: {
     "50": fallbackVar(colorTheme.neutral[50], "250 250 250"),
     "100": fallbackVar(colorTheme.neutral[100], "245 245 245"),
@@ -1268,6 +1388,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.neutral[900], "23 23 23"),
     "950": fallbackVar(colorTheme.neutral[950], "10 10 10"),
   },
+  //#endregion
+
+  //#region - zinc value
   zinc: {
     "50": fallbackVar(colorTheme.zinc[50], "250 250 250"),
     "100": fallbackVar(colorTheme.zinc[100], "244 244 245"),
@@ -1281,6 +1404,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.zinc[900], "24 24 27"),
     "950": fallbackVar(colorTheme.zinc[950], "9 9 11"),
   },
+  //#endregion
+
+  //#region - gray value
   gray: {
     "50": fallbackVar(colorTheme.gray[50], "249 250 251"),
     "100": fallbackVar(colorTheme.gray[100], "243 244 246"),
@@ -1294,6 +1420,9 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.gray[900], "17 24 39"),
     "950": fallbackVar(colorTheme.gray[950], "3 7 18"),
   },
+  //#endregion
+
+  //#region - slate value
   slate: {
     "50": fallbackVar(colorTheme.slate[50], "248 250 252"),
     "100": fallbackVar(colorTheme.slate[100], "241 245 249"),
@@ -1307,11 +1436,12 @@ export const colorThemeValue: ColorThemeValue = {
     "900": fallbackVar(colorTheme.slate[900], "15 23 42"),
     "950": fallbackVar(colorTheme.slate[950], "2 6 23"),
   },
+  //#endregion
 };
 export type ColorTheme = typeof colorTheme;
 export type ColorThemeValue = Parameters<typeof createGlobalTheme<ColorTheme>>[2];
 
-/*================== Value getter =================*/
+//#region - value getter
 type Palette = keyof ColorTheme;
 type PaletteShade = "50" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "950";
 export function getSolidColor(palette: Palette, shade: PaletteShade, opacity = 1): string {
@@ -1320,3 +1450,4 @@ export function getSolidColor(palette: Palette, shade: PaletteShade, opacity = 1
   if (opacity < 0) accent = 0;
   return `rgba(${colorThemeValue[palette][shade]} / ${accent})`;
 }
+//#endregion
