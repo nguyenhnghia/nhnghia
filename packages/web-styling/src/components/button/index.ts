@@ -1,3 +1,4 @@
+import { style } from "@vanilla-extract/css";
 import { clsx } from "clsx";
 import createClassName from "../../_utils/class-name";
 import { getDesktopRuleBuilder, getMobileRuleBuilder, getTabletRuleBuilder } from "../../helpers";
@@ -29,9 +30,11 @@ function buttonStyles(config?: ClassBuilderConfig): ButtonStyle["classesGetter"]
       if (fragment === "root") {
         classes = clsx([
           // static style
-          createClassName(staticStyles.root, OptimizationUnit.Component, `(${scope})button-root-on-any-screen:size=any`),
+          style(staticStyles.root),
+          // createClassName(staticStyles.root, OptimizationUnit.Component, `(${scope})button-root-on-any-screen:size=any`),
           // size style
-          createClassName(mobile(sizeVariants[size]), OptimizationUnit.Component, `(${scope})button-root-on-mobile:size=${size}`),
+          style(mobile(sizeVariants[size])),
+          // createClassName(mobile(sizeVariants[size]), OptimizationUnit.Component, `(${scope})button-root-on-mobile:size=${size}`),
           tlSize && createClassName(tablet(sizeVariants[tlSize]), OptimizationUnit.Component, `(${scope})button-root-on-tablet:size=${tlSize}`),
           dtSize && createClassName(desktop(sizeVariants[dtSize]), OptimizationUnit.Component, `(${scope})button-root-on-desktop:size=${dtSize}`),
           // ...other variants
@@ -44,7 +47,8 @@ function buttonStyles(config?: ClassBuilderConfig): ButtonStyle["classesGetter"]
       if (fragment === "icon") {
         classes = clsx([
           // static style
-          createClassName(staticStyles.icon, OptimizationUnit.Component, `(${scope})button-icon-on-any-screen:size=any`),
+          style(staticStyles.icon),
+          // createClassName(staticStyles.icon, OptimizationUnit.Component, `(${scope})button-icon-on-any-screen:size=any`),
         ]);
       }
       //#endregion
@@ -53,7 +57,8 @@ function buttonStyles(config?: ClassBuilderConfig): ButtonStyle["classesGetter"]
       if (fragment === "text") {
         classes = clsx([
           // static style
-          createClassName(staticStyles.text, OptimizationUnit.Component, `(${scope})button-text-on-any-screen:size=any`),
+          style(staticStyles.text),
+          // createClassName(staticStyles.text, OptimizationUnit.Component, `(${scope})button-text-on-any-screen:size=any`),
         ]);
       }
       //#endregion

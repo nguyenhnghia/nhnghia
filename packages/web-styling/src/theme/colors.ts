@@ -1437,9 +1437,12 @@ export const colorThemeValue: ColorThemeValue = {
     "950": fallbackVar(colorTheme.slate[950], "2 6 23"),
   },
   //#endregion
+  __solid: getSolidColor,
 };
 export type ColorTheme = typeof colorTheme;
-export type ColorThemeValue = Parameters<typeof createGlobalTheme<ColorTheme>>[2];
+export type ColorThemeValue = Parameters<typeof createGlobalTheme<ColorTheme>>[2] & {
+  __solid: typeof getSolidColor;
+};
 
 //#region - value getter
 type Palette = keyof ColorTheme;

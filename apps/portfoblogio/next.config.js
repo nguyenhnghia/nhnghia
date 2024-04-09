@@ -24,7 +24,7 @@ const withVanillaExtract = vanillaExtract.createVanillaExtractPlugin({
 });
 //#endregion
 
-//#region - bundle pluganalyzer plugin
+//#region - bundle analyzer plugin
 const withBundleAnalyze = (config) => {
   return bundleAnalyzer({
     enabled: isRunAnalyze,

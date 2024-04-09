@@ -1,11 +1,11 @@
 import { mergeObject } from "../_utils/object";
 import type { DeepPartial } from "../types";
-import { colorTheme, colorThemeValue, getSolidColor } from "./colors";
+import { colorTheme, colorThemeValue } from "./colors";
 import { spaceTheme, spaceThemeValue } from "./spaces";
 import { typoTheme, typoThemeValue } from "./typography";
 
 export const theme = {
-  colors: { ...colorTheme, __solid: getSolidColor },
+  colors: colorTheme,
   spaces: spaceTheme,
   typos: typoTheme,
 };
