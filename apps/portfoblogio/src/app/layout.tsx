@@ -5,6 +5,7 @@ import WebVitals from "@components/web-vitals";
 import { isProdEnv } from "@utils/context";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { footer, header } from "./layout.css";
+import Script from "next/script";
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -27,6 +28,7 @@ const RootLayout: React.FC<RootLayoutProps> = (props) => {
           <SpeedInsights />
         </ConditionalRender>
       </body>
+      <Script src="https://cdn.tailwindcss.com" />
     </html>
   );
   //#endregion

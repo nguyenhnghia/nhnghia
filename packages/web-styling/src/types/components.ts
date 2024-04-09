@@ -18,7 +18,7 @@ export type ButtonStyle = ComponentStyle<{
   fragments: "root" | "icon" | "text";
   variants: {
     /**
-     * @defaultValue `"normal" for mobile, undefined for tablet & desktop`
+     * @defaultValue normal
      */
     size: "tiny" | "small" | "normal" | "medium" | "large" | "huge";
   };
