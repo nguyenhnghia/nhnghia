@@ -1,6 +1,5 @@
 import { clsx } from "clsx";
-import { test } from "./header.css";
-import { button, buttonExtra, buttonExtra2, buttonExtra3, buttonExtra4 } from "./mini-profile.css";
+import { button1, button2 } from "./mini-profile.css";
 
 type MiniProfileProps = React.ComponentProps<"div">;
 
@@ -9,13 +8,13 @@ const MiniProfile: React.FC<MiniProfileProps> = (props) => {
   return (
     <div {...props}>
       this is mini profile
-      <button type="button" className={clsx(button, buttonExtra.root, buttonExtra3)}>
+      <button type="button" className={clsx(button1.root)}>
         click mini-profile
       </button>
-      <button type="button" className={clsx(buttonExtra2.root, buttonExtra4)}>
+      <button type="button" className={clsx(button2.root)}>
         click mini-profile 2
       </button>
-      <div className={test}>Lorem ipsum dolor sit amet.</div>
+      <div>Lorem ipsum dolor sit amet.</div>
     </div>
   );
   //#endregion

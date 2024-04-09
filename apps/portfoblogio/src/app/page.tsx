@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { main } from "./page.css";
 
-const MiniProfile = dynamic(() => import("@components/header/header"));
+const Header = dynamic(() => import("@components/header/header"));
 
 export const metadata: Metadata = {
   title: "nhnghia - portfoblogio",
@@ -10,10 +11,9 @@ export const metadata: Metadata = {
 const RootPage: React.FC = () => {
   //#region - render
   return (
-    // <main className={main}>
-    <main>
+    <main className={main}>
       <div>Lorem ipsum dolor sit amet.</div>
-      <MiniProfile />
+      <Header />
     </main>
   );
   //#endregion

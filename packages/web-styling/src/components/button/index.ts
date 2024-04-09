@@ -1,72 +1,66 @@
 import { style } from "@vanilla-extract/css";
-import { clsx } from "clsx";
-import createClassName from "../../_utils/class-name";
 import { getDesktopRuleBuilder, getMobileRuleBuilder, getTabletRuleBuilder } from "../../helpers";
-import type { ButtonStyle, ClassBuilderConfig, ResponsiveUIVariants } from "../../types";
-import { OptimizationUnit } from "../../types";
+import type { ButtonStyle, ResponsiveRuleBuilderConfig, ResponsiveUIVariants } from "../../types";
 import staticStyles from "./static";
 import { sizeVariants } from "./variants/size.css";
 
-function buttonStyles(config?: ClassBuilderConfig): ButtonStyle["classesGetter"] {
-  const scope = config?.scope ?? "any-scope";
-  const builderConfig = config?.builder;
+function buttonStyles(config?: ResponsiveRuleBuilderConfig): ButtonStyle["classesGetter"] {
+  const mobile = getMobileRuleBuilder(config?.mobile);
+  const tablet = getTabletRuleBuilder(config?.tablet);
+  const desktop = getDesktopRuleBuilder(config?.desktop);
 
-  const mobile = getMobileRuleBuilder(builderConfig?.mobile);
-  const tablet = getTabletRuleBuilder(builderConfig?.tablet);
-  const desktop = getDesktopRuleBuilder(builderConfig?.desktop);
-
-  return function getButtonClasses<P extends ButtonStyle["fragments"]>(fragments: [P, ...P[]], options?: ResponsiveUIVariants<ButtonStyle["variants"]>) {
+  return function getButtonClasses(fragments: ButtonStyle["fragments"][], options?: ResponsiveUIVariants<ButtonStyle["variants"]>) {
     let styles = {};
 
+    //#region - variant - size
     const size = options?.size ?? "normal";
     const tlSize = options?.__responsive?.tablet?.size;
     const dtSize = options?.__responsive?.desktop?.size;
+    //#endregion
 
-    for (const fragment of fragments) {
-      if (fragment in styles) continue;
-      let classes = "";
-
-      //#region - root
-      if (fragment === "root") {
-        classes = clsx([
+    //#region - root
+    if (fragments.includes("root")) {
+      styles = {
+        ...styles,
+        root: style([
           // static style
-          style(staticStyles.root),
-          // createClassName(staticStyles.root, OptimizationUnit.Component, `(${scope})button-root-on-any-screen:size=any`),
+          staticStyles.root,
           // size style
-          style(mobile(sizeVariants[size])),
-          // createClassName(mobile(sizeVariants[size]), OptimizationUnit.Component, `(${scope})button-root-on-mobile:size=${size}`),
-          tlSize && createClassName(tablet(sizeVariants[tlSize]), OptimizationUnit.Component, `(${scope})button-root-on-tablet:size=${tlSize}`),
-          dtSize && createClassName(desktop(sizeVariants[dtSize]), OptimizationUnit.Component, `(${scope})button-root-on-desktop:size=${dtSize}`),
+          mobile(sizeVariants[size]),
+          tlSize ? tablet(sizeVariants[tlSize]) : "",
+          dtSize ? desktop(sizeVariants[dtSize]) : "",
           // ...other variants
           // ...
-        ]);
-      }
-      //#endregion
-
-      //#region - icon
-      if (fragment === "icon") {
-        classes = clsx([
-          // static style
-          style(staticStyles.icon),
-          // createClassName(staticStyles.icon, OptimizationUnit.Component, `(${scope})button-icon-on-any-screen:size=any`),
-        ]);
-      }
-      //#endregion
-
-      //#region - text
-      if (fragment === "text") {
-        classes = clsx([
-          // static style
-          style(staticStyles.text),
-          // createClassName(staticStyles.text, OptimizationUnit.Component, `(${scope})button-text-on-any-screen:size=any`),
-        ]);
-      }
-      //#endregion
-
-      if (classes) styles = { ...styles, [fragment]: classes };
+        ]),
+      };
     }
+    //#endregion
 
-    return styles as Record<P, string>;
+    //#region - icon
+    if (fragments.includes("icon")) {
+      styles = {
+        ...styles,
+        icon: style([
+          // static style
+          staticStyles.icon,
+        ]),
+      };
+    }
+    //#endregion
+
+    //#region - text
+    if (fragments.includes("text")) {
+      styles = {
+        ...styles,
+        text: style([
+          // static style
+          staticStyles.text,
+        ]),
+      };
+    }
+    //#endregion
+
+    return styles as ReturnType<ButtonStyle["classesGetter"]>;
   };
 }
 

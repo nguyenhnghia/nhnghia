@@ -1437,20 +1437,6 @@ export const colorThemeValue: ColorThemeValue = {
     "950": fallbackVar(colorTheme.slate[950], "2 6 23"),
   },
   //#endregion
-  __solid: getSolidColor,
 };
 export type ColorTheme = typeof colorTheme;
-export type ColorThemeValue = Parameters<typeof createGlobalTheme<ColorTheme>>[2] & {
-  __solid: typeof getSolidColor;
-};
-
-//#region - value getter
-type Palette = keyof ColorTheme;
-type PaletteShade = "50" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "950";
-export function getSolidColor(palette: Palette, shade: PaletteShade, opacity = 1): string {
-  let accent = opacity;
-  if (opacity > 1) accent = 1;
-  if (opacity < 0) accent = 0;
-  return `rgba(${colorThemeValue[palette][shade]} / ${accent})`;
-}
-//#endregion
+export type ColorThemeValue = Parameters<typeof createGlobalTheme<ColorTheme>>[2];

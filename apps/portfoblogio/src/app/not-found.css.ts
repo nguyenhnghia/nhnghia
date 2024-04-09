@@ -1,11 +1,9 @@
-import { colorThemeValue } from "@repo/web-styling/theme/colors";
 import { typoThemeValue } from "@repo/web-styling/theme/typography";
-import classes from "@repo/web-styling/utilities/classes";
+import getSolidColor from "@repo/web-styling/utilities/solid-color";
+import { style } from "@vanilla-extract/css";
 
-const getClasses = classes();
-
-export const title404 = getClasses({
-  color: colorThemeValue.__solid("red", "500"),
+export const title404 = style({
+  color: getSolidColor("red", "500"),
   fontSize: typoThemeValue.huge.fontSize,
   lineHeight: typoThemeValue.huge.lineHeight,
 });

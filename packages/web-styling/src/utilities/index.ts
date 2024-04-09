@@ -1,1 +1,1 @@
-export * from "./classes";
+export * from "./solid-color";

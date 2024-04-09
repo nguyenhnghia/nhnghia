@@ -1,12 +1,10 @@
-import { colorThemeValue } from "@repo/web-styling/theme/colors";
-import classes from "@repo/web-styling/utilities/classes";
+import getSolidColor from "@repo/web-styling/utilities/solid-color";
+import { style } from "@vanilla-extract/css";
 
-const getClasses = classes();
-
-export const header = getClasses({
-  background: colorThemeValue.__solid("neutral", "400"),
+export const header = style({
+  background: getSolidColor("neutral", "400"),
 });
 
-export const footer = getClasses({
-  background: colorThemeValue.__solid("neutral", "400"),
+export const footer = style({
+  background: getSolidColor("neutral", "400"),
 });

@@ -1,6 +1,4 @@
-import { colorThemeValue } from "@repo/web-styling/theme/colors";
-import classes from "@repo/web-styling/utilities/classes";
+import getSolidColor from "@repo/web-styling/utilities/solid-color";
+import { style } from "@vanilla-extract/css";
 
-const getClasses = classes();
-
-export const main = getClasses({ background: colorThemeValue.__solid("sky", "400") });
+export const main = style({ background: getSolidColor("sky", "400") });

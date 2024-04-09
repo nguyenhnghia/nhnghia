@@ -1,26 +1,10 @@
-import { globalStyle } from "@vanilla-extract/css";
-import { DESKTOP_LAYER_NAME, MOBILE_LAYER_NAME, RESET_LAYER_NAME, TABLET_LAYER_NAME } from "../configurations";
+import { globalLayer, globalStyle } from "@vanilla-extract/css";
 
 const DEFAULT_FONT_FAMILY = 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
 
 const MONO_FONT_FAMILY = 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace';
 
-globalStyle("html", {
-  "@layer": {
-    [RESET_LAYER_NAME]: {
-      background: "'??'", // This rule is set in order to properly define the order of layers.
-    },
-    [MOBILE_LAYER_NAME]: {
-      background: "'??'", // This rule is set in order to properly define the order of layers.
-    },
-    [TABLET_LAYER_NAME]: {
-      background: "'??'", // This rule is set in order to properly define the order of layers.
-    },
-    [DESKTOP_LAYER_NAME]: {
-      background: "'??'", // This rule is set in order to properly define the order of layers.
-    },
-  },
-});
+const RESET_LAYER_NAME = globalLayer("reset");
 
 globalStyle("*, ::before, ::after", {
   "@layer": {
