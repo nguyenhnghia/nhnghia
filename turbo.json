@@ -2,17 +2,17 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "globalEnv": ["NODE_ENV", "RUN_ANALYZE"],
-  "pipeline": {
+  "tasks": {
     "//#clear-turbo-cookies": {
       "cache": false
     },
     "type-check": {
       "dependsOn": ["//#clear-turbo-cookies", "^type-check"],
-      "outputMode": "new-only"
+      "outputLogs": "new-only"
     },
     "lint": {
       "dependsOn": ["type-check", "^lint"],
-      "outputMode": "new-only"
+      "outputLogs": "new-only"
     },
     "clean": {
       "dependsOn": ["^clean"],
@@ -20,8 +20,8 @@
     },
     "build": {
       "dependsOn": ["lint", "clean", "^build"],
-      "outputMode": "new-only",
-      "outputs": ["!.next/cache/**", ".next/**", ".web-styling/**"]
+      "outputs": ["!.next/cache/**", ".next/**", ".web-styling/**"],
+      "outputLogs": "new-only"
     },
     "start": {
       "cache": false,
