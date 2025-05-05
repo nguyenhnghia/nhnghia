@@ -1,6 +1,7 @@
 import "@repo/web-styling/templates/reset";
 
 import ConditionalRender from "@components/conditional-render";
+import SiteLinksScript from "@components/scripts/site-links-script";
 import WebVitals from "@components/web-vitals";
 import { isProdEnv } from "@utils/context";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -18,6 +19,9 @@ const RootLayout: React.FC<RootLayoutProps> = (props) => {
   //#region - render
   return (
     <html lang="en">
+      <head>
+        <SiteLinksScript />
+      </head>
       <body>
         <header className={header}>this is shared header</header>
         {children}
