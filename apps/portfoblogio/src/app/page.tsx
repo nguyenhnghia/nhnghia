@@ -22,6 +22,12 @@ const RootPage: React.FC = () => {
   return (
     <main className={main}>
       <div>Lorem ipsum dolor sit amet.</div>
+      <div style={{ fontVariationSettings: "'FILL' 0, 'wght' 100, 'GRAD' 0, 'opsz' 48;" }}>
+        <span className="material-symbols-outlined">search</span>
+        <span className="material-symbols-outlined">home</span>
+        <span className="material-symbols-outlined">settings</span>
+        <span className="material-symbols-outlined">favorite</span>
+      </div>
       <Header />
     </main>
   );
